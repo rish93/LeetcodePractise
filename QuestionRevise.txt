@@ -1,0 +1,336 @@
+
+fgango 4
+educative.io
+
+tinyurl design
+Binary tree greedy merge graph
+
+join query
+
+Creation behaviroioul pattern
+
+--------------------------------------------------------------------------------
+
+git remote add origin https://github.com/rish93/protobufsession-30102020.git
+git push -u origin main
+
+git push --set-upstream origin master
+
+------------------------------------------------------------------------------------------------------------
+
+With Java 8, int[] can be converted to Integer[] easily:
+
+int[] data = {1,2,3,4,5,6,7,8,9,10};
+
+// To boxed array
+Integer[] what = Arrays.stream( data ).boxed().toArray( Integer[]::new );
+Integer[] ever = IntStream.of( data ).boxed().toArray( Integer[]::new );
+
+// To boxed list
+List<Integer> you  = Arrays.stream( data ).boxed().collect( Collectors.toList() );
+List<Integer> like = IntStream.of( data ).boxed().collect( Collectors.toList() );
+As others stated, Integer[] is usually not a good map key. But as far as conversion goes, we now have a relatively clean and native code.\\
+
+------------------------------------------------------------------------------------------------------------------
+
+The List returned by Arrays.asList method of java.util.Arrays class is a fixed-size list object which means that elements cannot be added to or removed from the list.
+
+So functions like Adding or Removing cannot be operated on such kind of Lists.
+
+The solution to adding or removing without getting java.lang.UnsupportedOperationException is ->
+
+List<String> strList= new ArrayList<>(Arrays.asList(strs));
+
+//Then Add or Remove can be called on such List
+
+newList.add("100");
+newList.remove("100");
+
+------------------------------------------------------------------------------------------------------------
+
+
+You need to use HAVING, not WHERE.
+
+The difference is: the WHERE clause filters which rows MySQL selects. Then MySQL groups the rows together and aggregates the numbers for your COUNT function.
+
+HAVING is like WHERE, only it happens after the COUNT value has been computed, so it'll work as you expect. Rewrite your subquery as:
+
+(                  -- where that pid is in the set:
+SELECT c2.pid                  -- of pids
+FROM Catalog AS c2             -- from catalog
+WHERE c2.pid = c1.pid
+HAVING COUNT(c2.sid) >= 2)
+
+
+------------------------------------------------------------------
+Nth highest salary
+
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+  RETURN (
+      # Write your MySQL query statement below.
+     SELECT MIN(Salary) from (
+        SELECT Salary from Employee emp ORDER BY emp.Salary DESC LIMIT N
+        ) AS emp
+
+
+  );
+END
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+GIven clock of alphabets between A-Z get ting string as input and number key.
+Decrypt by subtracting key to alphabets
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+In as sentence arrange word based on it's length with speacial character at first
+------------------------------------------------------------------------------------------------------------------------------------
+
+In a word get last two alphabets, reveres and append to first
+Apple
+
+el App
+
+
+
+-------------------------------------------------
+
+What do you mean by polymorphism?
+Explain virtual inheritance.
+What do you mean by semaphore?
+What are javascript types?
+What is recursion? Can you implement it?
+Give an example that shows the use of enumeration data types.
+Big O of hash map, How to use a select query in sql, how to  use the join tables in sql.
+Most of the questuions fromTriggers, Views, T-SQL, DML
+Write the code for a problem and write as many unit test cases as possible.
+How you create object in JS
+How you create array in JS
+Few very basics questions about css too.
+
+Programming question - Given an array of number from 1...N (No duplicates)out of which one number is missing. Find the missing number in O(N).
+How to compile & execute code at run time in java?
+Some question based on topological sort
+Level order traversal of tree
+A question based on Dijkstra's algorithm
+
+Hash map vs Concurrent hash map
+Internal implementation of hash map
+
+3. Spiral Traversal Of Binary Tree
+
+4. Reverse Spiral Traversal of Binary Tree
+1. Explain project in detail
+
+2. Delete node without head pointer
+
+3. Print all paths of Binary Tree
+
+4. Convert Binary tree to Mirror tree
+
+5. Fizz buzz printing
+Write an efficient program which takes an input argument say n. Start from number 1 to n (inclusive) and if number is multiple of 3 then print “Fizz”, if number is multiple of 5 then print “Buzz”, if number is multiple of both 3 and 5 then print “FizzBuzz”. The interviewer was looking for code with just two ‘IF’ statements.
+
+
+1. Usage of synchronize keyword
+
+2. Find graph type from given coordinates
+Here we are given 4 types of graphs and we have an API which takes co-ordinates say (x1, y1) and (x2, y2). Everytime the API is invoked it would return the next coordinate in the plane. We have to find the type of graph with minimum number of API invocation.
+Graph Types were Strictly increasing line, Strictly decreasing line, Increasing then Decreasing plane and Decreasing and Increasing plane.
+
+3. Explain Singleton design pattern
+
+4. Explain Factory design pattern
+
+1. Dynamic Dispatcher
+2. Atomic keyword and volatile keyword
+3. Externalizable interface
+4. Having a method definition inside an interface but java version is 1.7 hence default shouldn’t be used.
+5. Usage of try with resource block
+6. Difference between upcasting and downcasting and when we should use them.
+7. Creating thread without using thread class and runnable interface
+8. Shutdown hook
+9. 5 features in Java 1.8 and 1.9
+10. Executor Pool vs Thread Join Pool
+11. There are 3 threads running independently how to ensure 1st thread runs more
+
+----------------------------------------------------------------------
+Hibernate with one table having multiple referece to another table
+
+https://stackoverflow.com/questions/22954787/hibernate-with-two-foreign-keys-from-same-table-annotation
+
+
+----------------------------------------------------------------------
+
+
+
+
+
+----------------------------------------------------------------------
+DESIGN PATTERN
+
+https://refactoring.guru/design-patterns/java
+
+---------------------------------------------------------------------------------
+
+1st week------->
+Java+ Spring Boot + Rest+SQL+ aur iske aaju baju wale maven,gradle,git blah blah
+
+2nd Week--->
+Java 8, 9 , 11 features and questions + Spring Cloud (Java Brain 3 playlist)+ Java Tricky questions(Singleton use case, prototype example callig inner class from another inner class etc.....)
+
+3rd Week--->
+Docker Therory+ Kubernetes Theory+ Java Design Pattern (Important Ones only with example rest bas upar upar se)
+
+4th Week---->
+Ab DS Algo me toot pado + Kubernetes commands+ git pipeline+ multiple microservice interaction pratical+docer practical etc..
+
+
+
+------------------------------------------------------------------
+
+Creating a dashboard to display monitors.
+
+Design a video sharing/ streaming application
+
+Solve a word parsing and counting problem using coderpad which is difficult to use.
+
+
+
+
+------------------------------------------------------------------
+
+
+Mphasis
+
+Can null key accepted in hashmap then how to get it's null key value
+Left join example
+Microservice Design architecture used (service discovery etc)
+Can overridedn method have differetn throw Exception syntax
+How to hanle out of memory _-> increase heap size and prefer streaming output thrn holding in variable
+
+
+
+UNI orbit
+
+kth largest element
+https://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array/
+
+
+binary search
+find in sorted arrya
+
+
+
+
+
+Find Kth largest element in an unsorted array
+
+
+public class ArraySolution{
+
+	public static void main(String[] args){
+
+      List<Integer> testList = Lit.of(2,23,21,1);
+      Collections.sort(testList);
+
+
+     System.out.print ( testList.get(k));
+
+  }
+
+
+
+
+
+}
+
+
+Find Search element(X) in Rotated Sorted Array
+
+
+[ 7, 8, 9, 1, 2, 5, 6]
+
+
+
+[10, 20, 30, 35, 40, 55, 59, 63]
+35_> ->   -> 35
+
+Manhattan
+
+
+1. How to define a class as Immutable ? Also how to use a hashmap inside an immutable class?
+2. Reverse a linked list.
+3. WAP to find the given string is the rotation of another input string.
+4.How to implement Autocloseable in java?
+5. How to create threads in java?
+
+
+WAP to print 1-50 if number divisible by 3 Print Manhattan if div by 5 print Associate or if div by both 3 and 5 print Manhattan Associate
+
+Written Questions:
+1) Program to Convert String to Integer without using Integer Parseint.
+2) Program to read the data from file and remove ' ' and \n and duplicates from the string.
+3) Program to print Manhattan (if no. is multiple of 3) print Associates(if no. is multiple of 5) and Manhattan Associates (if no is multiple of both 3 and 5)
+4) 3 questions related to inner joins.
+
+In interview:
+1) How do you handle exceptions in your project?
+2) Which server do you use i your project?
+3) Why main method is static?
+4) What is encapsulation?
+5) Have you ever used git and which version control is used in your project?
+6) What is the difference between string buffer and string builder?
+7) Write exception hierarchy and how do you get to know in your code that where is error?
+8) Which exceptions and errors have you faced in your project and how did you fixed them?
+
+Comparator, Interface, etc
+
+difference between runtime and compile time polymorphism
+difference between 'exists' and 'in' SQL
+jdbc questions
+
+Questions on Java 8 , J2EE , web security , Spring framework and logical thinking.
+
+1 round : (i)Basic of Java and multithreading , String operation related questions & micro services architecture.
+(ii)they asked one puzzle also, I solved mathematically but since interviewer cram the answer , by mistake he changed question hence he was telling my answer wrong ;-)
+(iii) Then basic question on spring boot and web services
+(iv) some small programs base on arrays , star patterns.
+2 round : It was totally on architecture and design level of applications . Then few design patterns and my all projects . This interview round was continue till 1.5 hours.
+3 round : It was from director and he asked some realtime problems and then few design and architecture level design questions.
+
+write a recursive program to add digits of a number.
+1 Answer
+How can you add more than two attributes as a primary key
+
+
+
+
+
+////////
+OFSS preperation
+
+8 primitive data types
+1. Program to find all the patterns of 0(1+)0 in the given string
+2. Program to replace all 0's with 1 in a given integer
+Given a list of integers, return the most frequent item in the list.
+Jersey client implementation
+linked list queue
+Tree and Linked List Implementation
+
+
+
+
+1. What is the difference between EXIST and IN
+Add Answer
+Q2. What is an INDEX , PARTITION , How does it improve query performance
+Add Answer
+Q3. Remove Duplicates using analytical functions
+Add Answer
+Q4. Briefly describe the Oracle DB Architecture
+Add Answer
+Q5. ANSI JOINS vs Oracle JOINS
+Add Answer
+Q6. Questions using substr() , instr()
+
