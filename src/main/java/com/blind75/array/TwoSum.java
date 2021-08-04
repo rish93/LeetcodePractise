@@ -87,6 +87,22 @@ class Solution {
     }
 }
 
+/*
+dry run
+						4	9	34	2	0	6	8	1	5
+    Approach1	15
+
+    if()	        15-4	15-9	15-34	15-2	15-0	15-6
+
+    Map	put() key	4	9	34	2	0
+        put() index	0	1	2	3	4
+        Result  0	5
+				1	0	map.get(15-6)
+					[0,5]
+
+
+ */
+
 
 /*
 Brute Force
