@@ -10,20 +10,12 @@ public class OccuranceOfCharacterInString {
 
     public static void main(String []args){
         String s= "aaabbccccdd";
-        solution(s);
+        linearWithMapSolution(s);
 
     }
 
-    private static void solution(String inputString){
-        Map<Character, Integer> resultMap= new HashMap<>();
 
-        for(Character s:inputString.toCharArray()){
-            resultMap.put(s, resultMap.get(s)==null?1:resultMap.get(s)+1);
-        }
-        System.out.println(resultMap);
-    }
-
-
+    //quadratic On2 Exponential
     private static void solution1(String inputString){
         String []arr= inputString.split("");
         for(int i=0;i<arr.length;i++){
@@ -37,7 +29,7 @@ public class OccuranceOfCharacterInString {
         }
     }
 
-
+    //quadratic On2 Exponential
     private static void solution2(String inputString){
         String []arr= inputString.split("");
         List<String> strList = Arrays.asList(arr);
@@ -50,4 +42,18 @@ public class OccuranceOfCharacterInString {
             processedValues.add(strList.get(i));
         }
     }
+
+
+    private static void linearWithMapSolution(String inputString){
+        Map<Character, Integer> resultMap= new HashMap<>();
+
+        for(Character s:inputString.toCharArray()){
+            resultMap.put(s, resultMap.get(s)==null?1:resultMap.get(s)+1);
+        }
+        System.out.println(resultMap);
+    }
+
+
 }
+
+    //select d.name,count(e)  from employee e, departemnt d where e.DId= d.id groupby department

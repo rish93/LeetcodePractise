@@ -10,6 +10,8 @@ the same element twice. You can return the
 answer in any order*/
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
     Example 1:
@@ -39,26 +41,48 @@ public class TwoSum {
 //        int []arr = {3,2,4};
 //        int target =6;
 
-        int []arr = {3,3};
-        int target =6;
+        int []arr = {4,9,34,2,0,6,8,1,5};
+        int target =15;
+        //brutte force approach
+       // System.out.println(Arrays.toString(solution.brutteForceTwoSum(arr, target)));
 
-       System.out.println(Arrays.toString(solution.twoSum(arr, target)));
+       //using hashmap/java object
+        System.out.println(Arrays.toString(   solution.linearComplexityTwoSum(arr, target)));
+
+    }
+}
+//constant O(N)
+//linear  O(1)
+//exponential O(N2))
+//Logarithmic O(Logn)
+class Solution {
+
+    public int[] linearComplexityTwoSum(int[] numbers, int target) {
+
+            int[] result = new int[2];
+            Map<Integer, Integer> map = new HashMap<>();
+            for (int i = 0; i < numbers.length; i++) {   //O(n)
+                if (map.containsKey(target - numbers[i])) {  //O1
+                    result[1] = i;  //O1
+                    result[0] = map.get(target - numbers[i]);  //O1
+                    return result;
+                }
+                map.put(numbers[i], i);
+            }
+            return result;
+
     }
 
-}
 
-class Solution {
-    public int[] twoSum(int[] nums, int target) {
 
+    public int[] brutteForceTwoSum(int[] nums, int target) {
         for(int i=0;i<nums.length;i++){
-            for(int j=i; j<nums.length;j++){
-
-                if(i!=j && nums[i]==target-nums[j]){
-                    return new int[] {i,j};
+            for(int j=i; j<nums.length;j++){  //O(n2)
+                if(i!=j && nums[i]+nums[j]==target){  //0(1)
+                    return new int[] {i,j};  //O(1)
                 }
             }
         }
-
         return new int[] {0,1};
     }
 }
