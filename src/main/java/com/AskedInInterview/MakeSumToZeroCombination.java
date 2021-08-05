@@ -1,9 +1,7 @@
-package com.Practise;
+package com.AskedInInterview;
 
 import java.util.Scanner;
 
-
-import java.util.*;
 class sequencer
 {
     int n;                                    //for no of terms

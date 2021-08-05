@@ -1,4 +1,4 @@
-package com.Practise;
+package com.AskedInInterview;
 
     public class LinkedListSum {
 
