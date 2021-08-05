@@ -7,7 +7,7 @@ Binary tree greedy merge graph
 
 join query
 
-Creation behaviroioul pattern
+Creation behavioral pattern
 
 --------------------------------------------------------------------------------
 
@@ -334,3 +334,29 @@ Q5. ANSI JOINS vs Oracle JOINS
 Add Answer
 Q6. Questions using substr() , instr()
 
+
+
+//Java Accenture
+
+
+1. How to make a List as Read Only List?
+2. Difference between iterator and list iterator?
+3. What design patterns you know in Java?
+4. What is a Singleton class?
+5. Difference between String builder and String buffer?
+6. How to remove duplicate elements from a list in java?
+7. How to clone objects?
+8. What are the methods in object class?
+9. What are implicit objects in JSP?
+10. How to open a database connection? How the application understands from where the query is to be read?
+11. Can you write a query in JSP file or a controller?
+12. What is MVC in your application?
+13. How to use Log4j logger?
+14. What are the log levels?
+15. What is Spring bean definition?
+16. What is a bean life cycle?
+17. What are the Spring bean scopes?
+18. What is final keyword in Java?
+19. What is a front controller?
+20. What is the difference between forward and redirect in Spring MVC?
+21. What are servlets?
