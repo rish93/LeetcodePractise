@@ -23,82 +23,55 @@ Output: 0
 Explanation: In this case, no transactions are done and the max profit = 0.
  */
 
-//https://www.geeksforgeeks.org/maximum-profit-by-buying-and-selling-a-share-at-most-twice/
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
 public class BestTimeToBuySellStock {
     static {
         System.out.println("starting..");
     }
     public static void main(String []args){
-       int[] arr = new int[]{2,4,5,1,7};
-       int outputResult= maxProfit(arr, arr.length);
+       int[] priceList = new int[]{1,8,2,34,7};
+
+
+       int outputResult= maxProfit(priceList);
        System.out.println(outputResult);
     }
 
+/*map<>
+  Entry  1   max =0
+        2    max (0, 2-1)
 
+   */
 
-        // Returns maximum profit
-        // with two transactions on a
-        // given list of stock prices,
-        // price[0..n-1]
-        static int maxProfit(int price[], int n)
+    //for every iteration takes out minimum value
+    //and  profit
+        static int maxProfit(int priceList[])
         {
-            // Create profit array
-            // and initialize it as 0
-            int profit[] = new int[n];
-            for (int i = 0; i < n; i++)
-                profit[i] = 0;
-
-        /* Get the maximum profit
-           with only one transaction
-           allowed. After this loop,
-           profit[i] contains
-           maximum profit from
-           price[i..n-1] using at most
-           one trans. */
-            int max_price = price[n - 1];
-            for (int i = n - 2; i >= 0; i--) {
-                // max_price has maximum
-                // of price[i..n-1]
-                if (price[i] > max_price)
-                    max_price = price[i];
-
-                // we can get profit[i]
-                // by taking maximum of:
-                // a) previous maximum,
-                // i.e., profit[i+1]
-                // b) profit by buying
-                // at price[i] and selling
-                // at
-                //    max_price
-                profit[i] = Math.max(profit[i + 1],
-                        max_price - price[i]);
+            int minprice = Integer.MAX_VALUE;
+            int maxprofit = 0;
+            for (int i = 0; i < priceList.length; i++) {
+                if (priceList[i] < minprice)
+                    minprice = priceList[i];
+                else if (priceList[i] - minprice > maxprofit)
+                    maxprofit = priceList[i] - minprice;
             }
-
-        /* Get the maximum profit
-           with two transactions allowed
-           After this loop, profit[n-1]
-           contains the result
-         */
-            int min_price = price[0];
-            for (int i = 1; i < n; i++) {
-                // min_price is minimum
-                // price in price[0..i]
-                if (price[i] < min_price)
-                    min_price = price[i];
-
-                // Maximum profit is maximum of:
-                // a) previous maximum, i.e., profit[i-1]
-                // b) (Buy, Sell) at (min_price, price[i]) and
-                // add
-                // profit of other trans.
-                // stored in profit[i]
-                profit[i] = Math.max(
-                        profit[i - 1],
-                        profit[i] + (price[i] - min_price));
-            }
-            int result = profit[n - 1];
-            return result;
+            return maxprofit;
         }
+
+
+    public int brutteForceApproach(int prices[]) {
+        int maxprofit = 0;
+        for (int i = 0; i < prices.length - 1; i++) {
+            for (int j = i + 1; j < prices.length; j++) {
+                int profit = prices[j] - prices[i];
+                if (profit > maxprofit)
+                    maxprofit = profit;
+            }
+        }
+        return maxprofit;
+    }
 
 }
 
