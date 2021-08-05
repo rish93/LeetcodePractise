@@ -338,6 +338,7 @@ Q6. Questions using substr() , instr()
 
 //Java Accenture
 
+//refer AccentureQuestionPratise.java
 
 1. How to make a List as Read Only List?
 2. Difference between iterator and list iterator?
