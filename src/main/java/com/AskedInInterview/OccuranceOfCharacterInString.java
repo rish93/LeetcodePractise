@@ -1,7 +1,8 @@
-package com.OccuranceOfCharacterInString;
+package com.AskedInInterview;
 
 import java.util.*;
 
+//Cognizant
 public class OccuranceOfCharacterInString {
 
     //given string find occuranc eof each character in it

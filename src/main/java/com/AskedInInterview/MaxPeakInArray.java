@@ -1,5 +1,6 @@
-package com.Practise;
+package com.AskedInInterview;
 
+//McAfee
 public class MaxPeakInArray {
     public static void main(String arg[]){
         int arr[] = new int[]{2,4,6,-2,5};
