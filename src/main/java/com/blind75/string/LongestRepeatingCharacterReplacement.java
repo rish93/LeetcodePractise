@@ -51,10 +51,10 @@ public class LongestRepeatingCharacterReplacement {
 
             int lettersToChange = windowSize - mostFreqLetter;
             if (lettersToChange > k) {
-                freq[s.charAt(left) - 'A']--;
-                left++;
-            }
+                freq[s.charAt(left) - 'A']--;  //AAABB  k=1  taking letter out of frequency
+                left++;                        // taking letter out of window
 
+            }
             max = Math.max(max, windowSize);
         }
 
