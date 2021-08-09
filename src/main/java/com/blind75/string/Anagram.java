@@ -37,7 +37,7 @@ public class Anagram {
             return b;
         }
         return false;
-    }
+    }//18 ms
 
 
     public static boolean isAnagramOptimized(String s, String t) {
@@ -46,8 +46,8 @@ public class Anagram {
         }
         int[] count = new int[26];
         for (int i = 0; i < s.length(); i++) {
-            count[s.charAt(i) - 'a']++;
-            count[t.charAt(i) - 'a']--;
+            count[s.charAt(i) - 'A']++;
+            count[t.charAt(i) - 'A']--;
         }
         for (int i : count) {
             if (i != 0) {
@@ -55,5 +55,5 @@ public class Anagram {
             }
         }
         return true;
-    }
+    }   //3 ms
 }
