@@ -1,65 +1,29 @@
-package com.blind75.linkedlist;/*
 package com.blind75.linkedlist;
 
-public class ReverseLinkedList {
-    public static void main(String[] args) {
-
-        //create linked list
-        //20->10->5->null
-        int[] arr = new int[]{1, 2, 3, 4, 5};
-        Node head = new Node(arr[arr.length - 1]);
-        for (int i = arr.length - 2; i >= 0; i--) {
-            head = new Node(arr[i], head);
-        }
-        Solution solution = new Solution();
-        Node nodeReverse = solution.reverseList(head);
-    }
-
-}
-
-class Solution {
-    public Node reverseList(Node head) {
-        Node prev = null;
-        Node curr = head;                //1
-        while (curr != null) {
-            Node nextTemp = curr.next;      //2
-            curr.next = prev;              //null
-            prev = curr;                   //1
-            curr = nextTemp;               // 2
-        }
-        return prev;
-    }
-}
-
-class Node {
-    int val;
-    Node next;
-
-    Node() {
-    }
-
-    Node(int val) {
-        this.val = val;
-    }
-
-    Node(int val, Node next) {
-        this.val = val;
-        this.next = next;
-    }
-}
-*/
-
+/*
+* Initialize three pointers prev as NULL, curr as head and next as NULL.
+ Iterate through the linked list. In loop, do following.
+// Before changing next of current,
+// store next node
+1) next = curr->next
+// Now change next of current
+// This is where actual reversing happens
+2) curr->next = prev
+// Move prev and curr one step forward
+3)prev = curr
+4)curr = next
+* */
 
 public class ReverseLinkedList {
     public static void main(String[] args) {
         int[] inputArray = new int[]{1, 2, 3, 4, 5};
 
         Node head = new Node(inputArray[inputArray.length - 1]);
-        for (int i = inputArray.length - 2; i >= 0; i--) {
+        for (int i = inputArray.length - 1; i >= 0; i--) {
             head = new Node(inputArray[i], head);
         }
         Node output = reverseLinkedList(head);
-        while (output.next != null) {
+        while (output != null) {
             System.out.println(output.value);
             output=output.next;
         }
