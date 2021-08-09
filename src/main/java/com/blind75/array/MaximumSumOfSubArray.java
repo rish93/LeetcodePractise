@@ -53,7 +53,6 @@ public class MaximumSumOfSubArray {
             }
             if (sum < 0) {
                 sum = 0;
-                pointer_a++;
             }
             pointer_b++;
         }
