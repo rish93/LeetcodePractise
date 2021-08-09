@@ -43,7 +43,6 @@ public class MaximumSumOfSubArray {
 
     public static Integer containsMaximumSubArray(int[] nums) {
         int pointer_b = 0;
-        int pointer_a = 0;
         int max = Integer.MIN_VALUE;
         int sum = 0;
         while (pointer_b < nums.length) {
