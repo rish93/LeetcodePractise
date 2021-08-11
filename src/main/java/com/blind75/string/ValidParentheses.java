@@ -8,6 +8,8 @@ public class ValidParentheses {
         String s = "()[]{}";
         String s1 = "({[(}]}){}";
         String s2 = "({[(])}){}";
+        String s4 = "([}}])";
+        System.out.println("OUTPUT->  " + isValid(s4));
         System.out.println("OUTPUT->  " + isValid(s1));
         System.out.println("OUTPUT->  " + isValid(s2));
         System.out.println("OUTPUT->  " + isValid(s));
@@ -21,12 +23,13 @@ public class ValidParentheses {
         for (char c : s.toCharArray()) {
             if (c == '(' || c == '{' || c == '[')
                 stack.push(c);
-            if (c == ')' && !stack.empty() && stack.peek() == '(')
+            else if (c == ')' && !stack.empty() && stack.peek() == '(')
                 stack.pop();
-            if (c == '}' && !stack.empty() && stack.peek() == '{')
+            else if (c == '}' && !stack.empty() && stack.peek() == '{')
                 stack.pop();
-            if (c == ']' && !stack.empty() && stack.peek() == '[')
+            else if (c == ']' && !stack.empty() && stack.peek() == '[')
                 stack.pop();
+            else stack.push(c);
         }
         return stack.isEmpty();
     }
