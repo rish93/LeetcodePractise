@@ -43,30 +43,30 @@ public class MaximumSumOfSubArray {
 
     public static Integer containsMaximumSubArray(int[] nums) {
         int pointer_b = 0;
-        int max = Integer.MIN_VALUE;
-        int sum = 0;
+        int totalMax = Integer.MIN_VALUE;
+        int maxTillNow = 0;
         while (pointer_b < nums.length) {
-            sum += nums[pointer_b];
-            if (sum > max) {
-                max = sum;
+            maxTillNow += nums[pointer_b];
 
-            }
-            if (sum < 0) {
-                sum = 0;
-            }
+            if (maxTillNow > totalMax)
+                totalMax = maxTillNow;
+
+            if (maxTillNow < 0)
+                maxTillNow = 0;
+
             pointer_b++;
         }
-        return max;
+        return totalMax;
 
     }
 
 
     public static int kadaneAlgorithm(int[] nums) {
-        int maxSoFar = nums[0], maxEndingHere = nums[0];
+        int max = nums[0], sum = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            maxEndingHere = Math.max(maxEndingHere + nums[i], nums[i]);
-            maxSoFar = Math.max(maxSoFar, maxEndingHere);
+            sum = Math.max(sum + nums[i], nums[i]);
+            max = Math.max(max, sum);
         }
-        return maxSoFar;
+        return max;
     }
 }

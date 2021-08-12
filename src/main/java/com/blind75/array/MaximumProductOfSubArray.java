@@ -19,56 +19,63 @@ Output: 0
 Explanation: The result cannot be 2, because [-2,-1] is not a subarray*/
 
 
-import java.util.Arrays;
-
 public class MaximumProductOfSubArray {
 
-  public static void main(String[] args) {
-    System.out.println( maximumProduct(new int[]{2,3,-2,4}));
-    System.out.println( maximumProduct(new int[]{-2,3,-4}));
-    System.out.println( maximumProduct(new int[]{ -5,1,2,3,-6}));
-    System.out.println( maximumProduct(new int[]{3,-1,4}));
+    public static void main(String[] args) {
+        System.out.println(maximumProduct(new int[]{2, 3, -2, 4}));
+        System.out.println(maximumProduct(new int[]{-2, 3, -4}));
+        System.out.println(maximumProduct(new int[]{-5, 1, 2, 3, -6}));
+        System.out.println(maximumProduct(new int[]{3, -1, 4}));
 
-  }
+    }
 
-    public static Integer maximumProduct(int []input) {
-      int totalMax = Integer.MIN_VALUE;
-      int maxTillNow= 1;
-      int pointer_a=0;
-      while(pointer_a<input.length){
-      maxTillNow*=input[pointer_a];
-//      if(maxTillNow < input[pointer_a] )
-//              maxTillNow=input[pointer_a];
-      if (maxTillNow > totalMax) {
-          totalMax = maxTillNow;
-      }
-        pointer_a++;
-      }
-
-      //
-        maxTillNow=1;
-        while(--pointer_a>0){
-            maxTillNow*=input[pointer_a];
-//            if(maxTillNow < input[pointer_a] )
-//                maxTillNow=input[pointer_a];
+    public static Integer maximumProduct(int[] A) {
+        int totalMax = Integer.MIN_VALUE;
+        int maxTillNow = 1;
+        int pointer_a = 0;
+        while (pointer_a < A.length) {
+            maxTillNow *= A[pointer_a];
+            /*if(maxTillNow < A[pointer_a] )
+                maxTillNow=A[pointer_a];*/
             if (maxTillNow > totalMax) {
                 totalMax = maxTillNow;
             }
+            if (maxTillNow == 0)
+                maxTillNow = 1;
+
+            pointer_a++;
+        }
+
+        //
+        maxTillNow = 1;
+
+        pointer_a = A.length - 1;
+        while (pointer_a >= 0) {
+            maxTillNow *= A[pointer_a];
+
+            /*if(maxTillNow < A[pointer_a] )
+                maxTillNow=A[pointer_a];*/
+            if (maxTillNow > totalMax) {
+                totalMax = maxTillNow;
+            }
+            if (maxTillNow == 0)
+                maxTillNow = 1;
+
             pointer_a--;
         }
 
 
-      return totalMax;
+        return totalMax;
     }
 
 
     /*
-    * {-2,3,-4,}
-    *
-    *  {-5,1,2,3,-6}
-    *
-    *
-    *
-    * */
+     * {-2,3,-4,}
+     *
+     *  {-5,1,2,3,-6}
+     *
+     *
+     *
+     * */
 
 }
