@@ -361,3 +361,125 @@ Q6. Questions using substr() , instr()
 19. What is a front controller?
 20. What is the difference between forward and redirect in Spring MVC?
 21. What are servlets?
+
+
+https://www.geeksforgeeks.org/commonly-asked-java-programming-interview-questions-set-2/
+
+Can we Overload or Override static methods in Java?
+Why the main method is static in java?
+What happens if you remove static modifier from the main method?
+What is the scope of variables in Java in following cases?
+What is “this” keyword in java?
+What is an abstract class? How abstract classes are similar or different in Java from C++?
+Which class is the superclass for every class?
+Can we overload main() method?
+What is object cloning?
+How is inheritance in C++ different from Java?
+Why method overloading is not possible by changing the return type in java?
+Can we override private methods in Java?
+What is blank final variable?
+What is “super” keyword in java?
+What is static variable in Java?
+Differences between HashMap and HashTable in Java.
+How are Java objects stored in memory?
+
+
+
+
+-> Which java version ? tell new features of Java 11.
+
+-> What are comparator and comparable
+write program.
+
+-> Atomic keyword vs volatile keyword
+
+
+-> internal implementation of hashmap
+
+-> Can null key accepted in hashmap then how to get it's null key value
+-> Left join example
+->what is service discovery in microservices
+
+
+->How to make a List as Read Only List?
+-> Difference between iterator and list iterator?
+
+->What is Immutable class
+.write in program with one HashMap as variable
+
+-> void keyword vs Void class
+ Void class can neither be instantiated nor extended.
+
+Have you worked on Webservices.
+
+API vs webservices
+
+->What is REST,
+
+->what is state in REST
+
+-> Is REST stateful or stateless?
+
+->how you write test cases for REST end points
+
+do you what is idepotent in REST, which of the methods in REST are idempotent.,
+
+When do you need @ResponseStatus annotation
+
+Is REST secure? What can you do to secure it?
+
+
+can you have REST api in protocols other then Http?
+
+differences between @Controller and @RestController
+
+->How to hanle out of memory _-> increase heap size and prefer streaming output thrn
+
+->Hash map vs Concurrent hash map
+
+->how to read value from properties in spring
+
+->Internal working of hashmap
+
+->Program to read the data from file and remove ' ' and \n and duplicates from the string.
+
+->Difference between String builder and String buffer?
+-> How to remove duplicate elements from a list in java?
+-> How to clone objects?
+
+Can we overload main() method? yes (but first main will be called)
+
+
+What happens if you remove static modifier from the main method? (if static modifier is removed from the signature of the main method? Ans. Program throws "NoSuchMethodError" error at runtime .)
+
+
+[2,5,6,3,1]
+
+
+[90, 36, 30, 60, 180]
+
+
+
+ How to use Log4j logger?
+
+
+1)  Product of Array Except Self
+
+2)  Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+
+Write a SQL query to find employees who have the highest salary in each of the departments. For the above tables, your SQL query should return the following rows (order of rows does not matter).
+
++------------+----------+--------+
+| Department | Employee | Salary |
++------------+----------+--------+
+| IT         | Max      | 90000  |
+| IT         | Jim      | 90000  |
+| Sales      | Henry    | 80000  |
++------------+----------+--------+
+
+
