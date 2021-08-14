@@ -1,4 +1,6 @@
 
+
+
 fgango 4
 educative.io
 
@@ -6,15 +8,134 @@ tinyurl design
 Binary tree greedy merge graph
 
 join query
-
-Creation behavioral pattern
-
 --------------------------------------------------------------------------------
 
 git remote add origin https://github.com/rish93/protobufsession-30102020.git
 git push -u origin main
 
 git push --set-upstream origin master
+
+//
+what is @Qualifier
+
+
+@Component("fooFormatter")
+public class FooFormatter implements Formatter {
+
+    public String format() {
+        return "foo";
+    }
+}
+
+@Component("barFormatter")
+public class BarFormatter implements Formatter {
+
+    public String format() {
+        return "bar";
+    }
+}
+
+//below will throw NoUniqueBeanDefinitionException
+@Component
+public class FooService {
+
+    @Autowired
+    private Formatter formatter;
+}
+
+//hence define @Qualifier for same bean
+
+@Component
+@Qualifier("fooFormatter")
+public class FooFormatter implements Formatter {
+    //...
+}
+
+@Component
+@Qualifier("barFormatter")
+public class BarFormatter implements Formatter {
+    //...
+}
+
+//use like
+public class FooService {
+
+    @Autowired
+    @Qualifier("fooFormatter")
+    private Formatter formatter;
+}
+
+
+
+// How to handle pagiation
+
+public class RestApi {
+//how to handle pagination
+    @GetMapping(path = "/{projectId}")
+    @PagedResponseBody
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "id", dataType = "string", paramType = "query"),
+            @ApiImplicitParam(name = "searchText", value = "searchText", dataType = "string", paramType = "query")
+    })
+    @ApiOperation(value = "It fetches all filtered mappings or searched mapping for a project id.")
+    public Page<Mapping> getMappings(Pageable pageable, @PathVariable(name = "projectId") Long projectId,
+                                     @ApiIgnore @FilterParam Filter filter, Locale locale) {
+
+        return mappingService.getMappings(pageable, projectId, filter, locale);
+    }
+
+    ---------->
+
+    public Page<Mapping> getMappings(Pageable pageable, Long projectId, Filter filter, Locale locale) {
+
+        List<Mapping> mappings = new ArrayList<>();
+        if (filter.containsKey(STMConstants.ID)) {
+            Long id = Long.parseLong(String.valueOf(filter.get(STMConstants.ID).get(0)));
+            STMMapping stmMapping = mappingRepository.getMappingByIdAndProjectId(projectId, id);
+            if (null != stmMapping && !stmMapping.isActive()) {
+                throw new STMDataException(stmMapping.getStmSourceData().getId().toString(), "Mapping not found for the source id: " + stmMapping.getStmSourceData().getId());
+            }
+            Mapping mapping = getMapping(pageable, locale, stmMapping);
+            mappings.add(mapping);
+            return new PageImpl<>(mappings, pageable, mappings.size());
+        } else {
+            return buildMappingListForProject(projectId, filter, locale, pageable);
+        }
+    }
+
+    ----------------------->
+
+    @Repository
+    public interface MappingRepository extends JpaRepository<STMMapping, Long> {
+
+        @Query("from STMMapping s where s.stmSourceData.id = :sourceDataId")
+        STMMapping getMappingBySourceDataId(@Param("sourceDataId") Long sourceDataId);
+
+        @Query(value = "select * from stm_mapping sm join stm_source_data ssd on sm.source_data_id = ssd.id and ssd.is_mapped = true where sm.is_active = :active and sm.project_id = :projectId order by sm.updated_on desc", nativeQuery = true)
+        Page<STMMapping> getAllMappingForActiveProjectId(@Param("active") Boolean isActive, @Param("projectId") Long projectId, Pageable pageable);
+}
+}
+
+
+
+/////////////////////////
+can we use request mapping at class level in spring ? A. yes
+@Controller
+@RequestMapping("/login")
+public class LoginController {
+
+    @RequestMapping("/")
+    public String loginRoot() {
+        return "login";
+    }
+
+    @RequestMapping(value="/error", method=RequestMethod.GET)
+    public String loginError() {
+        return "login-error";
+    }
+
+}
+
 
 ------------------------------------------------------------------------------------------------------------
 
