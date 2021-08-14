@@ -1,14 +1,21 @@
 package com.corejava;
 
-public class Parent {
+public class StaticNonStaticBehavior {
     static int i;
     int j;
 
     public static void main(String[] args) {
-        Parent p = new Parent();Parent p1 = new Parent();Parent p2 = new Parent();Parent p3 = new Parent();Parent p4 = new Parent();
-        
-        
-        p.run();p1.run1();p2.run2();p3.run3();p4.run4();
+        StaticNonStaticBehavior p = new StaticNonStaticBehavior();
+        StaticNonStaticBehavior p1 = new StaticNonStaticBehavior();
+        StaticNonStaticBehavior p2 = new StaticNonStaticBehavior();
+        StaticNonStaticBehavior p3 = new StaticNonStaticBehavior();
+        StaticNonStaticBehavior p4 = new StaticNonStaticBehavior();
+
+        p.run();
+        p1.run1();
+        p2.run2();
+        p3.run3();
+        p4.run4();
     }
 
      Integer run() {
@@ -41,7 +48,7 @@ public class Parent {
     }
 }
 
-class Child extends Parent {
+class Child extends StaticNonStaticBehavior {
     /*String run()
 
     {
