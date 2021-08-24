@@ -10,7 +10,7 @@ package com.blind75.array;
 
 import java.util.Arrays;
 
-public class ShiftedArrySearch {
+public class MinimumRotatedSearch_ShiftedArraySearch {
     public static void main(String[] args) {
         //System.out.println(Arrays.asList(tryFAILProductExceptSelf(new int[]{1, 2, 3, 4})));
         System.out.println(Arrays.asList(binarySearch(new int[]{6, 7, 8, 9, 10, 12, 17, 25})));
@@ -26,7 +26,7 @@ public class ShiftedArrySearch {
         int right = nums.length - 1;
 
         while (left <= right) {
-            int midpoint = left + (right - left) / 2;
+            int midpoint = left + (right - left) / 2;      // to avoid integer overflow
             if (midpoint > 0 && nums[midpoint] < nums[midpoint - 1])
                 return nums[midpoint];
 
