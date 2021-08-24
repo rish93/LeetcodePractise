@@ -15,47 +15,52 @@ git push -u origin main
 
 git push --set-upstream origin master
 
-//
+
+//***********************************************************************************************************************************
 what is @Qualifier
+   A: if more than one bean of the same type is available in the container,
+      the framework will throw NoUniqueBeanDefinitionException
 
+    If we try to load FooService into our context, the Spring framework will throw a NoUniqueBeanDefinitionException
+    The @Qualifier is used to resolve ambiguous dependencies i.e, it helps @Autowired annotations to choose one of the dependency.
+    If there are multiple implementations for single interface then we can use @Qualifier to choose required implementation at runtime.
+        @Component("fooFormatter")
+        public class FooFormatter implements Formatter {
 
-@Component("fooFormatter")
-public class FooFormatter implements Formatter {
+            public String format() {
+                return "foo";
+            }
+        }`
 
-    public String format() {
-        return "foo";
+    @Component("barFormatter")
+    public class BarFormatter implements Formatter {
+
+        public String format() {
+            return "bar";
+        }
     }
-}
 
-@Component("barFormatter")
-public class BarFormatter implements Formatter {
+    //below will throw NoUniqueBeanDefinitionException
+    @Component
+    public class FooService {
 
-    public String format() {
-        return "bar";
+        @Autowired
+        private Formatter formatter;
     }
-}
 
-//below will throw NoUniqueBeanDefinitionException
-@Component
-public class FooService {
+    //hence define @Qualifier for same bean
 
-    @Autowired
-    private Formatter formatter;
-}
+    @Component
+    @Qualifier("fooFormatter")
+    public class FooFormatter implements Formatter {
+        //...
+    }
 
-//hence define @Qualifier for same bean
-
-@Component
-@Qualifier("fooFormatter")
-public class FooFormatter implements Formatter {
-    //...
-}
-
-@Component
-@Qualifier("barFormatter")
-public class BarFormatter implements Formatter {
-    //...
-}
+    @Component
+    @Qualifier("barFormatter")
+    public class BarFormatter implements Formatter {
+        //...
+    }
 
 //use like
 public class FooService {
@@ -65,6 +70,7 @@ public class FooService {
     private Formatter formatter;
 }
 
+//***********************************************************************************************************************************
 
 
 // How to handle pagiation
@@ -77,48 +83,49 @@ public class RestApi {
             @ApiImplicitParam(name = "id", value = "id", dataType = "string", paramType = "query"),
             @ApiImplicitParam(name = "searchText", value = "searchText", dataType = "string", paramType = "query")
     })
-    @ApiOperation(value = "It fetches all filtered mappings or searched mapping for a project id.")
-    public Page<Mapping> getMappings(Pageable pageable, @PathVariable(name = "projectId") Long projectId,
+    @ApiOperation(value = "It fetches all filtered mappings id.")
+    public Page<MappingTool> getMappings(Pageable pageable, @PathVariable(name = "projectId") Long projectId,
                                      @ApiIgnore @FilterParam Filter filter, Locale locale) {
 
         return mappingService.getMappings(pageable, projectId, filter, locale);
     }
 
     ---------->
+    service.clss
+    public Page<MappingTool> getMappings(Pageable pageable, Long projectId, Filter filter, Locale locale) {
 
-    public Page<Mapping> getMappings(Pageable pageable, Long projectId, Filter filter, Locale locale) {
-
-        List<Mapping> mappings = new ArrayList<>();
-        if (filter.containsKey(STMConstants.ID)) {
-            Long id = Long.parseLong(String.valueOf(filter.get(STMConstants.ID).get(0)));
-            STMMapping stmMapping = mappingRepository.getMappingByIdAndProjectId(projectId, id);
-            if (null != stmMapping && !stmMapping.isActive()) {
-                throw new STMDataException(stmMapping.getStmSourceData().getId().toString(), "Mapping not found for the source id: " + stmMapping.getStmSourceData().getId());
+        List<MappingTool> mappings = new ArrayList<>();
+        if (filter.containsKey(Constants.ID)) {
+            Long id = Long.parseLong(String.valueOf(filter.get(Constants.ID).get(0)));
+            MappingMappingTool MappingTool = MappingToolRepository.getMappingByIdAndProjectId(projectId, id);
+            if (null != MappingTool && !MappingTool.isActive()) {
+                throw new DataException(MappingTool.getStmSourceData().getId().toString(),
+                "MappingTool not found for the source id: " + MappingTool.getStmSourceData().getId());
             }
-            Mapping mapping = getMapping(pageable, locale, stmMapping);
-            mappings.add(mapping);
-            return new PageImpl<>(mappings, pageable, mappings.size());
+            MappingTool MappingTool = getMappingTool(pageable, locale, MappingTool);
+            MappingToolList.add(MappingTool);
+            return new PageImpl<>(MappingToolList, pageable, MappingToolList.size());
         } else {
             return buildMappingListForProject(projectId, filter, locale, pageable);
         }
     }
 
-    ----------------------->
+    --------------------------------------------------------------------->
 
     @Repository
     public interface MappingRepository extends JpaRepository<STMMapping, Long> {
 
-        @Query("from STMMapping s where s.stmSourceData.id = :sourceDataId")
-        STMMapping getMappingBySourceDataId(@Param("sourceDataId") Long sourceDataId);
+        @Query("from MappingTool s where s.stmSourceData.id = :sourceDataId")
+        STMMapping getMappingToolBySourceDataId(@Param("sourceDataId") Long sourceDataId);
 
-        @Query(value = "select * from stm_mapping sm join stm_source_data ssd on sm.source_data_id = ssd.id and ssd.is_mapped = true where sm.is_active = :active and sm.project_id = :projectId order by sm.updated_on desc", nativeQuery = true)
-        Page<STMMapping> getAllMappingForActiveProjectId(@Param("active") Boolean isActive, @Param("projectId") Long projectId, Pageable pageable);
+        @Query(value = "select * from MappingTool sm join source_data ssd on source_data_id = ssd.id and ssd.is_mapped = true where sm.is_active = :active
+        and sm.project_id = :projectId order by sm.updated_on desc", nativeQuery = true)
+        Page<Mapping> getAllMappingToolForActiveProjectId(@Param("active") Boolean isActive, @Param("projectId") Long projectId, Pageable pageable);
 }
 }
 
+//**************************************************************************************************************************************
 
-
-/////////////////////////
 can we use request mapping at class level in spring ? A. yes
 @Controller
 @RequestMapping("/login")
@@ -154,12 +161,12 @@ As others stated, Integer[] is usually not a good map key. But as far as convers
 
 ------------------------------------------------------------------------------------------------------------------
 
-The List returned by Arrays.asList method of java.util.Arrays class is a fixed-size list object which means that elements cannot be added to or removed from the list.
+The List returned by Arrays.asList method of java.util.Arrays class is a fixed-size list object which means that elements cannot be added
+to or removed from the list.
 
 So functions like Adding or Removing cannot be operated on such kind of Lists.
 
 The solution to adding or removing without getting java.lang.UnsupportedOperationException is ->
-
 List<String> strList= new ArrayList<>(Arrays.asList(strs));
 
 //Then Add or Remove can be called on such List
@@ -172,7 +179,11 @@ newList.remove("100");
 
 You need to use HAVING, not WHERE.
 
-The difference is: the WHERE clause filters which rows MySQL selects. Then MySQL groups the rows together and aggregates the numbers for your COUNT function.
+* where clause cannot be used with aggregates, but the having clause can.
+* WHERE prior to GROUP BY and HAVING after GROUP BY. The Where clause acts as a pre filter where as Having as a post filter.
+
+The difference is: the WHERE clause filters which rows MySQL selects. Then MySQL groups
+the rows together and aggregates the numbers for your COUNT function.
 
 HAVING is like WHERE, only it happens after the COUNT value has been computed, so it'll work as you expect. Rewrite your subquery as:
 
@@ -199,9 +210,58 @@ BEGIN
 END
 
 ------------------------------------------------------------------------------------------------------------------------------------
+Ascii of a is 97
+Ascii of A is 65
+
 
 GIven clock of alphabets between A-Z get ting string as input and number key.
 Decrypt by subtracting key to alphabets
+
+// Java program to move every character
+// K times ahead in a given string
+
+class GFG {
+
+// Function to move string character
+	static void encode(String s, int k) {
+
+		// changed string
+		String newS = "";
+
+		// iterate for every characters
+		for (int i = 0; i < s.length(); ++i) {
+			// ASCII value
+			int val = s.charAt(i);
+			// store the duplicate
+			int dup = k;
+
+			// if k-th ahead character exceed 'z'
+			if (val + k > 122) {
+				k -= (122 - val);
+				k = k % 26;
+
+				newS += (char)(96 + k);
+			} else {
+				newS += (char)(val + k);
+			}
+
+			k = dup;
+		}
+
+		// print the new string
+		System.out.println(newS);
+	}
+
+// Driver Code
+	public static void main(String[] args) {
+		String str = "abc";
+		int k = 28;
+
+		// function call
+		encode(str, k);
+	}
+}
+
 
 ------------------------------------------------------------------------------------------------------------------------------------
 
@@ -461,65 +521,372 @@ Q6. Questions using substr() , instr()
 
 //refer AccentureQuestionPratise.java
 
+//stream vs paralel stream
+https://www.geeksforgeeks.org/parallel-vs-sequential-stream-in-java/
+Sequential Stream
+  Sequential Streams are non-parallel streams that use a single thread to process the pipelining.
+  Any stream operation without explicitly specified as parallel is treated as a sequential stream.
+  Sequential stream’s objects are pipelined in a single stream on the same processing system hence it never
+  takes the advantage of the multi-core system even though the underlying system supports parallel execution.
+  Sequential stream performs operation one by one.
+
+stream() method returns a sequential stream in Java.
+
+    public static void main(String[] args)
+    {
+        // create a list
+        List<String> list = Arrays.asList( "Hello ",
+                          "G", "E", "E", "K", "S!");
+         // we are using stream() method
+         // for sequential stream
+         // Iterate and print each element
+         // of the stream
+        list.stream().forEach(System.out::print);
+    }
+}
+Output
+Hello GEEKS!
+
+Parallel Stream
+  It is a very useful feature of Java to use parallel processing, even if the whole program may not be parallelized.
+  Parallel stream leverage multi-core processors, which increases its performance. Using parallel streams, our code
+  gets divide into multiple streams which can be executed parallelly on separate cores of the system and the final result
+  is shown as the combination of all the individual core’s outcomes. It is always not necessary that the whole program be
+  parallelized, but at least some parts should be parallelized which handles the stream. The order of execution is not under our control
+  and can give us unpredictably unordered results and like any other parallel programming, they are complex and error-prone.
+
+ public static void main(String[] args)
+    {
+        // create a list
+        List<String> list = Arrays.asList("Hello ",
+                         "G", "E", "E", "K", "S!");
+
+        // using parallelStream()
+        // method for parallel stream
+        list.parallelStream().forEach(System.out::print);
+    }
+}
+Output
+ES!KGEHello
+
+
 1. How to make a List as Read Only List?
+        Collections.unmodifiableList(testList);
+
 2. Difference between iterator and list iterator?
+       Iterator works in forward iteration
+       List iterator in both direction
+
+
 3. What design patterns you know in Java?
+    Builder design pattern (build objects irrespective of argument order and numbers)
+    factory design pattern
+    singleton design pattern
+    facade design pattern //structural
+    prototype design pattern
+
 4. What is a Singleton class?
 5. Difference between String builder and String buffer?
+        StringBuffer is synchronized, StringBuilder is not hence faster.
 6. How to remove duplicate elements from a list in java?
+              1)          list.stream()
+                                  .distinct()
+                                  .collect(Collectors.toList());
+            2)Set<String> set = new HashSet<>(yourList);
+              yourList.clear();
+              yourList.addAll(set); //ordering of element is removed hence use linkedhashset
+              **
+                Set<T> set = new LinkedHashSet<>();
+                    // Add the elements to set
+                    set.addAll(list);
+                    // Clear the list
+                    list.clear();
+                    // add the elements of set
+                    // with no duplicates to the list
+                    list.addAll(set);
+  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **  **
 7. How to clone objects?
+
+class DB implements Cloneable{
+    /*Below program explains that If you will try to Clone an object
+     which doesn’t implement the Cloneable interface,
+     it will CloneNotSupportedException, which you may want to handle
+      & make the Object.clone() method legal*/
+
+    //original object is still intact and can modify new object
+
+    private List<String> subsidiaryCompanies;
+
+    public DB(){
+        subsidiaryCompanies = new ArrayList<>();
+    }
+
+    public DB(List<String> list){
+        this.subsidiaryCompanies = list;
+    }
+
+    public void insertNewAquiredCompany(){
+        subsidiaryCompanies.add("Infraview");
+        subsidiaryCompanies.add("DB Systel");
+    }
+
+    public List<String> getSubsidiaryCompanies() {
+        return subsidiaryCompanies;
+    }
+
+    @Override
+    public Object clone()throws CloneNotSupportedException {
+        List<String> tempList = new ArrayList<>();
+        //deep copying
+        for(String company:this.getSubsidiaryCompanies()){
+            tempList.add(company);
+        }
+
+        return new DB(tempList);
+    }
+}
+
+//shallow vs deep cloning
+https://www.geeksforgeeks.org/deep-shallow-lazy-copy-java-examples/#:~:text=In%20shallow%20copy%2C%20only%20fields,as%20well%20as%20object%20references.
+
 8. What are the methods in object class?
-9. What are implicit objects in JSP?
+            wait
+            equals
+            hashCode
+            clone
+
+9. What are implicit objects in JSP? NA
 10. How to open a database connection? How the application understands from where the query is to be read?
+ Connection conn = null;
+    try {
+      String url = "jdbc:sqlite:path-to-db-file/chinook/chinook.db";
+      conn = DriverManager.getConnection(url);
+
+      Statement stmt = null;
+      String query = "select * from albums";
+      try {
+          stmt = conn.createStatement();
+          ResultSet rs = stmt.executeQuery(query);
+          while (rs.next()) {
+              String name = rs.getString("title");
+              System.out.println(name);
+          }
+      } catch (SQLException e ) {
+          throw new Error("Problem", e);
+      } finally {
+          if (stmt != null) { stmt.close(); }
+      }
+
+    } catch (SQLException e) {
+        throw new Error("Problem", e);
+    } finally {
+      try {
+        if (conn != null) {
+            conn.close();
+        }
+      } catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+      }
+    }
+
+
 11. Can you write a query in JSP file or a controller?
+
 12. What is MVC in your application?
+    MVC architecture mainly define structure for interaction Model (entity)
+    View for user controller  Model and View components to process all the business logic and incoming requests
+
 13. How to use Log4j logger?
+
+    static Logger log = Logger.getLogger(Example.class.getName());
+    public static void main(String[] args)throws IOException,SQLException{
+      log.debug("Hello this is a debug message");
+      log.info("Hello this is an info message");
+    }
+
+   # Define the root logger with appender file
+   log = /usr/home/log4j
+   log4j.rootLogger = DEBUG, FILE
+
+   # Define the file appender
+   log4j.appender.FILE=org.apache.log4j.FileAppender
+   log4j.appender.FILE.File=${log}/log.out
+
+   # Define the layout for file appender
+   log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+   log4j.appender.FILE.layout.conversionPattern=%m%n
+
 14. What are the log levels?
+        OFF	0
+        FATAL	100
+        ERROR	200
+        WARN	300
+        INFO	400
+        DEBUG	500
+        TRACE	600
+        ALL	Integer.MAX_VALUE
+
 15. What is Spring bean definition?
+        define bean instances
+        @BEan
+        <bean>
+
 16. What is a bean life cycle?
+
 17. What are the Spring bean scopes?
+
 18. What is final keyword in Java?
+        value not changes
 19. What is a front controller?
+
 20. What is the difference between forward and redirect in Spring MVC?
 21. What are servlets?
+        A servlet is simply a class which responds to a particular type of network request
+        - most commonly an HTTP request. Basically servlets are usually used to implement web applications
+        - but there are also various frameworks which operate on top of servlets (e.g. Struts) to give a higher-level
+        abstraction than the "here's an HTTP request, write to this HTTP response" level which servlets provide.
 
+        Servlets run in a servlet container which handles the networking side (e.g. parsing an HTTP request,
+        connection handling etc). One of the best-known open source servlet containers is Tomcat.
 
 https://www.geeksforgeeks.org/commonly-asked-java-programming-interview-questions-set-2/
 
 Can we Overload or Override static methods in Java?
+Overload yes
+Override No (method hiding)
+https://www.geeksforgeeks.org/can-we-overload-or-override-static-methods-in-java/
+
 Why the main method is static in java?
+    JVM can call wihout making instance
 What happens if you remove static modifier from the main method?
+    Program throws "NoSuchMethodError" error at runtime .
+
 What is the scope of variables in Java in following cases?
 What is “this” keyword in java?
+    https://www.geeksforgeeks.org/this-reference-in-java/
 What is an abstract class? How abstract classes are similar or different in Java from C++?
+    gives partial abstraction, help in extending and overriding methods
+    https://beginnersbook.com/2013/05/java-abstract-class-method/
+
 Which class is the superclass for every class?
-Can we overload main() method?
+    Can we overload main() method?
+    Yes, We can overload the main method in java but JVM only calls the original main method, it will never call our
+    overloaded main method. Output: ... So, to execute overloaded methods of main, we must call them from the original main method
 What is object cloning?
+public class Deletable implements Cloneable{
+
+    private String str;
+    public Deletable(){
+    }
+    public void setStr(String str){
+        this.str = str;
+    }
+    public void display(){
+        System.out.println("The String is "+str);
+    }
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+and wherever you want to get another object, simple perform cloning. e.g:
+
+Deletable del = new Deletable();
+Deletable delTemp = (Deletable ) del.clone(); // this line will return you an independent
+                                 // object, the changes made to this object will
+                                 // not be reflected to other object
+  ////////////////////////////////////////////////////////////////////////////////////////////
+
+
 How is inheritance in C++ different from Java?
 Why method overloading is not possible by changing the return type in java?
+No
+Lets say you have two methods
+Method 1 : int add(int a, int b) ;
+Method 2 : string add(int a, int b) ;
+1st one returns the sum of numbers as numeric integers as 1,2,3..
+2nd one returns the sum in words as one, two, three..
+Now just for a moment imagine you are a computer and you have to give the output of add(4,5);
+
+Its confusing for you too to know which method to use and you will ask me which one to use, same happens with the compiler and it produces an error like ambiguous function call which is kind of asking only which method to use.
+I understand that you might be thinking like the return type should be enough for the compiler to decide which method to call, like int a=add(4,5); should call the first, and string a=add(4,5); should call the second one.
+
+But that would also create a problem when the compiler has to do a auto type casting.
+
+I think the best way would be that the return type of all methods should be object and base on the programmer requirements the resul can be down casted.
+
+I don't remember but python has implemented this. But thats not the case for java.
+
+
 Can we override private methods in Java?
+https://www.geeksforgeeks.org/can-override-private-methods-java/
+We get compiler error “fun() has private access in Base” (See this). So the
+compiler tries to call base class function, not derived class, means fun() is not overridden.
+
 What is blank final variable?
+The blank final variable in Java is a final variable that is not initialized while declaration, instead they are
+ initialized in a constructor. Java compiler will complain if a blank final variable is not initialized during construction.
+
 What is “super” keyword in java?
+    keyword to access parent class constrcutor and members
 What is static variable in Java?
+ When you want to have a variable that describes something about the class itself,
+ not the individual objects of that class, make it static .
+ When you want to have a variable that always has the same value for every object of
+ the class, forever and ever, make it static
 Differences between HashMap and HashTable in Java.
+
+Hashmap vs Hashtable
+1. HashMap is non-synchronized. It is not thread-safe and can’t be shared between many threads without proper synchronization code whereas Hashtable is
+synchronized. It is thread-safe and can be shared with many threads.
+2. HashMap allows one null key and multiple null values whereas Hashtable doesn’t allow any null key or value.
+3. HashMap is generally preferred over HashTable if thread synchronization is not needed
+Why HashTable doesn’t allow null and HashMap do?
+To successfully store and retrieve objects from a HashTable, the objects used
+as keys must implement the hashCode method and the equals method. Since null is not an
+object, it can’t implement these methods. HashMap is an advanced version and improvement on the Hashtable.
+
 How are Java objects stored in memory?
 
 
 
 
 -> Which java version ? tell new features of Java 11.
+    Running Java File with single command.
+    New utility methods in String class.
+    Local-Variable Syntax for Lambda Parameters.
+    Nested Based Access Control.
+    JEP 321: HTTP Client.
+    Reading/Writing Strings to and from the Files.
+    JEP 328: Flight Recorder.
 
 -> What are comparator and comparable
 write program.
+Use Comparable:
+
+if the object is in your control.
+if the comparing behaviour is the main comparing behaviour.
+Use Comparator :
+
+if the object is outside your control and you cannot make them implement Comparable.
+when you want comparing behaviour different from the default (which is specified by Comparable) behaviour.
 
 -> Atomic keyword vs volatile keyword
+Atomic -> In multithreadung Compare and swap else would have use synchrponized blocking other thread
+Volatile -> updtae state of all the thread irresepective of cache
 
+https://stackoverflow.com/questions/2307283/what-does-olog-n-mean-exactly#:~:text=Logarithmic%20running%20time%20(%20O(log,an%20O(log%20n)%20time
 
 -> internal implementation of hashmap
 
 -> Can null key accepted in hashmap then how to get it's null key value
 -> Left join example
 ->what is service discovery in microservices
+
+//what happen if we access hashmap like concurrent hashmap in multiple thread
+If you are first populating that map and from then on only reading it, and never changing
+ it, then you don't need to synchronize for mutual exclusion. However, without syncing there's
+ still a possibility that not all the populating thread's
+writes will be seen by reads from other threads. You're best of to just synchronize all access to the map.
 
 
 ->How to make a List as Read Only List?
@@ -546,7 +913,87 @@ API vs webservices
 do you what is idepotent in REST, which of the methods in REST are idempotent.,
 
 When do you need @ResponseStatus annotation
+   mark method and exception class with status resaon
 
+   @Order(Ordered.HIGHEST_PRECEDENCE)
+   @ControllerAdvice
+   @Slf4j
+   public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+
+       @ExceptionHandler(value = Exception.class)
+       protected ResponseEntity<Object> exceptionHandler(Exception ex, WebRequest request) {
+           InboxError apiError = new InboxError(INTERNAL_SERVER_ERROR);
+           apiError.setMessage("Unexpected exception occurred.");
+           apiError.setDebugMessage(ex.getMessage());
+           logger.error("Unexpected exception occurred.", ex);
+           return buildResponseEntity(apiError);
+       }
+
+       @ExceptionHandler(value = InboxException.class)
+       protected ResponseEntity<Object> exceptionHandler(InboxException ex, WebRequest request) {
+           InboxError apiError = new InboxError(NOT_FOUND);
+           apiError.setMessage("Unexpected inbox exception occurred.");
+           apiError.setDebugMessage(ex.getMessage());
+           logger.error("Unexpected inbox exception occurred.", ex);
+           return buildResponseEntity(apiError);
+       }
+}
+
+@Data
+@JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.CUSTOM, property = "error", visible = true)
+@JsonTypeIdResolver(LowerCaseClassNameResolver.class)
+public class InboxError {
+    private HttpStatus status;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+    private LocalDateTime timestamp;
+    private String message;
+    private String debugMessage;
+
+    private InboxError() {
+        timestamp = LocalDateTime.now();
+    }
+
+    InboxError(HttpStatus status) {
+        this();
+        this.status = status;
+    }
+
+    InboxError(HttpStatus status, Throwable ex) {
+        this();
+        this.status = status;
+        this.message = "Unexpected error";
+        this.debugMessage = ex.getLocalizedMessage();
+    }
+
+    InboxError(HttpStatus status, String message, Throwable ex) {
+        this();
+        this.status = status;
+        this.message = message;
+        this.debugMessage = ex.getLocalizedMessage();
+    }
+}
+
+class LowerCaseClassNameResolver extends TypeIdResolverBase {
+
+    @Override
+    public String idFromValue(Object value) {
+        return value.getClass().getSimpleName().toLowerCase();
+    }
+
+    @Override
+    public String idFromValueAndType(Object value, Class<?> suggestedType) {
+        return idFromValue(value);
+    }
+
+    @Override
+    public JsonTypeInfo.Id getMechanism() {
+        return JsonTypeInfo.Id.CUSTOM;
+    }
+}
+
+
+
+*************************************************************
 Is REST secure? What can you do to secure it?
 
 
@@ -571,7 +1018,8 @@ differences between @Controller and @RestController
 Can we overload main() method? yes (but first main will be called)
 
 
-What happens if you remove static modifier from the main method? (if static modifier is removed from the signature of the main method? Ans. Program throws "NoSuchMethodError" error at runtime .)
+What happens if you remove static modifier from the main method? (if static modifier is removed from the signature of the main method?
+Ans. Program throws "NoSuchMethodError" error at runtime .)
 
 
 [2,5,6,3,1]

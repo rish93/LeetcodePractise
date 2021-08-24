@@ -62,7 +62,7 @@ class DB implements Cloneable{
     }
 
     @Override
-    public Object clone()throws CloneNotSupportedException {
+    public Object clone() {
         List<String> tempList = new ArrayList<>();
         //deep copying
         for(String company:this.getSubsidiaryCompanies()){

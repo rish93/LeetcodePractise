@@ -9,6 +9,8 @@ eg in Database when we want to delete query available only for
 certain users like admin
  */
 
+import java.util.Hashtable;
+
 /*
 * Proxy Mean filtering.
 * Where we require access control we put proxy. eg delete for admins
@@ -25,7 +27,9 @@ proceeding to actual executor.
 public class ProxyDesignPattern {
 
     public static void main(String[] args) throws Exception {
-
+        Hashtable<String, String> hs= new Hashtable<>();
+        hs.put("", "");
+        System.out.println(hs);
         DatabaseExecutor adminExecute = new DatabaseExecutorProxy("admin","123");
         adminExecute.executeDatabase("DELETE");
 

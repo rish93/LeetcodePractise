@@ -1,9 +1,7 @@
 package com.AskedInInterview;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class RemoveDuplicateFromArray {
 public static void main(String[]args){
@@ -63,6 +61,12 @@ static class Solution{
                 lsInt.remove(i);
             }
         }
+
+//       Set<String> set= new HashSet<>();
+//        set.add("");
+//or        set.stream().collect(Collectors.toList());
+
+//or        lsInt.stream().distinct().collect(Collectors.toList());
         return lsInt.size();
     }
 
