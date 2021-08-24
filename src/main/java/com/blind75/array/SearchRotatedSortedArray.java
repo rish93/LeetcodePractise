@@ -26,10 +26,10 @@ public class SearchRotatedSortedArray {
                 return midpoint;
 // TODO if left side of mid is sorted?? --> if true check if target exists in left side --> decrese right index to mid-1
             if (nums[left] <= nums[midpoint]) {
-                if (nums[left] <= target && target <= nums[midpoint]) {
+                if (nums[left] <= target && target <= nums[midpoint]) {   //check if the target lies between left and mid if yes the make right as mid
                     right = midpoint - 1;
                 } else {
-                    left = midpoint + 1;
+                    left = midpoint + 1;  //if not then make left as mid
                 }
 
             } else // TODO we know right is sorted as left failed to be sorted
