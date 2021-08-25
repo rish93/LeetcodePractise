@@ -1,0 +1,30 @@
+public static int IsPasswordValid(String password) {
+if(!password.isEmpty()){
+int []freq = new int[50];
+int length = password.length();
+if(!(8>=length || length<=31))
+return 10;
+if(password.split("[0-9]").length==0)
+return 20;
+if(!(password.contains("#")
+|| password.contains("$")
+|| password.contains("@")
+|| password.contains("%")
+|| password.contains("&")
+|| password.contains("_"))){
+return 30;
+}
+String tempPasswd= password.toLowerCase().replace("[^a-z0-9]", "");
+for(char c:tempPasswd.toCharArray()){
+freq[c - 'a' ]++;
+}
+for(int i: freq){
+if(i>1)
+return 40;
+}
+
+}
+return 0;
+}
+
+}

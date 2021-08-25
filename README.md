@@ -21,3 +21,10 @@ reference:-
  Algorithm 8: Backtracking 
  Algorithm 9: Dynamic Programming 
  Algorithm 10: Graph Algorithms (BFS and DFS) 
+
+
+logarithmic: O(log n)
+linear: O(n)
+linearithmic: O(n log n)
+quadratic: O(n2)
+exponential: O(cn) for some fixed c > 1

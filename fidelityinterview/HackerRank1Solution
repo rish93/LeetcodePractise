@@ -1,0 +1,40 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+
+class Result {
+
+ /*
+* Complete the 'NumPairs' function below.
+*
+* The function is expected to return an INTEGER.
+* The function accepts STRING InputString as parameter.
+*/
+
+ public static int NumPairs(String InputString) {
+Stack<Character> stackBraces = new Stack<>();
+int count=0;
+char []charArray= InputString.toCharArray();
+for(char braces: charArray){
+if(braces=='{')
+stackBraces.push('}');
+if(!stackBraces.empty() && stackBraces.peek()=='}'){
+stackBraces.pop();
+count++;
+}
+}
+
+
+return count;
+}
+
+}
