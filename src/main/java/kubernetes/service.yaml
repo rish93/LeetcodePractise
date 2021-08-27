@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+spec:
+  type: ClusterIP
+  selector:
+    app: web
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+
+#type:
+# 1) NodePort: If you set the type field to NodePort,
+# the Kubernetes control plane allocates a port from a range specified by --service-node-port-range flag (default: 30000-32767).
+
+#2) LoadBalancer
+#  The loadBalancer is set up with an ephemeral IP address.
+#  If you specify a loadBalancerIP set up exteranl load balancer like ingress
+#    ingress:
+#    - ip: 192.0.2.127
