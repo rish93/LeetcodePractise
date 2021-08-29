@@ -11,7 +11,9 @@ public class Sum3 {
     }
 
     // sort the array so that they are in order and use binary search logic of decresong window
-    // with a twist here the target is a+b+c =0
+    // with a twist here loop through all elements the target is -i=left+right (a+b+c =0) decrese window after adding them in list
+    // now, if its sorted -i>left+right then we decrese right as its sorted max is in right and oppo.
+    // avoiding duplicates check i==i+1 increse left and i==i-1 increse right shoterwindow if they match
 
 
     private static List<List<Integer>> threeSum(int[] nums) {
