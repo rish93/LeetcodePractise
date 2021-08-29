@@ -29,6 +29,7 @@ public class ReverseLinkedList {
         }
 
     }
+// 1step is to make head.next empty  and then shift the previousnode to curent and current to next
 
     static Node reverseLinkedList(Node head) {
         Node prev= null;
