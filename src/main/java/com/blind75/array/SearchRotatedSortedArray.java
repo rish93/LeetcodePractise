@@ -9,7 +9,8 @@ public class SearchRotatedSortedArray {
     //456|7|012  target = 1
 
 
-    //
+    // just divide the array check if mid has left side sorted or right, go to sorted side find mid point lies between
+    // between left to mid or right to mid if yes > reduce the left right margin towards midpoint and keep doing to find it
     public static void main(String[] args) {
 
         System.out.println(search(new int[]{4, 5, 6, 7, 0, 1, 2}, 6));

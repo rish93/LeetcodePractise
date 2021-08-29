@@ -1,6 +1,10 @@
 package com.blind75.array;
 //TODO Also called Find Minimum in Rotated Sorted Array
 
+// basically find where there is discrepency as this is a sorted array and its just shifted so there will be a point
+// where prev > next that is what we have to find here so
+// return minimum from the binary tree logic just check for reverse conditions
+
 // Take mid as refernece/Pivot and check if it is in sorted w.r.t mid-1 and mid+1
 // 12|3|456  Ideal condition mid[3]>pos[3-1]   mid[3]<mid[3+1]
 

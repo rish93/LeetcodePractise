@@ -10,6 +10,10 @@ public class Sum3 {
         System.out.println(threeSum(new int[]{-1, 0, 1, 2, -1, -4}));
     }
 
+    // sort the array so that they are in order and use binary search logic of decresong window
+    // with a twist here the target is a+b+c =0
+
+
     private static List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> finalist = new ArrayList<>();
         Arrays.sort(nums);

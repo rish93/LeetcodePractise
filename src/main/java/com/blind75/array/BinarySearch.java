@@ -13,7 +13,8 @@ public class BinarySearch {
         System.out.println(Arrays.asList(binarySearch(new int[]{6, 7, 8, 9, 10, 12, 17, 25}, 10)));
         System.out.println(Arrays.asList(binarySearch(new int[]{6, 7, 8, 9, 10, 12, 25}, 1)));
     }
-
+// works on a sorted array
+    // go from 0 to end find mid in every loop close down left and right based on target >  = < mid
 
     public static int binarySearch(int[] nums, int target) {
         //1st search midpoint
