@@ -992,6 +992,28 @@ class LowerCaseClassNameResolver extends TypeIdResolverBase {
 }
 
 
+Q. Can class run without main method
+A. Yes You can compile and execute without main method By using static block. But after static block executed (printed) you will get an error saying no main method found.
+
+And Latest INFO --> YOU cant Do this with JAVA 7 version. IT will not execute.
+
+{
+    static
+    {
+        System.out.println("Hello World!");
+        System.exit(0); // prevents “main method not found” error
+    }
+}
+
+Q. Is it possible to have different eturn type in overloaded method
+A. In a class, there can be several methods sharing the same name but differ in
+
+Parameter types
+Number of parameters
+Order of the parameters declared in the method
+By depending on the parameters provided for the method, in the run time, compiler determines which version of the method to execute.
+
+An overloaded method may or may not have different return types. But return type alone is not sufficient for the compiler to determine which method is to be executed at run time.
 
 *************************************************************
 Is REST secure? What can you do to secure it?
@@ -1052,3 +1074,278 @@ Write a SQL query to find employees who have the highest salary in each of the d
 +------------+----------+--------+
 
 
+GE Interview:
+
+GE India Interview Questions
+Difficulty Level : Hard
+Below is the list of Questions asked in GE interview for a java developer:
+
+Refer: GeInterviewQuestionPractise.java
+
+1. How to find the 3rd element from end in linked list in Java (Java Program to find the Nth Node from
+tail in linked list)
+2. Write producer consumer problem?
+3. wait, notify and notifyall use of methods?
+
+  // wait, notify and notifyall use of methods?
+      // A thread which goes into waiting state by calling wait()
+      // method will be in waiting state until any other thread calls
+      // either notify() or notifyAll() method on the same object.
+
+      Notification to number of threads : We can use notify() method to give the notification for only one thread which is waiting for a particular object whereas by the help of notifyAll() methods we can give the notification to all waiting threads of a particular object.
+      Notifying a thread by JVM : If multiple threads are waiting for the notification and we use notify() method then only one thread get the notification and the remaining thread have to wait for further notification. Which thread will get the notification we can’t expect because it totally depends upon the JVM. But when we use notifyAll() method then multiple threads got the notification but execution of threads will be performed one by one because thread requires lock and only one lock is available for one object.
+      Interchangeability of threads : We should go for notify() if all your waiting threads are interchangeable (the order they wake up doesn’t matter). A common example is a thread pool. But we should use notifyAll() for other cases where the waiting threads may have different purposes and should be able to run concurrently. An example is a maintenance operation on a shared resource, where multiple threads are waiting for the operation to complete before accessing the resource.
+
+4. Why wait, notify and notifyall are declared in Object class?
+//to notify ther threads
+For better understanding why wait() and notify() method belongs to Object class, I'll give you a real life example: Suppose a gas station has a single toilet, the key for which is kept at the service desk. The toilet is a shared resource for passing motorists. To use this shared resource the prospective user must acquire a key to the lock on the toilet. The user goes to the service desk and acquires the key, opens the door, locks it from the inside and uses the facilities.
+
+Meanwhile, if a second prospective user arrives at the gas station he finds the toilet locked and therefore unavailable to him. He goes to the service desk but the key is not there because it is in the hands of the current user. When the current user finishes, he unlocks the door and returns the key to the service desk. He does not bother about waiting customers. The service desk gives the key to the waiting customer. If more than one prospective user turns up while the toilet is locked, they must form a queue waiting for the key to the lock. Each thread has no idea who is in the toilet.
+
+Obviously in applying this analogy to Java, a Java thread is a user and the toilet is a block of code which the thread wishes to execute. Java provides a way to lock the code for a thread which is currently executing it using the synchronized keyword, and making other threads that wish to use it wait until the first thread is finished. These other threads are placed in the waiting state. Java is NOT AS FAIR as the service station because there is no queue for waiting threads. Any one of the waiting threads may get the monitor next, regardless of the order they asked for it. The only guarantee is that all threads will get to use the monitored code sooner or later.
+
+Finally the answer to your question: the lock could be the key object or the service desk. None of which is a Thread.
+
+However, these are the objects that currently decide whether the toilet is locked or open. These are the objects that are in a position to notify that the bathroom is open (“notify”) or ask people to wait when it is locked wait.
+
+Share
+
+5. Can Notify be called after wait?
+    Therefore, if a thread calls notify() before/after the thread to
+    signal has called wait(), the signal will be missed by the waiting thread.
+    This may or may not be a problem, but in some cases this may result
+    in the waiting thread waiting forever, never waking up, because the signal
+    to wake up was missed
+6. find max occurring char from a char array?
+7. What is significance of Spring?
+8. what is loose coupling?
+9. What is dependency injection?
+10. how to use dependency injection?
+11. Suppose a validator interface is there, 3 validators are implementing the interface.
+    There is a service to use one of the validators. How to do that?
+    @Component(value="DValidator")
+        public class DateValidator implements validator {
+
+            public boolean validate() {
+                return true;
+            }
+        }`
+
+    @Component(value="CValidator")
+    public class CurrencyValidator implements validator {
+
+        public boolean validate() {
+            return true;
+        }
+    }
+    @Component(value="EValidator")
+    public class EmailValidator implements validator {
+
+        public boolean validate() {
+            return true;
+        }
+    }
+    @Component
+    public class CusotmerService {
+
+        WRONG  //NoUniqueBeanDefinitionException
+        @Autowired
+        private Validator valid;//will thorugh exception
+
+        RIGHT
+          @Qualifier("EValidator")
+           @Autowired
+        private Validator valid;// will work
+    }
+
+    //hence define @Qualifier for same bean
+
+
+12. how to limit the scope in a spring bean to only 2 bean instance per Spring IoC container?
+        make two singleton bean nd use it through qualifier
+
+13. suppose there is a service having 3 tasks, how to complete these tasks through 3 threads and return
+the combined result back to the service?
+
+https://www.baeldung.com/java-completablefuture
+
+
+14. write the program using fork join pool?
+15. write the program using callable interface?
+16. write the program using executor framework?
+17. difference between notify and notifyall?
+18. how will you write programs using threads in such a manner that it should not throw outOfMemory
+error?
+19. what is callback method in jquery?
+20. document.ready in jquery?
+21. what is the difference between import package.* and import package.classname?
+22. what is class loader?
+23. suppose there are 3 colours(Black, Red and Yellow) and each colour signifies a fruit having some
+properties. what design pattern to use here ?
+
+
+
+//**********************************************************************************************************
+
+
+Multithreading:
+
+What are the advantages of Multithreading?
+
+What are the disadvantages of Multithreading?
+
+What is a Thread in Java?
+
+What is the priority of a Thread and how it is used in scheduling?
+
+What is the default priority of a thread in Java?
+
+What are the three different priorities that can be set on a Thread in Java?
+
+What are the differences between Pre-emptive Scheduling Scheduler and Time Slicing Scheduler?
+
+What is the purpose of join() method in Thread class?
+
+What is the fundamental difference between wait() and sleep() methods?
+
+Is it possible to call run() method instead of start() on a thread in Java?
+
+What is a daemon thread in Java?
+
+How can we make a regular thread Daemon thread in Java?
+
+How will you make a user thread into daemon thread if it has already started?
+
+Can we start a thread two times in Java?
+
+What is a Shutdown hook in Java?
+
+In what scenarios can we interrupt a thread?
+
+What is synchronization in Java?
+
+What is the purpose of Synchronized block in Java?
+
+What is static synchronization?
+
+In Java, is it possible to lock an object for exclusive use by a thread?
+
+How notify() method is different from notifyAll() method?
+
+What is a Deadlock situation?
+
+What is the meaning of concurrency?
+
+What is the main difference between process and thread?
+
+What is a process and thread in the context of Java?
+
+What is a Scheduler?
+
+What is the minimum number of Threads in a Java program?
+
+What are the properties of a Java thread?
+
+What are the different states of a Thread in Java?
+
+How will you set the priority of a thread in Java?
+
+What is the purpose of Thread Groups in Java?
+
+Why we should not stop a thread by calling its stop() method?
+
+How will you create a Thread in Java?
+
+How can we stop a thread in the middle of execution in Java?
+
+How do you access the current thread in a Java program?
+
+What is Busy waiting in Multi-threading?
+
+How can we prevent busy waiting in Java?
+
+Can we use Thread.sleep() method for real-time processing in Java?
+
+Can we wake up a thread that has been put to sleep by using Thread.sleep() method?
+
+What are the two ways to check if a Thread has been interrupted?
+
+How can we make sure that Parent thread waits for termination of Child thread?
+
+Collections:
+
+What are the main benefits of Collections Framework in Java?
+
+What is the root interface of Collection hierarchy in Java?
+
+What are the main differences between Collection and Collections?
+
+What are the Thread-safe classes in Java Collections framework?
+
+How will you efficiently remove elements while iterating a Collection?
+
+How will you convert a List into an array of integers like- int[]?
+
+How will you convert an array of primitive integers int[] to a List collection?
+
+How will you run a filter on a Collection?
+
+How will you convert a List to a Set?
+
+How will you remove duplicate elements from an ArrayList?
+
+How can you maintain a Collection with elements in Sorted order?
+
+What is the difference between Collections.emptyList() and creating new instance of Collection?
+
+How will you copy elements from a Source List to another list?
+
+What are the Java Collection classes that implement List interface?
+
+What are the Java Collection classes that implement Set interface?
+
+What is the difference between an Iterator and ListIterator in Java?
+
+What is the difference between Iterator and Enumeration?
+
+What are the differences between the two data structures: a Vector and an ArrayList?
+
+What are the differences between Collection and Collections in Java?
+
+What is the difference between an ArrayList and a LinkedList data structure?
+
+In which scenario, LinkedList is better than ArrayList in Java?
+
+What are the differences between a List and Set collection in Java?
+
+What is the difference between a Set and a Map in Java?
+
+What are the differences between a HashSet and TreeSet collection in Java?
+
+In Java, how will you decide when to use a List, Set or a Map collection?
+
+What is the use of a Dictionary class?
+
+What is the default size of load factor in a HashMap collection in Java?
+
+What is the significance of load factor in a HashMap in Java?
+
+What are the major differences between a HashSet and a HashMap?
+
+What are the differences between a HashMap and a Hashtable in Java?
+
+What are the similarities between a HashSet and a HashMap in Java?
+
+What are the differences between a HashMap and a TreeMap?
+
+What are the differences between Comparable and Comparator?
+
+In Java, what is the purpose of Properties file?
+
+What is the reason for overriding equals() method?
+
+How does hashCode() method work in Java?
+
+How can we synchronize the elements of a List, a Set or a Map?
+
+Is it a good idea to use Generics in collections?
