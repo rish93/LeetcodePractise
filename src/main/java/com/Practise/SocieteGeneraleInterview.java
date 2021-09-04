@@ -27,7 +27,7 @@ public class SocieteGeneraleInterview {
 
     //make a setup of spring boot for student table crud operations
 
-    //equals method of objct class checks reference or value
+    //equals method of object class checks reference or value
 
     //worked on servlet
 
