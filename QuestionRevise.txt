@@ -1446,7 +1446,13 @@ Collections:
 
 What are the main benefits of Collections Framework in Java?
 
-What is the root interface of Collection hierarchy in Java?
+Q: What is the root interface of Collection hierarchy in Java?
+
+A: The root interface of Collection hierarchy in Java is Collection interface.
+    But the Collection interface extends Iterable interface. Due to this some people consider Iterable interface as the root interface.
+    Iterable interface is present in java.lang package but Collection interface is present in java.util package. Oracle Java API docs mention that Collection interface is a member of the Java Collections framework.
+    Whereas, Iterable interface is not stated as a part of Java Collections framework in Java docs.
+    Due to this Collection interface is the root of Collections Framework.
 
 What are the main differences between Collection and Collections?
 
@@ -1604,8 +1610,8 @@ strategy each entity will keep record of what changed inside and at flush time H
 
 Q: caching in sprng jpa
 
-The reason the code you have is not working is that @Cache is not intended to work that way. If you want to cache the results of a query method execution, the easiest way is to use Spring's caching abstraction.
-
+The reason the code you have is not working is that @Cache is not intended to work that way.
+ If you want to cache the results of a query method execution, the easiest way is to use Spring's caching abstraction.
 interface PromotionServiceXrefRepository extends PagingAndSortingRepository<PromotionServiceXref, Integer> {
 
   @Query("…")
