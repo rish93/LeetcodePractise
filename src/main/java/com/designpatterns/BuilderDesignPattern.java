@@ -27,7 +27,7 @@ public class BuilderDesignPattern {
   public static void main(String[] args) {
     // how to create?
       /*
-      * => Create static nested class which containes all
+      * => Create static nested class which contains all
       * arg of outer class.
       * => If class is Vehicle builder class should be 'VehicleBuilder' (as per convention)
       * =>Builder class has public constructor with all required parameters

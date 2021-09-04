@@ -1,0 +1,80 @@
+1)Consul can assign zero or more different health check
+  procedures to individual services or to the whole host.
+  The check can be as simple as a HTTP call to the service,
+  ping request,
+2) Then, depending on check result, Consul will
+   put the service (or all services at the host) to one
+   of the three states: healthy, warning or critical.
+
+‘Healthy’ and ‘warning’ services will behave like
+usual, but Consul gives special treatment for ‘critical’
+ones: they won’t be discoverable via DNS. What’s even
+more, if service doesn’t get back healthy in given
+amount of time, it can be unregistered completely.
+However, such behavior is disabled by default.
+
+
+
+Health Check
+A Consul Agent check the health of a Spring Boot
+application by using the /health endpoint.
+
+If the service uses a non-default context path,
+the changes to the health endpoint needs to be
+ configured in application.yml . For example if the
+ context path is changed to foo, the following changes
+ need to be made:
+
+By default, Spring implements the health endpoint to return 200 OK if the app is up. If we want to customize the endpoint we have to update the application.yml:
+
+spring:
+  cloud:
+    consul:
+      discovery:
+        healthCheckPath: /my-health-check
+        healthCheckInterval: 20s
+
+@GetMapping("/my-health-check")
+public ResponseEntity<String> myCustomCheck() {
+    String message = "Testing my healh check function";
+    return new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
+}
+
+or
+
+spring:
+  cloud:
+    consul:
+      discovery:
+        healthCheckPath: foo/health
+        healthCheckInterval: 15s
+The interval used by Consul to check the health endpoint can also be configured.
+
+The latest version of Consul (1.0.2) shows a registered Spring Boot application to be in critical condition.
+
+
+
+If you check the /health endpoint of your application, the consul health will show up as down:
+
+{
+    "consul": {
+        "status": "DOWN",
+        "services": {
+            "consul": [
+
+            ],
+            "spring-consul-example": [
+
+            ]
+        },
+        "error": "java.lang.IllegalArgumentException: Value must not be null"
+    }
+}
+This problem can be mitigated by adding the following snippet in bootstrap.yml,
+
+management:
+  security:
+    enabled: false
+  health:
+    consul:
+      enabled: false

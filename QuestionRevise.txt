@@ -277,18 +277,170 @@ el App
 
 -------------------------------------------------
 
-What do you mean by polymorphism?
+Q: What do you mean by polymorphism?
+A: polymorphism is the ability by which, we can create functions
+    or reference variables which behaves differently in different programmatic context.
+
+    Polymorphism in Java
+    An example of polymorphism is referring the instance of subclass, with reference variable of super-class. e.g.
+
+    Object o = new Object(); //o can hold the reference of any subtype
+    Object o = new String();
+    Object o = new Integer();
+    Here, String is subclass of Object class. This is basic example of polymorphism.
+
+    Compile time polymorphism (static binding or method overloading)
+    Runtime polymorphism (dynamic binding or method overriding)
+    Compile Time Polymorphism (static binding or method overloading)
+    As the meaning is implicit, this is used to write the program in such a way, that flow of control is decided in compile time itself. It is achieved using method overloading.
+
+    In method overloading, an object can have two or more methods with same name, BUT, with their method parameters different. These parameters may be different on two bases:
+
+    Parameters type
+    Type of method parameters can be different. e.g. java.util.Math.max() function comes with following versions:
+
+    public static double Math.max(double a, double b){..}
+    public static float Math.max(float a, float b){..}
+    public static int Math.max(int a, int b){..}
+    public static long Math.max(long a, long b){..}
+    The actual method to be called is decided on compile time based on parameters passed to function in program.
+
+    Parameters count
+    Functions accepting different number of parameters. e.g. in employee management application, a factory can have these methods:
+
+    EmployeeFactory.create(String firstName, String lastName){...}
+    EmployeeFactory.create(Integer id, String firstName, String lastName){...}
+    Both methods have same name “create” but actual method invoked will be based on parameters passed in program.
+
+    Runtime Polymorphism (dynamic binding or method overriding)
+    Runtime polymorphism is essentially referred as method overriding. Method overriding is a feature which you get when you implement inheritance in your program.
+
+    A simple example can be from real world e.g. animals. An application can have Animal class, and its specialized sub classes like Cat and Dog. These subclasses will override the default behavior provided by Animal class + some of its own specific behavior.
+
+    public class Animal {
+        public void makeNoise()
+        {
+            System.out.println("Some sound");
+        }
+    }
+
+    class Dog extends Animal{
+        public void makeNoise()
+        {
+            System.out.println("Bark");
+        }
+    }
+
+    class Cat extends Animal{
+        public void makeNoise()
+        {
+            System.out.println("Meawoo");
+        }
+    }
+    Now which makeNoise() method will be called, depends on type of actual instance created on runtime e.g.
+
+    public class Demo
+    {
+        public static void main(String[] args) {
+            Animal a1 = new Cat();
+            a1.makeNoise(); //Prints Meowoo
+
+            Animal a2 = new Dog();
+            a2.makeNoise(); //Prints Bark
+        }
+    }
+
 Explain virtual inheritance.
 What do you mean by semaphore?
-What are javascript types?
-What is recursion? Can you implement it?
-Give an example that shows the use of enumeration data types.
-Big O of hash map, How to use a select query in sql, how to  use the join tables in sql.
-Most of the questuions fromTriggers, Views, T-SQL, DML
+ A:   A semaphore controls access to a shared resource through the use of a counter. If
+    the counter is greater than zero, then access is allowed. If it is zero, then access is denied.
+     What the counter is counting are permits that allow access to
+    the shared resource. Thus, to access the resource, a thread must be granted a permit from the semaphore.
+class1{
+ Semaphore sem = new Semaphore(1);
+
+        // creating two threads with name A and B
+        // Note that thread A will increment the count
+        // and thread B will decrement the count
+        MyThread mt1 = new MyThread(sem, "A");
+        MyThread mt2 = new MyThread(sem, "B");
+}
+class MyThread extends Thread
+{
+    Semaphore sem;
+    String threadName;
+    public MyThread(Semaphore sem, String threadName)
+    {
+        super(threadName);
+        this.sem = sem;
+        this.threadName = threadName;
+    }
+
+    @Override
+    public void run() {
+
+        // run by thread A
+        if(this.getName().equals("A"))
+        {
+            System.out.println("Starting " + threadName);
+            try
+            {
+                // First, get a permit.
+                System.out.println(threadName + " is waiting for a permit.");
+
+                // acquiring the lock
+                sem.acquire();
+                }
+                }
+
+Q: What is recursion? Can you implement it?
+ A:   The process in which a function calls itself directly or indirectly is
+    called recursion and the corresponding function is called as recursive function.
+    int fact(int n)
+    {
+        if (n < = 1) // base case
+            return 1;
+        else
+            return n*fact(n-1);
+    }
+
+Q: Give an example that shows the use of enumeration data types.
+A: Enumerations serve the purpose of representing a group of named constants in a
+    programming language. For example the 4 suits in a deck of playing cards
+    may be 4 enumerators named Club, Diamond, Heart, and Spade, belonging to an
+    enumerated type named Suit
+
+    Enum declaration can be done outside a Class or inside a Class but not inside a Method.
+
+    // A simple enum example where enum is declared
+    // outside any class (Note enum keyword instead of
+    // class keyword)
+    enum Color
+    {
+        RED, GREEN, BLUE;
+    }
+
+    public class Test
+    {
+        // Driver method
+        public static void main(String[] args)
+        {
+            Color c1 = Color.RED;
+            System.out.println(c1);
+        }
+    }
+    O/p RED
+
+Q: Big O of hash map, How to use a select query in sql, how to  use the join tables in sql.
+A: Using hashCode to locate the corresponding bucket [inside buckets container model].
+    Each bucket is a list (or tree starting from Java 8) of items residing in that bucket.
+    The items are scanned one by one, using equals for comparison.
+    When adding more items, the HashMap is resized once a certain load percentage is reached.
+    So, sometimes it will have to compare against a few items, but generally, it's much closer to O(1) than O(n).
+    For practical purposes, that's all you should need to know.
+
+
 Write the code for a problem and write as many unit test cases as possible.
-How you create object in JS
-How you create array in JS
-Few very basics questions about css too.
 
 Programming question - Given an array of number from 1...N (No duplicates)out of which one number is missing. Find the missing number in O(N).
 How to compile & execute code at run time in java?
@@ -470,7 +622,27 @@ Comparator, Interface, etc
 
 difference between runtime and compile time polymorphism
 difference between 'exists' and 'in' SQL
-jdbc questions
+Where EXISTS (Sub-Query)
+
+Example:
+
+SELECT emp.*
+
+FROM employees e
+
+WHERE EXISTS (SELECT 1 FROM departments dep WHERE dep.dept_id = 10);
+
+
+WHERE expression IN (Value 1, Value 2,…Value N)
+
+Example:
+
+SELECT emp.*
+
+FROM employees emp
+
+WHERE emp.dept_id IN (20, 30);
+
 
 Questions on Java 8 , J2EE , web security , Spring framework and logical thinking.
 
@@ -1146,7 +1318,7 @@ Share
         }
     }
     @Component
-    public class CusotmerService {
+    public class CustomerService {
 
         WRONG  //NoUniqueBeanDefinitionException
         @Autowired
@@ -1166,8 +1338,6 @@ Share
 
 13. suppose there is a service having 3 tasks, how to complete these tasks through 3 threads and return
 the combined result back to the service?
-
-https://www.baeldung.com/java-completablefuture
 
 
 14. write the program using fork join pool?
@@ -1349,3 +1519,154 @@ How does hashCode() method work in Java?
 How can we synchronize the elements of a List, a Set or a Map?
 
 Is it a good idea to use Generics in collections?
+
+Q: How to make Finally block to skipping execution.
+A: The finally block follows a try block or a catch block. A finally block of
+code always executes, irrespective of occurrence of an Exception. You cannot skip the
+execution of the final block. Still if you want to do it forcefully when an exception occurred,
+the only way is to call the System.exit(0) method, at the end of the catch block which is just before the finally block.
+
+Example
+public class FinallyExample {
+   public static void main(String args[]) {
+      int a[] = {21, 32, 65, 78};
+      try {
+         System.out.println("Access element three :" + a[5]);
+      } catch (ArrayIndexOutOfBoundsException e) {
+         System.out.println("Exception thrown :" + e);
+         System.exit(0);
+      } finally {
+         a[0] = 6;
+         System.out.println("First element value: " + a[0]);
+         System.out.println("The finally statement is executed");
+      }
+   }
+}
+Output
+Exception thrown
+:java.lang.ArrayIndexOutOfBoundsException: 5
+
+Q: Can i use TCP for REST
+A:HTTP is a TCP/IP based protocol. So when you use REST you are
+already using TCP for communication. But if you want to
+use REST over pure TCP socket, without HTTP,
+ then no, this doesn't make sense because REST
+ is based on HTTP verbs and headers. Those notions exist only in the HTTP protocol.
+
+
+Q: can we use return in finally block
+
+A: Yes
+Yes you can write the return statement in a finally block and it will override the other return value.
+
+EDIT:
+For example in below code
+
+public class Test {
+
+    public static int test(int i) {
+        try {
+            if (i == 0)
+                throw new Exception();
+            return 0;
+        } catch (Exception e) {
+            return 1;
+        } finally {
+            return 2;
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(test(0));
+        System.out.println(test(1));
+    }
+}
+The output is always 2, as we are returning 2
+from the finally block. Remember the finally always
+executes whether there is a exception or not. So when
+the finally block runs it will override the return
+value of others. Writing return statements in finally
+ block is not required, in fact you should not write
+  it.
+
+Q:How does hibernate know to persist data passed to the entity class via a setter?
+
+The mechanism Hibernate use to generate query is call dirty checking. By default once you load an record from the database Hibernate
+will store a snapshot of the entity in the persistence context and give you a managed entity.
+At flush time the framework will check entity states (managed, transient or removed)
+and make a diff between every managed entity properties and the corresponding snapshot
+to generate insert, update and delete query .
+This is the default dirty checking strategy, which have some CPU and memory footprint. You
+can reduce it with some mechanism like the use of the @Imumutable annotation.
+Another option is to use bytecode enhancement for automatic dirty check. With this
+strategy each entity will keep record of what changed inside and at flush time Hibernate will just ask every entity what changed.
+
+
+Q: caching in sprng jpa
+
+The reason the code you have is not working is that @Cache is not intended to work that way. If you want to cache the results of a query method execution, the easiest way is to use Spring's caching abstraction.
+
+interface PromotionServiceXrefRepository extends PagingAndSortingRepository<PromotionServiceXref, Integer> {
+
+  @Query("…")
+  @Cacheable("servicesByCustomerId")
+  Set<PromotionServiceXref> findByCustomerId(int customerId);
+
+  @Override
+  @CacheEvict(value = "servicesByCustomerId", key = "#p0.customer.id")
+  <S extends PromotionServiceXref> S save(S service);
+}
+This setup will cause results of calls to findByCustomerId(…) be cached by the customer identifier. Note, that we added an @CacheEvict to the overridden save(…) method, so that the cache we populate with the query method is evicted, whenever an entity is saved. This probably has to be propagated to the delete(…) methods as well.
+
+Now you can go ahead an configure a dedicated CacheManager (see the reference documentation for details) to plug in whichever caching solution you prefer (using a plain ConcurrentHashMap here).
+
+ @Configuration
+ @EnableCaching
+ class CachingConfig {
+
+   @Bean
+   CacheManager cacheManager() {
+
+     SimpleCacheManager cacheManager = new SimpleCacheManager();
+     cacheManager.addCaches(Arrays.asList(new ConcurrentMapCache("servicesByCustomerId)));
+
+     return cacheManager;
+   }
+ }
+
+
+Can we make a Hibernate Entity Class final?
+Yes, you can make a Hibernate Entity class final, but that's not a good practice. Since Hibernate uses a proxy pattern for performance
+improvement in the case of the lazy association, by making an entity final, Hibernate will no longer be able to use a proxy, because
+ Java doesn't allow extension of the final class, thus limiting your performance improvement
+
+
+Q: Can interface have body
+
+ A: Yes
+
+ From Java 8 you can define static methods in interfaces in addition to default methods.
+
+ A static method is a method that is associated with the class in which it is defined rather than with any object. Every instance of the class shares its static methods.
+
+ This makes it easier for you to organize helper methods in your libraries; you can keep static methods specific to an interface in the same interface rather than in a separate class.
+
+ The following example defines a static method that retrieves a ZoneId object corresponding to a time zone identifier; it uses the system default time zone if there is no ZoneId object corresponding to the given identifier. (As a result, you can simplify the method getZonedDateTime)
+
+ Here is code :
+
+ public interface TimeClient {
+    // ...
+     static public ZoneId getZoneId (String zoneString) {
+         try {
+             return ZoneId.of(zoneString);
+         } catch (DateTimeException e) {
+             System.err.println("Invalid time zone: " + zoneString +"; using default time zone instead.");
+             return ZoneId.systemDefault();
+         }
+     }
+
+    default public ZonedDateTime getZonedDateTime(String zoneString) {
+       return ZonedDateTime.of(getLocalDateTime(), getZoneId(zoneString));
+    }
+ }

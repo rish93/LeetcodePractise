@@ -121,3 +121,18 @@ class NameCompare implements Comparator<Movie>
         return m1.getName().compareTo(m2.getName());
     }
 }
+
+
+/*
+*
+Comparable should be used when you compare instances of the same class.
+
+Comparator can be used to compare instances of different classes.
+
+Comparable is implemented by the class which needs to define a natural ordering for its objects. For example, String implements Comparable.
+
+In case a different sorting order is required, then, implement comparator and define its own way of comparing two instances.
+*
+*
+* https://java-journal.blogspot.com/2011/01/when-to-use-comparable-and-when-to-use.html
+* */

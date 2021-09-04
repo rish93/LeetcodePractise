@@ -9,7 +9,7 @@ import java.util.Map;
  Java, all the wrapper classes (like Integer,
  Boolean, Byte, Short)
  and String class is immutable*/
-public class TestImmutableClass {
+public class TestImmutableClass{
 
   public static void main(String[] args) {
     //

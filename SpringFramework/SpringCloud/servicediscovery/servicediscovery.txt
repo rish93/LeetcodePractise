@@ -1,0 +1,30 @@
+Service Discovery:
+ In a microservice architecture, service
+ lifespan is measured in seconds and minutes.
+ With microservices, addresses are added and changed
+ constantly as new hosts are added,
+ ports are changed, or services are terminated.
+
+Service discovery bridges the gap between a
+service’s name and access information (IP address)
+by providing a dynamic mapping between a service name
+and its IP address. Users of all services (users using
+browsers or apps or other services) use well-known DNS
+mechanisms to obtain service IP addresses. The service
+discovery database must be kept up-to-date with this
+mapping as services are created and destroyed.
+
+How it works?
+
+-> Setting consul-discovery enable servce registration on consul
+default localhost:8500 else specify in properties file
+
+->Consul help in bridging App name with it's iphost
+-> use from consumer serivce @EnableDiscoveryClient
+  & 	@Autowired
+    	private DiscoveryClient client;
+to get/ consume from another service like
+
+URI uri = client.getInstances("Greeting-service").stream().map(si -> si.getUri()).findFirst()
+.map(s -> s.resolve("/greeting")).get();
+return template.getForObject(uri, String.class);

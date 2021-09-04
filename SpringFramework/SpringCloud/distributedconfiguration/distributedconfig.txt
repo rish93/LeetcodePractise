@@ -1,0 +1,95 @@
+Distributed Configuration
+This feature allows synchronizing the configuration among all the services. Consul will watch for any configuration changes and then trigger the update of all the services.
+
+First, we need to add the spring-cloud-starter-consul-config dependency to our pom.xml:
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-consul-config</artifactId>
+    <version>1.3.0.RELEASE</version>
+</dependency>
+We also need to move the settings of Consul and Spring application name from the application.yml file to the bootstrap.yml file which Spring loads first.
+
+Then, we need to enable Spring Cloud Consul Config:
+
+spring:
+  application:
+    name: myApp
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        enabled: true
+Spring Cloud Consul Config will look for the properties
+ in Consul at “/config/myApp”. So if we have a property
+  called “my.prop”, we would need to create this property
+   in the Consul agent site.
+
+We can create the property by going to the “KEY/VALUE”
+section, then entering “/config/myApp/my/prop” in the
+ “Create Key” form and “Hello World” as value. Finally,
+  click the “Create” button.
+
+Bear in mind that if we are using Spring profiles, we
+need to append the profiles next to the Spring
+ application name. For example, if we are using the
+ dev profile, the final path in Consul will be
+  “/config/myApp,dev”.
+
+Now, let's see what our controller with the
+injected properties looks like:
+
+@RestController
+public class DistributedPropertiesController {
+
+    @Value("${my.prop}")
+    String value;
+
+    @Autowired
+    private MyProperties properties;
+
+    @GetMapping("/getConfigFromValue")
+    public String getConfigFromValue() {
+        return value;
+    }
+
+    @GetMapping("/getConfigFromProperty")
+    public String getConfigFromProperty() {
+        return properties.getProp();
+    }
+}
+And the MyProperties class:
+
+@RefreshScope
+@Configuration
+@ConfigurationProperties("my")
+public class MyProperties {
+    private String prop;
+
+    // standard getter, setter
+}
+If we run the application, the field value and
+properties have the same “Hello World” value from
+Consul.
+
+5.1. Updating the Configuration
+What about updating the configuration without
+ restarting the Spring Boot application?
+
+If we go back to the Consul agent site and we
+ update the property “/config/myApp/my/prop”
+ with another value like “New Hello World”, then
+  the field value will not change and the field
+   properties will have been updated to “New Hello
+   World” as expected.
+
+This is because the field properties is a MyProperties
+class has the @RefreshScope annotation. All beans
+annotated with the @RefreshScope annotation will be
+refreshed after configuration changes.
+
+In real life, we should not have the properties
+directly in Consul, but we should store them
+persistently somewhere. We can do this using a
+Config Server.
