@@ -20,7 +20,7 @@ public class LnTInterview {
 
     //make class like string
 
-    //hibernate session and it's type
+    //hibernate cache and it's type
 
     //hibernate save vs saveOrUpdate
 
@@ -32,7 +32,7 @@ public class LnTInterview {
 
     //type of inner class
 
-    //diff between inner class and lamba expression
+    //diff between anonymous class and lamba expression
 
     //what is try with resource from java 7
 

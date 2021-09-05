@@ -36,8 +36,8 @@ public class SapiensInterview {
      }
      }
 
-     l1->table1->1mln records
-     ->l2 (oracledatabase)->
+     l1->(sqlserver)->table1->1mln records
+     ->l2 (oracledatabase)->table1 copy
 
      Client cleint2=Class.forName("com.jdbc.oracle.")
      connection conn2 =cleint.getConection("tables");
@@ -56,7 +56,7 @@ public class SapiensInterview {
 
      List<String> lstRecords;
 
-     lstRecords.stream().filter(sr->sr.chartAt(0)=='R').Collect(Collector.toList());
+     lstRecords.stream().filter(sr->sr.chartAt(0)=='R').collect(Collector.toList());
 
      Map<String,String> map;
 
