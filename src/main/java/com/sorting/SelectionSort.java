@@ -13,6 +13,12 @@ public class SelectionSort {
         selectionBestCaseSort(arr);
     }
 
+
+    /**
+     * Selection
+    TODO select min from rest of the array(except i)
+     swap it with ith position
+     */
     private static int[] selectionWorstCaseSort(int []input){ //On^2
         System.out.println(" unsorted array");
         Long start =System.currentTimeMillis();
