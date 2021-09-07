@@ -38,8 +38,9 @@ public class SocieteGeneraleInterview {
     //hysterix use
     //how to handle circuit breaker
     //how do you lock object
-    //diffeene between spring and spring boot
+    //difference between spring and spring boot
     //aggregator(has a r/n) vs composiiton (is part of)
-    //which API gateway you used.
-
+    //which API gateway you used. (nginx)
+    //volatile keyword
+    
 }
