@@ -31,4 +31,15 @@ public class SocieteGeneraleInterview {
 
     //worked on servlet
 
+
+    //difference between for loop vs foreach loop and complexity
+    //microservicedeisgn pattern
+    //system design pattern
+    //hysterix use
+    //how to handle circuit breaker
+    //how do you lock object
+    //diffeene between spring and spring boot
+    //aggregator(has a r/n) vs composiiton (is part of)
+    //which API gateway you used.
+
 }

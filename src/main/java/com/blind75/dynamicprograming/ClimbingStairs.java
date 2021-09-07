@@ -1,4 +1,4 @@
-package com.blind75.dinamicprograming;
+package com.blind75.dynamicprograming;
 
 public class ClimbingStairs {
 
