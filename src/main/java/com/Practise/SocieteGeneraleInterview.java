@@ -43,5 +43,6 @@ public class SocieteGeneraleInterview {
     //which API gateway you used. (nginx)
     //volatile keyword
     //orchestration design in microservice
+    //what is ttransaction in spring boot, how you create transaction in spring boot
 
 }
