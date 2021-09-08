@@ -1676,3 +1676,12 @@ Q: Can interface have body
        return ZonedDateTime.of(getLocalDateTime(), getZoneId(zoneString));
     }
  }
+
+
+ Q: Difference b/w concurrent Hashmap vs Syncronised Hashmap
+
+ A: Syncronised Hashmap hold the lock of the entire map object (all bucket lock) during any operation and its thread safe
+    Concurrent hashmap only holds lock for the bucket/segment where it is writing the object (if map.put(obj,obj)) but it dosent lock the bucket where map.get() is called while fetching
+
+
+
