@@ -1,7 +1,7 @@
 
 
 
-fgango 4
+gang of 4
 educative.io
 
 tinyurl design
@@ -443,6 +443,32 @@ A: Using hashCode to locate the corresponding bucket [inside buckets container m
 Write the code for a problem and write as many unit test cases as possible.
 
 Programming question - Given an array of number from 1...N (No duplicates)out of which one number is missing. Find the missing number in O(N).
+
+
+You can do this in O(n). Iterate through the array and compute the sum of all numbers. Now, sum of natural numbers from 1 to N, can be expressed as Nx(N+1)/2. In your case N=100.
+
+Subtract the sum of the array from Nx(N+1)/2, where N=100.That is the missing number
+
+// will be the sum of the numbers in the array.
+int sum = 0;
+int idx = -1;
+for (int i = 0; i < arr.length; i++)
+{
+    if (arr[i] == 0)
+    {
+         idx = i;
+    }
+    else
+    {
+         sum += arr[i];
+    }
+}
+
+// the total sum of numbers between 1 and arr.length.
+int total = (arr.length + 1) * arr.length / 2;
+
+System.out.println("missing number is: " + (total - sum) + " at index " + idx);
+
 How to compile & execute code at run time in java?
 Some question based on topological sort
 Level order traversal of tree
@@ -476,7 +502,7 @@ Graph Types were Strictly increasing line, Strictly decreasing line, Increasing 
 
 4. Explain Factory design pattern
 
-1. Dynamic Dispatcher
+1. Dynamic Dispatcher  https://www.youtube.com/watch?v=eIO9dNLkhDQ
 2. Atomic keyword and volatile keyword
 3. Externalizable interface
 4. Having a method definition inside an interface but java version is 1.7 hence default shouldn’t be used.
@@ -486,7 +512,7 @@ Graph Types were Strictly increasing line, Strictly decreasing line, Increasing 
 8. Shutdown hook
 9. 5 features in Java 1.8 and 1.9
 10. Executor Pool vs Thread Join Pool
-11. There are 3 threads running independently how to ensure 1st thread runs more
+11. There are 3 threads running independently how to ensure 1st thread runs more  t1.join(t2); t2.join(t3) --> t1 will complete 1st then t2 will complete then t3
 
 ----------------------------------------------------------------------
 Hibernate with one table having multiple referece to another table
@@ -541,7 +567,7 @@ Can null key accepted in hashmap then how to get it's null key value
 Left join example
 Microservice Design architecture used (service discovery etc)
 Can overridedn method have differetn throw Exception syntax
-How to hanle out of memory _-> increase heap size and prefer streaming output thrn holding in variable
+How to hanle out of memory _-> increase heap size and prefer streaming output thrn holding in variable(Use Future<Object>)
 
 
 
@@ -552,7 +578,7 @@ https://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array/
 
 
 binary search
-find in sorted arrya
+find in sorted arrys
 
 
 
@@ -597,6 +623,15 @@ Manhattan
 2. Reverse a linked list.
 3. WAP to find the given string is the rotation of another input string.
 4.How to implement Autocloseable in java?
+Implementing the Closeable interface and override the close method to give implementation of your own
+public class MyCustomCloseableClass implements Closeable {
+
+    @Override
+    public void close() throws IOException {
+        // close resource
+        System.out.println("Closing");
+    }
+}
 5. How to create threads in java?
 
 
@@ -604,13 +639,31 @@ WAP to print 1-50 if number divisible by 3 Print Manhattan if div by 5 print Ass
 
 Written Questions:
 1) Program to Convert String to Integer without using Integer Parseint.
+The idea is to use the ASCII value of the digits from 0 to 9 start from 48 – 57.
+Therefore, to change the numeric character to an integer subtract 48 from the ASCII value of the character will given the corresponding digit for the given character.
+//TODO public static void convert(String s)
+{
+
+    // Initialize a variable
+    int num = 0;
+    int n = s.length();
+
+    // Iterate till length of the string
+    for(int i = 0; i < n; i++)
+
+        // Subtract 48 from the current digit
+        num = num * 10 + ((int)s.charAt(i) - 48);
+
+    // Print the answer
+    System.out.print(num);
+}
 2) Program to read the data from file and remove ' ' and \n and duplicates from the string.
 3) Program to print Manhattan (if no. is multiple of 3) print Associates(if no. is multiple of 5) and Manhattan Associates (if no is multiple of both 3 and 5)
 4) 3 questions related to inner joins.
 
 In interview:
 1) How do you handle exceptions in your project?
-2) Which server do you use i your project?
+2) Which server do you use in your project?
 3) Why main method is static?
 4) What is encapsulation?
 5) Have you ever used git and which version control is used in your project?
@@ -665,8 +718,8 @@ How can you add more than two attributes as a primary key
 OFSS preperation
 
 8 primitive data types
-1. Program to find all the patterns of 0(1+)0 in the given string
-2. Program to replace all 0's with 1 in a given integer
+1. Program to find all the patterns of 0(1+)0 in the given string  //TODO
+2. Program to replace all 0's with 1 in a given integer //TODO
 Given a list of integers, return the most frequent item in the list.
 Jersey client implementation
 linked list queue
@@ -1683,5 +1736,85 @@ Q: Can interface have body
  A: Syncronised Hashmap hold the lock of the entire map object (all bucket lock) during any operation and its thread safe
     Concurrent hashmap only holds lock for the bucket/segment where it is writing the object (if map.put(obj,obj)) but it dosent lock the bucket where map.get() is called while fetching
 
+Callable is an interface representing a task that returns a result, and has a single call() method
 
+
+/////EXecutor service API
+
+The ExecutorService interface contains a large number of methods to control the progress of the tasks and manage the termination of the service.
+The ThreadPoolExecutor is an extensible thread pool implementation with lots of parameters and hooks for fine-tuning.
+The main configuration
+corePoolSize - pool consists of a fixed number of core threads that are kept inside all the time
+maximumPoolSize - if all core threads are busy and the internal queue is full, the pool is allowed to grow up to maximumPoolSize.
+keepAliveTime - The keepAliveTime parameter is the interval of time for which the excessive threads (instantiated in excess of the corePoolSize) are allowed to exist in the idle state.
+ThreadPoolExecutor only considers non-core threads for removal. In order to apply the same removal policy to core threads, we can use the allowCoreThreadTimeOut(true) method.
+
+public class SquareCalculator {
+
+    private ExecutorService executor
+      = Executors.newFixedThreadPool(2);
+       // todo alternate if 1 thread needed .newSingleThreadExecutor();
+
+    public Future<Integer> calculate(Integer input) {
+        return executor.submit(() -> {
+            Thread.sleep(1000);
+            return input * input;
+        });
+    }
+}
+
+
+ForkJoinPool is the central part of the fork/join framework introduced in Java 7. It solves a common problem of spawning multiple tasks in recursive algorithms. We'll run out of threads quickly by using a simple ThreadPoolExecutor, as every task or subtask requires its own thread to run.
+
+In a fork/join framework, any task can spawn (fork) a number of subtasks and wait for their completion using the join method. The benefit of the fork/join framework is that it does not create a new thread for each task or subtask, instead implementing the work-stealing algorithm.
+
+//Futures Asyncronous programming
+
+The Future class represents a future result of an asynchronous computation.
+This result will eventually appear in the Future after the processing is complete.
+
+Future.isDone() tells us if the executor has finished processing the task. If the task is complete, it will return true; otherwise, it returns false.
+
+The method that returns the actual result from the calculation is Future.get().
+//TODO  The method get() will block the execution until the task is complete. so makes not fully ASYNC  should be called when we have future.isDone() as true then only we get all result
+
+Integer result = future.get(500, TimeUnit.MILLISECONDS); // an overloaded method with timeout
+The difference between get(long, TimeUnit) and get() is that the former will throw a TimeoutException if the task doesn't return before the specified timeout period.
+
+public class SquareCalculator {
+
+    private ExecutorService executor = Executors.newFixedThreadPool(2);
+    public Future<Integer> calculate(Integer input) {
+        return executor.submit(() -> {
+            Thread.sleep(1000);
+            return input * input;
+        });
+    }
+}
+
+SquareCalculator squareCalculator = new SquareCalculator();
+
+Future<Integer> future1 = squareCalculator.calculate(10);
+Future<Integer> future2 = squareCalculator.calculate(100);
+
+while (!(future1.isDone() && future2.isDone())) {
+    System.out.println(
+      String.format(
+        "future1 is %s and future2 is %s",
+        future1.isDone() ? "done" : "not done",
+        future2.isDone() ? "done" : "not done"
+      )
+    );
+    Thread.sleep(300);
+}
+//TODO OUTPUT:
+calculating square for: 10
+future1 is not done and future2 is not done
+future1 is not done and future2 is not done
+future1 is not done and future2 is not done
+future1 is not done and future2 is not done
+calculating square for: 100
+future1 is done and future2 is not done
+future1 is done and future2 is not done
+future1 is done and future2 is not done
 
