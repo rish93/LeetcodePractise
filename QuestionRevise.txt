@@ -882,6 +882,8 @@ https://www.geeksforgeeks.org/deep-shallow-lazy-copy-java-examples/#:~:text=In%2
 
 9. What are implicit objects in JSP? NA
 10. How to open a database connection? How the application understands from where the query is to be read?
+Applications get a database connection from a connection pool by looking up a data source using the Java Naming and Directory Interface (JNDI) and then requesting a connection.
+
  Connection conn = null;
     try {
       String url = "jdbc:sqlite:path-to-db-file/chinook/chinook.db";
@@ -994,6 +996,7 @@ What is an abstract class? How abstract classes are similar or different in Java
     https://beginnersbook.com/2013/05/java-abstract-class-method/
 
 Which class is the superclass for every class?
+Object class
     Can we overload main() method?
     Yes, We can overload the main method in java but JVM only calls the original main method, it will never call our
     overloaded main method. Output: ... So, to execute overloaded methods of main, we must call them from the original main method
@@ -1037,7 +1040,7 @@ I understand that you might be thinking like the return type should be enough fo
 
 But that would also create a problem when the compiler has to do a auto type casting.
 
-I think the best way would be that the return type of all methods should be object and base on the programmer requirements the resul can be down casted.
+I think the best way would be that the return type of all methods should be object and base on the programmer requirements the result can be down casted.
 
 I don't remember but python has implemented this. But thats not the case for java.
 
@@ -1046,6 +1049,7 @@ Can we override private methods in Java?
 https://www.geeksforgeeks.org/can-override-private-methods-java/
 We get compiler error “fun() has private access in Base” (See this). So the
 compiler tries to call base class function, not derived class, means fun() is not overridden.
+An Inner class can access private members of its outer class
 
 What is blank final variable?
 The blank final variable in Java is a final variable that is not initialized while declaration, instead they are
@@ -1072,6 +1076,10 @@ object, it can’t implement these methods. HashMap is an advanced version and i
 
 How are Java objects stored in memory?
 
+These are called stack memory and heap memory.
+Stack memory stores primitive types and the addresses of objects and local variables of methods  (faster in nature than heap)
+The object values are stored in heap memory.
+An object reference on the stack is only an address that refers to the place in heap memory where that object is kept.
 
 
 
@@ -1099,6 +1107,15 @@ when you want comparing behaviour different from the default (which is specified
 Atomic -> In multithreadung Compare and swap else would have use synchrponized blocking other thread
 Volatile -> updtae state of all the thread irresepective of cache
 
+Atomic :
+Doing a = 28 (with a being an int) is an atomic operation.
+But doing a++ is not an atomic operation because it requires a read of the value of a, an incrementation, and a write to a of the result.
+As a result, if you used a++ to implement a thread-safe counter,
+you could have two threads reading the value concurrently (26 for example), then have both increment it and writing it concurrently, resulting in 27 as a result, instead of 28.
+AtomicInteger solves this issue by providing atomic operations like the ones you listed.
+In my example, you would use incrementAndGet() for example, which would guarantee the end value is 28 and not 27.
+
+
 https://stackoverflow.com/questions/2307283/what-does-olog-n-mean-exactly#:~:text=Logarithmic%20running%20time%20(%20O(log,an%20O(log%20n)%20time
 
 -> internal implementation of hashmap
@@ -1112,10 +1129,6 @@ If you are first populating that map and from then on only reading it, and never
  it, then you don't need to synchronize for mutual exclusion. However, without syncing there's
  still a possibility that not all the populating thread's
 writes will be seen by reads from other threads. You're best of to just synchronize all access to the map.
-
-
-->How to make a List as Read Only List?
--> Difference between iterator and list iterator?
 
 ->What is Immutable class
 .write in program with one HashMap as variable
@@ -1134,8 +1147,30 @@ API vs webservices
 -> Is REST stateful or stateless?
 
 ->how you write test cases for REST end points
+   @MockBean
+   private ArrivalController arrivalController;
 
-do you what is idepotent in REST, which of the methods in REST are idempotent.,
+   @Test
+   public void getArrivals() throws Exception {
+       Arrival arrival = new Arrival();
+       arrival.setCity("Yerevan");
+
+       List<Arrival> allArrivals = singletonList(arrival);
+
+       given(arrivalController.getAllArrivals()).willReturn(allArrivals);
+
+       mvc.perform(get(VERSION + ARRIVAL + "all")
+               .with(user("blaze").password("Q1w2e3r4"))
+               .contentType(APPLICATION_JSON))
+               .andExpect(status().isOk())
+               .andExpect(jsonPath("$", hasSize(1)))
+               .andExpect(jsonPath("$[0].city", is(arrival.getCity())));
+   }
+
+Do you know what is idempotent in REST, which of the methods in REST are idempotent.
+
+any method which do not change content of the server (saving)
+GET, PUT, DELETE, HEAD, OPTIONS and TRACE are idempotent.
 
 When do you need @ResponseStatus annotation
    mark method and exception class with status resaon
@@ -1230,7 +1265,7 @@ And Latest INFO --> YOU cant Do this with JAVA 7 version. IT will not execute.
     }
 }
 
-Q. Is it possible to have different eturn type in overloaded method
+Q. Is it possible to have different return type in overloaded method
 A. In a class, there can be several methods sharing the same name but differ in
 
 Parameter types
@@ -1253,6 +1288,9 @@ differences between @Controller and @RestController
 ->Hash map vs Concurrent hash map
 
 ->how to read value from properties in spring
+ @Value("$parametername")
+ or use a propertyfile with @ConfigurationProperties(prefix = "ifanycommon")
+@EnableConfigurationProperties({FileProperties.class}) in springboot application main class
 
 ->Internal working of hashmap
 
