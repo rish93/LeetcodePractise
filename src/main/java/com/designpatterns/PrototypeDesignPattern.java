@@ -22,13 +22,13 @@ public class PrototypeDesignPattern {
     DB deutscheBahn = new DB();
     deutscheBahn.insertNewAquiredCompany();
 
-    DB deutscheBahn1 = (DB)deutscheBahn.clone();
-    List<String> list = deutscheBahn1.getSubsidiaryCompanies();
+    DB deutscheBahnCloned = (DB)deutscheBahn.clone();
+    List<String> list = deutscheBahnCloned.getSubsidiaryCompanies();
     list.add("DB India");
 
 //    System.out.println(list);
     System.out.println(deutscheBahn.getSubsidiaryCompanies());
-    System.out.println(deutscheBahn1.getSubsidiaryCompanies());
+    System.out.println(deutscheBahnCloned.getSubsidiaryCompanies());
 
 
   }

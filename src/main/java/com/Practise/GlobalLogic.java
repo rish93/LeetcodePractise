@@ -1,6 +1,11 @@
 package com.Practise;
 
 public class GlobalLogic {
+    public static void main(String[] args) {
+        TestOverLoading glTest= new TestOverLoading();
+        glTest.print(null);
+    }
+
 //find max of subarray
     //suppose string class is removed how to create + handle string pooling
 
@@ -262,4 +267,31 @@ SELECT * FROM people WHERE email NOT LIKE '%_@__%.__%'
 
     //overload null error
 //    https://www.geeksforgeeks.org/method-overloading-null-error-java/
+}
+
+class TestOverLoading {
+    /*Java will always try to use the most specific applicable version of a method that's available (see JLS §15.12.2).
+
+Object, char[] and Integer can all take null as a valid value. Therefore all 3 version are applicable, so Java will have to find the most specific one.
+
+Since Object is the super-type of char[], the array version is more specific than the Object-version. So if only those two methods exist, the char[] version will be chosen.
+
+When both the char[] and Integer versions are available, then both of them are more specific than Object but none is more specific than the other, so Java can't decide which one to call. In this case you'll have to explicitly mention which one you want to call by casting the argument to the appropriate type.
+
+Note that in practice this problem occurs far more seldom than one might think. The reason for this is that it only happens when you're explicitly calling a method with null or with a variable of a rather un-specific type (such as Object).
+
+On the contrary, the following invocation would be perfectly unambiguous:
+
+char[] x = null;
+doSomething(x);
+Although you're still passing the value null, Java knows exactly which method to call, since it will take the type of the variable into account.*/
+
+    void print(String value) {
+        System.out.println(value);
+    }
+
+    void print(Object value) {
+        System.out.println(value);
+    }
+
 }

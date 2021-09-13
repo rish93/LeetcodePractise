@@ -44,7 +44,9 @@ public class BuilderDesignPattern {
 
       OnePlus onePlus5 = new OnePlus
           .OnePlusBuilder("OnePlus 5", "MattBlack")
-          .setCamera("12MP").build();
+          .setCamera("12MP")
+          .setBluetooth("V1.2")
+          .build();
 
       OnePlus onePlusNord = new OnePlus
               .OnePlusBuilder("OnePlus Nord", "Sepia Green")
@@ -66,7 +68,9 @@ public class BuilderDesignPattern {
 
      //optional parameters
         private String camera;
+        private String bluetoothVersion;
 
+        public String getBluetoothVersion(){return  bluetoothVersion;}
         public String getColor() {
             return color;
         }
@@ -85,6 +89,7 @@ public class BuilderDesignPattern {
             this.camera = builder.camera;
             this.color = builder.color;
             this.name = builder.name;
+            this.bluetoothVersion = builder.bluetoothVersion;
         }
 
         public static class OnePlusBuilder{
@@ -93,6 +98,7 @@ public class BuilderDesignPattern {
 
             //optional
             private String camera;
+            private String bluetoothVersion;
 
             //mandatory field should be through constructor
             public OnePlusBuilder(String name, String color){
@@ -103,6 +109,11 @@ public class BuilderDesignPattern {
             //make setter for optional parameter
             public OnePlusBuilder setCamera(String camera) {
                 this.camera = camera;
+                return this;
+            }
+
+            public OnePlusBuilder setBluetooth(String bluetoothVersion) {
+                this.bluetoothVersion = bluetoothVersion;
                 return this;
             }
 

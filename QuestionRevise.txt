@@ -1685,3 +1685,4 @@ Q: Can interface have body
 
 
 
+Q: can we have two bean

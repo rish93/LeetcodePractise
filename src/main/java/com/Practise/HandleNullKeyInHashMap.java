@@ -9,10 +9,10 @@ public class HandleNullKeyInHashMap {
     public static void main(String[] args) {
 
         Map<String,String> map = new HashMap<>();
-        map.put(null, "null");
+
         map.put("null",null);
         map.put("test", "test");
-
+        map.put(null, "null");
       System.out.println(map.containsKey(null)+" "+map.containsKey("null"));
 
       for(Map.Entry<String,String> entry: map.entrySet()){
