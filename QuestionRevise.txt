@@ -1857,3 +1857,29 @@ future1 is done and future2 is not done
 future1 is done and future2 is not done
 
 Q: can we have two bean
+
+
+Q. Create bean in multithreading
+    application.getcontext("beanname")
+Q. is bean factory related to application context
+Q. can we have more than 1 dispatcher servlet
+Q. create diffeent new bean in multithreading
+Q. First entry point of microservice
+Q. Getting data from RabbitMQ how to which java datastructre to use to hold it
+Q. Thread safe list ?
+Q. get data from controller, map to xml send it to Mainframe (why not soap for xml to mainframe)
+Q. how to listen healthcheck from other srvice (eureka)
+Q. have you used spring integration
+Q. how to integrate data from two service and return result
+
+
+
+Huawei
+Q. how to handle lakh of user trying to authenticate in single jvm instance
+    Executor service  -> Fork JOin
+
+Q. Singleton across multiple JVM how to achieve
+Q. builder design pattern
+Q.disadvantage of builder design pattern
+Q. server to sever authentication
+Q. have you optimised and handled memory optimization in code.

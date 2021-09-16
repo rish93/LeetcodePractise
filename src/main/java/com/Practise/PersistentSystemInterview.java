@@ -17,5 +17,7 @@ How to use custom class in try resource
 How to hande circular depenedency
 Which is called first custructor or setter injection
 How session merge works
-What is supplier and cnsumer in java 8*/
+What is supplier and cnsumer in java 8
+* Different type of executor service
+* */
 }
