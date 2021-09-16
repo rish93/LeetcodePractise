@@ -1856,6 +1856,12 @@ future1 is done and future2 is not done
 future1 is done and future2 is not done
 future1 is done and future2 is not done
 
+Since you are using @Transactional, we can safely assume you are doing your database operations through
+Spring, Hibernate, or other JDBC wrappers.
+These JDBC wrappers don't typically throw checked exceptions, they throw runtime exceptions that wrap the JDBC SQLException types.
+@Transactional is setup to rollback, by default, only when an unchecked exception is thrown.
+How it does??  ->> uses proxy of the method/class and adds method on the fly to catch exception and rollback transaction
+
 Q: can we have two bean
 
 
