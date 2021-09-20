@@ -1877,8 +1877,8 @@ Q. get data from controller, map to xml send it to Mainframe (why not soap for x
 Q. how to listen healthcheck from other srvice (eureka)
 Q. have you used spring integration
 Q. how to integrate data from two service and return result
-
-
+Q. Map<String, List<TrainJourney>>
+    sort TrainJourney base don number of passenger
 
 Huawei
 Q. how to handle lakh of user trying to authenticate in single jvm instance
@@ -1886,6 +1886,6 @@ Q. how to handle lakh of user trying to authenticate in single jvm instance
 
 Q. Singleton across multiple JVM how to achieve
 Q. builder design pattern
-Q.disadvantage of builder design pattern
+Q. disadvantage of builder design pattern
 Q. server to sever authentication
 Q. have you optimised and handled memory optimization in code.
