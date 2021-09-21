@@ -1,15 +1,8 @@
 
 SpringCloud:
-
-
-
 The coordination of distributed systems leads to hot plate models and
- the use of Spring Cloud developers can quickly configure
-  the services and applications
- that implement these models. They will perform
- well in any distributed environment,
-  including the developer's laptop, core data
-   centers, and managed platforms like Cloud Foundry.
+the use of Spring Cloud developers can quickly configure
+the services and applications
 
 Characteristics
 
