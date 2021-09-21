@@ -12,10 +12,13 @@ public class SquareCalculator {
         return executor.submit(() -> {
             Thread.sleep(1000);
             return input * input;
-        });   //submit takes in a callable interface a lambda function(anonymous function)
+        });   //submit takes in a callable interface a lambda function(anonymous function) also a runnable interface
              // which returns Future<Integer>= integer if Future<String> then string object
     }
 }
 // .newCachedThreadPool();  TIME TAKEN -->1219
 //.newFixedThreadPool(2);   TIME TAKEN -->1226
 //.newSingleThreadExecutor(); TIME TAKEN -->2169
+
+
+// .execute() has void return type and is also asyncronous in nature.
