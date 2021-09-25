@@ -1889,3 +1889,21 @@ Q. builder design pattern
 Q. disadvantage of builder design pattern
 Q. server to sever authentication
 Q. have you optimised and handled memory optimization in code.
+
+
+Q.Can we run thread twice
+A java Thread cannot be run twice. Once
+it has been started and finished its work, it
+cannot be started again (calling method start will fail). So you'll have to create a new instance
+of Thread (using the same Runnable) and start it.
+
+    Thread implements Runnable{
+eg. Runnable target;
+   @Override
+    public void run() {
+        if (target != null) {
+            target.run();
+        }
+    }
+}
+

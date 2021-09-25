@@ -43,3 +43,17 @@ if(token!=null or emplty)
 write in sql();
 }
 }*/
+
+
+/* WHAT IS STACK OVERFLOW EXCEPTION
+ * When we call recusrively. stack memory exceeds
+ */
+
+/*
+ *How dowe call HTTP2 using rest
+ *
+ *Because the HTTP/2 wire format is more efficient (in particular due to multiplexing and compression), REST APIs on top of HTTP/2 will also benefit of this.
+
+The other major improvement present in HTTP/2, HTTP/2 Push, targets efficient download of correlated resources, and it's probably not useful in the REST usecase.
+ */
+
