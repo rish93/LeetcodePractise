@@ -9,6 +9,10 @@ public class TestString {
         String string1=new String("Abhi");
         String string2=new String("Abhi");
 
+        System.out.println("a"+'b'+'c');  // predict output
+        System.out.println('a'+'b'+'c');
+        System.out.println('a'+'b'+"c");
+        System.out.println('a'+"b"+'c');
 
         StringBuffer s1=new StringBuffer("Abhi");
         StringBuffer s2=new StringBuffer("Abhi");
