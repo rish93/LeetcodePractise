@@ -1910,3 +1910,4 @@ eg. Runnable target;
 
 //why default method in interface when have abdtract class
 //https://www.baeldung.com/java-static-default-methods
+

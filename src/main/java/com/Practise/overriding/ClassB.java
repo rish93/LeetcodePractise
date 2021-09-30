@@ -1,4 +1,4 @@
-package com.Practise.javatricks;
+package com.Practise.overriding;
 
 public class ClassB extends ClassA {
     /*int doSomething()   //TODO Golden Rule:   we cannot override a STATIC method and make it non static

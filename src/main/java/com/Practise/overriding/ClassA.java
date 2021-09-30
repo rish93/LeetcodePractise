@@ -1,4 +1,4 @@
-package com.Practise.javatricks;
+package com.Practise.overriding;
 
 public class ClassA {
 

@@ -1,4 +1,4 @@
-package com.Practise.javatricks;
+package com.Practise.overriding;
 
 public class MainClas {
     public static void main(String[] args) {
