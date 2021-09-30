@@ -1911,3 +1911,56 @@ eg. Runnable target;
 //why default method in interface when have abdtract class
 //https://www.baeldung.com/java-static-default-methods
 
+//TODO MOST IMPORTANT Retrieving list of employees with lowest salary using stream
+
+
+Comparator<Employee> comparator = Comparator.comparing( Employee :: getSalary);
+List<Employee> lowSalary = employees.stream()
+               .min(comparator)
+               .stream()
+               .collect(Collectors.toList());
+lowSalary.forEach(System.out::println);
+
+
+List<Employee> empsWithLowestSalary = employees.stream()
+    .collect(Collectors.groupingBy(Employee::getSalary, TreeMap::new, Collectors.toList()))
+    .firstEntry()
+    .getValue();
+
+    //TODO MOST IMPORTANT Retrieving list of employees with 2nd lowest salary using stream
+
+Optional<Employee> emp = employeeList.stream()
+            .sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).skip(1).findFirst();
+
+System.out.println(emp.get());
+
+// TODO MOST IMPORTANT  How many male and female employees are there in the organization?
+
+Map<String, Long> noOfMaleAndFemaleEmployees=
+employeeList.stream().collect(Collectors.groupingBy(Employee::getGender, Collectors.counting()));
+
+System.out.println(noOfMaleAndFemaleEmployees);
+
+//TODO  Print the name of all departments in the organization?
+employeeList.stream()
+            .map(Employee::getDepartment)
+            .distinct()
+            .forEach(System.out::println);
+
+ //TODO What is the average age of male and female employees
+
+ Map<String, Double> avgAgeOfMaleAndFemaleEmployees=
+ employeeList.stream().collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingInt(Employee::getAge)));
+
+ System.out.println(avgAgeOfMaleAndFemaleEmployees);
+
+//TODO Get the details of highest paid employee in the organization?
+
+Optional<Employee> highestPaidEmployeeWrapper=
+employeeList.stream().collect(Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary)));
+
+        //TODO  Get the names of all employees who have joined after 2015?
+employeeList.stream()
+            .filter(e -> e.getYearOfJoining() > 2015)
+            .map(Employee::getName)
+            .forEach(System.out::println);
