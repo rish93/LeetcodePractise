@@ -1,5 +1,10 @@
 package com.Practise;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
 public class CiscoInterview {
 
     //what is sql injection how to remove it
@@ -17,4 +22,53 @@ The only sure way to prevent SQL Injection attacks is input validation and param
 
 If you discover an SQL Injection vulnerability, for example using an Acunetix scan, you may be unable to fix it immediately. For example, the vulnerability may be in open source code. In such cases, you can use a web application firewall to sanitize your input temporarily.*/
 
+    public static void main(String[] args) {
+        /*How you will configure Swagger*/
+        /*How you will configure S3 bucket*/
+
+        for(int i=1;i<=50;i++){
+            if(i%15==0)
+                System.out.println("Rishabh Mankatala");
+            else if(i%5==0)
+                System.out.println(" Mankatala");
+            else if(i%3 ==0 )
+                System.out.println("Rishabh");
+            else
+                System.out.println(i);
+        }
+
+        String name="Rishabh";
+//            String []arr = name.split("");
+//
+
+        String reverse="";
+        for(int i=name.length()-1;i>=0;i--){
+//                reverse+=arr[i];
+            reverse+= name.substring(i,i);
+        }
+        System.out.println(reverse);
+
+        String [] languages = new String[]{"Java","Nodejs","Python"};
+        Arrays.stream(languages).forEach(System.out::println);
+//        String [] languages = new String[]{""};
+
+        Set<String> setTest= new HashSet<String>();
+        setTest.add("Rishabh");
+        setTest.add("Mankatala");
+        setTest.add("Rishabh");
+
+        Optional<String> opttets= Optional.of("Rishabh");
+        if(opttets.isPresent())
+            opttets.get();
+
+/*emp
+name, year,exp,Doj
+*/
+//select count(*), emp.year from Employee emp groupby year
+//        select emp.name emp.year from Employee emp  where DOJ <  STR_TO_DATE("August 10 2017", "%M %d %Y");
+
+//HOw you will optimize sql query
+        ///how to trace logs
+
+    }
 }

@@ -1,5 +1,11 @@
 package com.Practise;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -29,8 +35,27 @@ public class TestStreamMethods {
        Set<String> cities= employees.stream().map(Employee::getCity).collect(Collectors.toSet());
         System.out.println(cities);
 
+        getNameWithA();
 
     }
+
+  static
+
+  void getNameWithA(){
+        List<String> name= new ArrayList<>();
+        name.add("Abc");
+        name.add("Bcs");
+        name.add("Dcs");
+
+        List<String> result=name.stream()
+                .filter(s-> s.startsWith("A"))
+                .collect(Collectors.toList());
+
+        for (String s : result) {
+            System.out.println(s);
+        }
+    }
+
 }
 
 class Employee{
@@ -58,3 +83,7 @@ class Employee{
         this.city = city;
     }
 }
+
+
+
+
