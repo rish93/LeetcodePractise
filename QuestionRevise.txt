@@ -2027,3 +2027,10 @@ Map<Employee, List<Employee>> map = employeeList.stream()
 list.stream().map(x -> {method1(x); return x;}).forEach(x -> methodB(x));
 
 //pomgen -> java 8
+
+
+2 String can have same hashcode, it is meant for jvm to create 2 different hashcode but it is not guranteed
+eg:- String str1 ="FB";  String str2 ="Ea";  Syout(str1.hashCode()+"....."+str2.hashCOde());
+Note:  If objects are same hascode will definetly be same , "BUT"   for the reverse if hashcode is same objects might not be equal
+Note: For a single execution of a program the hashcode of an object would be same.
+
