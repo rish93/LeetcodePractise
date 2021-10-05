@@ -2025,3 +2025,5 @@ Map<Employee, List<Employee>> map = employeeList.stream()
 // todo to apply a function to a stream of objects
 
 list.stream().map(x -> {method1(x); return x;}).forEach(x -> methodB(x));
+
+//pomgen -> java 8
