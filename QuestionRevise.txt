@@ -2021,6 +2021,14 @@ Map<Employee, List<Employee>> map = employeeList.stream()
                         .get(),
                 Entry::getValue));
 
+//collect a value to another map
+Map<String, String> x;
+Map<String, Integer> y =
+    x.entrySet().stream()
+        .collect(Collectors.toMap(
+            e -> e.getKey(),
+            e -> Integer.parseInt(e.getValue())
+        ));
 
 // todo to apply a function to a stream of objects
 
@@ -2034,3 +2042,17 @@ eg:- String str1 ="FB";  String str2 ="Ea";  Syout(str1.hashCode()+"....."+str2.
 Note:  If objects are same hascode will definetly be same , "BUT"   for the reverse if hashcode is same objects might not be equal
 Note: For a single execution of a program the hashcode of an object would be same.
 
+
+// map vs flatmap
+
+map --> one to one mapping      (produces single value for each input/each data in stream)  {
+a,b,c,d,e}  -->  I want to print {A,B,C,D}   single value structure
+
+//TODO  FLATMAP
+
+flatmap--> one to many mapping  (produces multiple value for each input/each data in stream)
+ {(a,1),(b,2),(c,3),(d,4)}  --> stream of stream value then we flatter the map and stream inside content using flatmap
+See example in " com.AskedInInterview.mapVsflatmap PACKAGE"
+
+break    ---> is used to BREAK an existing loop permanently and come out of it
+continue ---> is used to SKIP the existing loop's value(based on any condition/something) and loop continues to move Forward
