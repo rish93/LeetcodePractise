@@ -2034,3 +2034,191 @@ eg:- String str1 ="FB";  String str2 ="Ea";  Syout(str1.hashCode()+"....."+str2.
 Note:  If objects are same hascode will definetly be same , "BUT"   for the reverse if hashcode is same objects might not be equal
 Note: For a single execution of a program the hashcode of an object would be same.
 
+//overload
+Method Overloading means to have two or more methods with same name in the same class with different arguments. The benefit of method overloading is that it allows you to implement methods that support the same semantic operation but differ by argument number or type.
+
+
+Overloaded methods MUST change the argument list
+Overloaded methods CAN change the return type
+Overloaded methods CAN change the access modifier
+Overloaded methods CAN declare new or broader checked exceptions
+A method can be overloaded in the same class or in a subclass
+
+
+//override
+
+Before Java 5.0, when you override a method, both parameters and
+return type must match exactly. In Java 5.0, it introduces a new facility
+ called covariant return type. You can override a method with the same signature
+ but returns a subclass of the object returned. In another words, a method
+ in a subclass can return an object whose type is a subclass of the type returned
+  by the method with the same signature in the superclass.
+
+
+
+
+
+
+//  EnableAutoConfiguration vs  ComponentScan
+
+@EnableAutoConfiguration annotation tells Spring Boot to "guess"
+how you will want to configure Spring, based on the jar dependencies
+ that you have added. For example, If HSQLDB is on your classpath, and you
+ have not manually configured any database connection beans, then Spring will
+ auto-configure an in-memory database.
+
+@ComponentScan tells Spring to look for other components, configurations,
+and services in the specified package. Spring is able to auto scan, detect
+and register your beans or components from pre-defined project package. If no
+package is specified current class package is taken as the root package.
+
+
+
+
+What is lambda expression
+1) Lambdas are similar to methods, but they do not need a name
+   and can be implemented outside of classes.
+   As a result, they open the possibility for fully
+ functional programs and pave the way for more
+ functional support from Java in the future.
+2) Lambda expressions are an anonymous function, meaning that
+   they have no name or identifier. They can be passed as a parameter
+   to another function. They are paired with a functional
+   interface and feature a parameter with an expression
+   that references that parameter.
+
+use case
+eg1.
+@FunctionalInterface
+interface Square
+{
+    int calculate(int x);
+}
+
+Square sq = (n)-> {
+            n=n*2;
+            Sysout(n)
+            }
+
+
+eg2.
+public interface MyFunctionalInterface {
+    public void execute();
+}
+
+
+MyFunctionalInterface interfaceTest = () -> {
+    System.out.println("Executing...");
+}
+
+
+Q. what is generic in java
+Generics allow types Integer, String, or even user-defined types
+to be passed as a parameter to  classes, methods, or interfaces.
+Generics are mostly used by classes like HashSet or HashMap.
+
+
+
+Q. where static variable arre stored in memory in java
+Prior to Java 8:
+
+The static variables were stored in the permgen space(also called the method area).
+
+PermGen Space is also known as Method Area
+
+PermGen Space used to store 3 things
+
+Class level data (meta-data)
+interned strings
+static variables
+From Java 8 onwards
+
+The static variables are stored in the Heap itself.From Java 8
+ onwards the PermGen Space have been removed and new space named as MetaSpace is introduced which is not the part of Heap any more unlike the previous Permgen Space. Meta-Space is present on the native memory (memory provided by the OS to a particular Application for its own usage) and it now only stores the class meta-data.
+
+The interned strings and static variables are moved into the heap itself.
+
+For official information refer : JEP 122:Remove the Permanent Gen Space
+
+
+
+//replace controller/service with component
+//accessing bean outside defualt package of spring boot application
+        -> use component scan and provide package name (in configuration class)
+
+
+
+Q. Is it possible to rename a Hashmap key?
+A. No.
+Object obj = map.remove("oldKey");
+map.put("newKey", obj);
+
+
+Q. singleton bean when id is different
+Spring's default scope is singleton. It's just that your
+ idea of what it means to be a singleton doesn't match how Spring defines singletons.
+
+If you tell Spring to make two separate beans with different
+ids and the same class, then you get two separate beans, each with singleton scope. All singleton
+ scope means is that when you reference something with the same id, you get the same bean instance back.
+
+
+Q> Refer promtheas metric in spring boot
+A. https://docs.spring.io/spring-metrics/docs/current/public/prometheus
+
+
+Q. How different is Repository annotation
+
+ in Spring world most of the beans are singletons.
+
+The way I used before (creating new instance each time) is incorrect ?
+It is not incorrect since it works. The problem about it
+is that you instantiate a new instance of DAO on each request -
+ in some cases it might be expensive, and anyway it doesn't make any
+  sense - why would you need a bunch of DAO instances? Spring on the
+  other hand not only creates a singleton but also injects DAO's to
+  services or other DAO's e.t.c. i.e. does a lot of work for you
+
+If @Repository is singleton, how does it handle thread safety
+when there is no such a thing addressed? (Assume it is done by spring proxies)
+
+When you are writing a @Repository bean, you would normally inject
+ there a DataSource or an EntityManager. DataSource.getConnection()
+  method should be thread safe. With regard to EntityManager, Spring
+  will inject a proxy which will behave differently for different
+  threads, i.e. different threads won't share the same JPA session.
+
+What is the best practice, @Repository is enough
+ or adding @Scope('prototype') would be better ?
+The best practice (or rather a most wide-spread approach)
+ is to just use @Repository
+
+I don't see anyone use @Scope('prototype') with @Repository
+(according to the tutorials, blogs, etc). Is there a well know reason?
+The reason is that there's no profit from creating multiple
+instances of @Repository beans
+
+What if my DAO class is accessed by multiple large number
+ of threads with very high frequency? (This is the one I concern the most)
+Again here singleton is better than creating a new object for
+each request. Just avoid redundant synchronization so your threads won't block on some monitor
+
+
+Q. Session Evict() use
+
+Doing session.evict(obj) will remove the object
+ instance from the session cache. Therefore if you
+  are saving the object for the first time, you will have
+  to explicitly commit via session.save(obj) before evicting
+  the object from the cache. Subsequent update calls should
+  follow through session.saveOrUpdate(obj) or session.update(obj)
+   before calling evict to remove the loaded object from the cache.
+
+In doing so means you will have to explicitly call session.load(obj)
+ or session.get(obj) when you need the instance of the object back in the cache.
+
+
+Q Evict vs clear() in hibernate
+
+evict() evicts a single object from the session. clear() evicts all the objects
+in the session. Calling clear() is like calling evict() on every object associated with the session.

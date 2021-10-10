@@ -1,0 +1,31 @@
+What Is a Feign Client?
+Netflix provides Feign as an abstraction over REST-based calls, by which microservices
+can communicate with each other, but developers don't have to bother about REST internal details.
+
+Why We Use Feign Client
+In my previous tutorial, When EmployeeDashBoard service communicated with
+EmployeeService, we programmatically constructed the URL of the dependent microservice,
+then called the service using RestTemplate, so we need to be aware of the RestTemplate API
+ to communicate with other microservices, which is certainly not part of our business logic.
+
+The question is, why should a developer have to know the details of a REST API?
+ Microservice developers only concentrate on business logic, so Spring addresses
+ this issues and comes with Feign Client, which works on the declarative principle.
+ We have to create an interface/contract, then Spring creates the original
+  implementation on the fly, so a REST-based service call is abstracted from
+  developers. Not only that — if you want to customize the call, like encoding
+   your request or decoding the response in a Custom Object, you can do it with
+   Feign in a declarative way. Feign, as a client,
+ is an important tool for microservice developers to communicate with other
+  microservices via Rest API.
+
+@FeignClient(name="EmployeeSearch" )//Service Id of EmployeeSerach service
+public interface EmployeeServiceProxy {
+
+   @RequestMapping("/employee/find/{id}")
+   public EmployeeInfo findById(@PathVariable(value="id") Long id);
+
+   @RequestMapping("/employee/findall")
+   public Collection<EmployeeInfo> findAll();
+
+}
