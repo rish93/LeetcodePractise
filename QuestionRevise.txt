@@ -2256,3 +2256,94 @@ The key is that you can extend from only one abstract class,
  while you can implement more interfaces. Apparently the "empty
   abstract class" design desicion was made so that it prevents the implementing
   class from extending from another classes.
+
+
+
+Q. Supplier
+Supplier Interface in java.util.function Package in Java 8
+Join the DZone community and get the full member experience. JOIN FOR FREE
+
+In my previous posts I wrote about Predicate, Consumer and Function interfaces. In this post I will write about Supplier interface with which I will conclude the description of the interfaces in the java.util.function package. Though there are many other interfaces in that package, but the interfaces I have explained form the crux of the other interfaces.
+
+The javadoc for Supplier interface states:
+
+A supplier of objects. The result objects are either created during the invocation of get() or by some prior action.
+
+And the sole method in this interface is get() which should return an object of the declared type.
+
+To understand the usage of this interface, lets consider 2 classes- Vehicle and Car defined as:
+
+class Vehicle{
+  public void drive(){
+    System.out.println("Driving vehicle ...");
+  }
+}
+class Car extends Vehicle{
+  @Override
+  public void drive(){
+    System.out.println("Driving car...");
+  }
+}
+And lets consider a static method which invokes the drive() method on the instance of Vehicle or Car:
+
+public class SupplierDemo {
+  static void driveVehicle(Supplier<? extends Vehicle> supplier){
+    Vehicle vehicle = supplier.get();
+    vehicle.drive();
+  }
+}
+And to invoke the above driveVehicle method, we should provide an implementation of the Supplier interface which we can do by passing in a lambda expression. Lets look at the code:
+
+public static void main(String[] args) {
+  //Using Lambda expression
+  driveVehicle(()-> new Vehicle());
+  driveVehicle(()-> new Car());
+
+  //Using method expression
+  driveVehicle(Vehicle::new);
+  driveVehicle(Car::new);
+}
+
+
+
+Q. Consumer
+
+In this post, we are going to see about java 8 Consumer interface.
+Consumer is single argument functional interface like Predicate but
+ it does not return any value. As Consumer is functional interface, so it
+ can be used as assignment target for lambda expressions.
+
+Since Consumer is a functional interface, hence it can be used
+as the assignment target for a lambda expression or a method reference.
+
+@FunctionalInterface
+public interface Consumer<T> {
+
+    /**
+     * Performs this operation on the given argument.
+     *
+     * @param t the input argument
+     */
+    void accept(T t);
+
+    default Consumer<T> andThen(Consumer<? super T> after) {
+        Objects.requireNonNull(after);
+        return (T t) -> { accept(t); after.accept(t); };
+    }
+}
+
+
+package com.mkyong.java8;
+
+import java.util.function.Consumer;
+
+public class Java8Consumer1 {
+
+    public static void main(String[] args) {
+
+        Consumer<String> print = x -> System.out.println(x);
+        print.accept("java");   // java
+
+    }
+
+}
