@@ -2244,3 +2244,15 @@ See example in " com.AskedInInterview.mapVsflatmap PACKAGE"
 
 break    ---> is used to BREAK an existing loop permanently and come out of it
 continue ---> is used to SKIP the existing loop's value(based on any condition/something) and loop continues to move Forward
+
+
+
+Q. Logging best practices
+https://sematext.com/blog/java-logging-best-practices/
+
+
+Q.usage of empty abstract class
+The key is that you can extend from only one abstract class,
+ while you can implement more interfaces. Apparently the "empty
+  abstract class" design desicion was made so that it prevents the implementing
+  class from extending from another classes.
