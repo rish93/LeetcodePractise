@@ -2347,3 +2347,57 @@ public class Java8Consumer1 {
     }
 
 }
+
+
+
+Callable vs Runnable
+
+Sr. No.	Key	Runnable	Callable
+1
+Package
+It belongs to Java.lang
+It belongs to java.util.concurrent
+2
+Thread Creation
+We can create thread by passing runnable as a parameter.
+We can’t create thread by passing callable as parameter
+3
+Return Type
+Ruunable does not return anything
+Callable can return results
+4.
+Method
+It has run() method
+It has call()method
+5
+Bulk Execution
+It can’t be used for bulk execution of task
+It can be used for bulk execution of task by invoking invokeAll().
+Example of Runnable
+public class RunnableExample implements Runnable {
+   public void run() {
+      System.out.println("Hello from a Runnable!");
+   }
+   public static void main(String args[]) {
+      (new Thread(new RunnableExample())).start();
+   }
+}
+Example of Callable
+public class Main {
+   public static void main(String args[]) throws InterruptedException, ExecutionException {
+      ExecutorService services = Executors.newSingleThreadExecutor();
+      Future<?> future = services.submit(new Task());
+      System.out.println("In Future Object" + future.get());
+   }
+}
+import java.util.concurrent.Callable;
+
+public class Task implements Callable {
+
+   @Override
+   public String call() throws Exception {
+      System.out.println("In call");
+      String name = "test";
+      return name;
+   }
+}
