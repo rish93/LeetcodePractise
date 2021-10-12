@@ -105,3 +105,4 @@ public class InfostretchInterviewQuestion {
 
 
 //select AVG(e.marks,COUNT(e.subject)) from student e groupby e.marks
+

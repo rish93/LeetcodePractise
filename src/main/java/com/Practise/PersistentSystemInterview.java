@@ -1,6 +1,8 @@
 package com.Practise;
 
 public class PersistentSystemInterview {
+
+
     /*
     *
 Persistent software
@@ -20,4 +22,29 @@ How session merge works
 What is supplier and cnsumer in java 8
 * Different type of executor service
 * */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
