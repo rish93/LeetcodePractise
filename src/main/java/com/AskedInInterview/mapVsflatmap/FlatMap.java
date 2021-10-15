@@ -10,7 +10,7 @@ import java.util.Set;
 public class FlatMap {
     public static void main(String args[]) {
         //Find the distinct words in a file
-        Path path = Paths.get("C:/DSA/LeetcodePractise/src/main/java/com/AskedInInterview/mapVsflatmap/Test.txt");
+        Path path = Paths.get("src/main/java/com/AskedInInterview/mapVsflatmap/mapvsflatmap.txt");
         Set setOfWords = new HashSet();
         try {
             List<String> lines = Files.readAllLines(path);

@@ -1,6 +1,44 @@
 package com.Practise;
 
-public class VisaInterview {
+public class VisaTest {
+
+    public static void main(String[] args) {
+
+//* class without public how it is different*/
+        //I have noticed that if don't write public before a class
+        // its works same as like a public class.
+        //No it doesn't. Unless it's public, the class won't be
+        // visible to other code which isn't in the same package.
+        // The default accessibility (which can't be specified explicitly)
+        // is that a class (or other member) is only visible to other code
+        // within the same package.
+
+        //private class
+        //only if it is inner class
+
+        //protected class
+        //not possible
+
+        //how much is traffic in your application
+
+        //transactional usage
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /*
     * Round 1:
