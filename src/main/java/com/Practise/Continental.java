@@ -1,4 +1,4 @@
-package com.corejava;
+package com.Practise;
 
 //TODO all un-solved
 

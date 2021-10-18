@@ -1,0 +1,54 @@
+Both observables and promises help us
+work with asynchronous functionality in
+JavaScript. Promises deal with one asynchronous
+event at a time, while observables handle a sequence
+of asynchronous events over a period of time.
+
+
+
+Observables	                                      Promises
+
+1)Creation:
+const obs = new Observable((observer) => {     const promise = new Promise(() => {
+observer.next(10);                                resolve(10);
+}) ;                                             });
+
+
+2)Transform:
+Obs.pipe(map(value) => value * 2);              promise.then((value) => value * 2);
+
+
+3)Subscribe:
+const sub = obs.subscribe((value) => {          promise.then((value) => {
+console.log(value)                                  console.log(value)
+});                                                 });
+
+4) Unsubscribe
+sub.unsubscribe();	                             Can’t unsubscribe
+
+
+
+
+If want to populate data once use promise,
+
+  new Promise((resolve, reject) =>
+                   {
+                    resolve(this.dataService.getData())
+                   }
+              ).then((value : Data[]) =>
+                    this.chartData = value
+              ).catch((err) =>
+                     this.chartData = null
+              );
+}
+if data updating every second use observer
+
+With this, a chart was rendered with some initial data. Let’s assume that the service is updating its data every 1000ms. Then we must get the data from the service every 1000ms and assign it to the chart.
+
+
+eg this.Obs = new Observable((observer) => {
+                observer.next(this.dataService.getData(true));
+                setInterval(() => {
+                  observer.next(this.dataService.getData(false));
+                 }, 1000)
+             });

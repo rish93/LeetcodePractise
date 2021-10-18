@@ -2401,3 +2401,17 @@ public class Task implements Callable {
       return name;
    }
 }
+
+
+//Difference between Transient Keyword and @Transient Annotation
+Because they have different meanings. The @Transient annotation tells
+ the JPA provider to not persist any (non-transient) attribute. The other
+ tells the serialization framework to not serialize an attribute. You might
+  want to have a @Transient property and still serialize it.
+
+
+//Are classes without public & constructor witht public
+acts public
+
+no access specifier != public
+No Modifier is package private. check doc
