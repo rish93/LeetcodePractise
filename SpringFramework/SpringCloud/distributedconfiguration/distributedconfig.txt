@@ -1,5 +1,6 @@
 Distributed Configuration
-This feature allows synchronizing the configuration among all the services. Consul will watch for any configuration changes and then trigger the update of all the services.
+This feature allows synchronizing the configuration among all the services.
+ Consul will watch for any configuration changes and then trigger the update of all the services.
 
 First, we need to add the spring-cloud-starter-consul-config dependency to our pom.xml:
 
@@ -8,7 +9,8 @@ First, we need to add the spring-cloud-starter-consul-config dependency to our p
     <artifactId>spring-cloud-starter-consul-config</artifactId>
     <version>1.3.0.RELEASE</version>
 </dependency>
-We also need to move the settings of Consul and Spring application name from the application.yml file to the bootstrap.yml file which Spring loads first.
+We also need to move the settings of Consul and Spring application
+ name from the application.yml file to the bootstrap.yml file which Spring loads first.
 
 Then, we need to enable Spring Cloud Consul Config:
 
@@ -22,9 +24,9 @@ spring:
       config:
         enabled: true
 Spring Cloud Consul Config will look for the properties
- in Consul at “/config/myApp”. So if we have a property
-  called “my.prop”, we would need to create this property
-   in the Consul agent site.
+in Consul at “/config/myApp”. So if we have a property
+called “my.prop”, we would need to create this property
+in the Consul agent site.
 
 We can create the property by going to the “KEY/VALUE”
 section, then entering “/config/myApp/my/prop” in the

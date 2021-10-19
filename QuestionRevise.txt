@@ -265,7 +265,30 @@ class GFG {
 
 ------------------------------------------------------------------------------------------------------------------------------------
 
-In as sentence arrange word based on it's length with speacial character at first
+Q. In as sentence arrange word based on it's length with speacial character at first
+
+String sentence = "I love my country India";
+
+StringBuilder sb = new StringBuilder();
+
+LinkedHashMap<String, Integer> hm = new LinkedHashMap<String, Integer>();
+
+    for(String word : sentence.split(" ")){
+
+        hm.put(word, word.length());
+
+    }
+
+    hm.entrySet().stream()
+    .sorted(Map.Entry.<String, Integer>comparingByValue(Comparator.reverseOrder()))
+    .forEach(e->{
+    sb.append(e.getKey() + " ");
+    });
+
+
+String result = sb.substring(0).trim();
+
+System.out.print(result);
 ------------------------------------------------------------------------------------------------------------------------------------
 
 In a word get last two alphabets, reveres and append to first
@@ -283,6 +306,20 @@ A: polymorphism is the ability by which, we can create functions
 
     Polymorphism in Java
     An example of polymorphism is referring the instance of subclass, with reference variable of super-class. e.g.
+
+OVERLOADING
+It is not possible to have a method with same parameters and different return type. Compiler throws error in the below case(Duplicate method).
+
+Method 1:
+
+public int calc(int a, int b, int c)
+Method 2:
+
+public String calc(int e, int f, int g)
+Error thrown:
+
+method calc(int, int, int) is already defined
+
 
     Object o = new Object(); //o can hold the reference of any subtype
     Object o = new String();
@@ -314,6 +351,9 @@ A: polymorphism is the ability by which, we can create functions
 
     Runtime Polymorphism (dynamic binding or method overriding)
     Runtime polymorphism is essentially referred as method overriding. Method overriding is a feature which you get when you implement inheritance in your program.
+
+
+
 
     A simple example can be from real world e.g. animals. An application can have Animal class, and its specialized sub classes like Cat and Dog. These subclasses will override the default behavior provided by Animal class + some of its own specific behavior.
 
@@ -565,9 +605,21 @@ Mphasis
 
 Can null key accepted in hashmap then how to get it's null key value
 Left join example
+
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+ORDER BY Customers.CustomerName;
+
 Microservice Design architecture used (service discovery etc)
-Can overridedn method have differetn throw Exception syntax
-How to hanle out of memory _-> increase heap size and prefer streaming output thrn holding in variable(Use Future<Object>)
+Q: Can overridedn method have differetn throw Exception syntax
+A:
+An overriding method (the method of child class) can throw any unchecked exceptions,
+regardless of whether the overridden method (method of base class) throws exceptions
+or not. However the overriding method should not throw checked exceptions that
+are new or broader than the ones declared by the overridden method
+How to handle out of memory _-> increase heap size and prefer streaming
+output thrn holding in variable(Use Future<Object>)
 
 
 
@@ -621,6 +673,9 @@ Manhattan
 
 1. How to define a class as Immutable ? Also how to use a hashmap inside an immutable class?
 2. Reverse a linked list.
+
+
+
 3. WAP to find the given string is the rotation of another input string.
 4.How to implement Autocloseable in java?
 Implementing the Closeable interface and override the close method to give implementation of your own
@@ -2415,3 +2470,16 @@ acts public
 
 no access specifier != public
 No Modifier is package private. check doc
+
+
+
+//Hashmap internal
+I can ensure these points only if you have properly implemented the hashCode-Contract and evaluated the hashCode using the fields used to determine the equality:
+
+1. When you try to put <key,object> pair in a hashmap, a hashCode is generated corresponding to the key.
+2. If that hashCode has not been already generated for some previous key of any <key,object> pair, a new <Key,object> pair is added to the hashmap.
+3. If the hashCode code has been already generated, then hashCode() method internally calls the equals() method to check whether this new object is identical with the old object that is already in the map(with same key).
+--> If equals() returns true: then the new object overwrites the previous object in the hashmap.(i.e. no change in hashMap size)
+--> If equals() returns false: then a new object will be added to hashmap with the same key(i.e. size of hashmap will increase by one)
+
+I think this is how <key,object> pairs are put into a hashMap.

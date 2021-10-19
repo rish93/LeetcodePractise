@@ -3,7 +3,7 @@ Netflix provides Feign as an abstraction over REST-based calls, by which microse
 can communicate with each other, but developers don't have to bother about REST internal details.
 
 Why We Use Feign Client
-In my previous tutorial, When EmployeeDashBoard service communicated with
+eg When EmployeeDashBoard service communicated with
 EmployeeService, we programmatically constructed the URL of the dependent microservice,
 then called the service using RestTemplate, so we need to be aware of the RestTemplate API
  to communicate with other microservices, which is certainly not part of our business logic.
@@ -19,7 +19,7 @@ The question is, why should a developer have to know the details of a REST API?
  is an important tool for microservice developers to communicate with other
   microservices via Rest API.
 
-@FeignClient(name="EmployeeSearch" )//Service Id of EmployeeSerach service
+@FeignClient(name="EmployeeSearch" )//Service Id of EmployeeSearch service
 public interface EmployeeServiceProxy {
 
    @RequestMapping("/employee/find/{id}")

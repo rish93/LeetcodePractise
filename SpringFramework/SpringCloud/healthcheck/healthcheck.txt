@@ -25,7 +25,8 @@ the changes to the health endpoint needs to be
  context path is changed to foo, the following changes
  need to be made:
 
-By default, Spring implements the health endpoint to return 200 OK if the app is up. If we want to customize the endpoint we have to update the application.yml:
+By default, Spring implements the health endpoint to return 200 OK if the app is up.
+If we want to customize the endpoint we have to update the application.yml:
 
 spring:
   cloud:
