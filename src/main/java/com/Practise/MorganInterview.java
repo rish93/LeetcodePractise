@@ -13,11 +13,24 @@ public class MorganInterview {
 //12,3,4,5,7,8,9,11   //12345     23451
         int arr[] = new int []{4,5,7,8,3};
 
-        int left=0;
-        int right=arr.length-1;
-     while(left<right){
+        int left = 0;
+        int right = arr.length - 1;
 
-     }
+//        while (left <= right) {
+//            int midpoint = left + (right - left) / 2;
+//
+//            if (arr[midpoint] == target)
+//                return nums[midpoint];
+//
+//            else if (target < nums[midpoint]) {
+//                right = midpoint - 1;
+//            } else {
+//                left = midpoint + 1;
+//            }
+//
+//        }
+
+
 
 //            int mid =3;
 

@@ -1,5 +1,12 @@
 package com.Practise;
 
+import lombok.Data;
+
+import java.io.FileNotFoundException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 public class VisaTest {
 
     public static void main(String[] args) {
@@ -125,3 +132,163 @@ Design Youtube
 >Design HeatMap
     * */
 }
+
+
+ class Test1910 {
+
+    public static void main(String[] args) throws FileNotFoundException {
+        List<Student> studList = new ArrayList<>();
+        Student s1 = new Student(101, "Pass", 35);
+        Student s2 = new Student(101, "Max", 95);
+        Student s3 = new Student(101, "Second Highest", 89);
+        Student s4 = new Student(101, "Fail", 22);
+        studList.add(s1);
+        studList.add(s2);
+        studList.add(s3);
+        studList.add(s4);
+        System.out.println("Data:" + studList);
+
+
+
+
+
+//        File file = new File("C:\\de\\ede");
+//        OutputStream stream = new FileOutputStream(file);
+//
+//        Files.write(file.getPath(),Student.);
+//
+        // Student //marks
+        //select st.name, mr.value  from   Student st Marks mr  where st.id = mr.studentId and mr.value  = (select  mr.value LIMIT 1 DESC)
+
+//        System.out.println(  studList.stream().sorted(Comparator.reverseOrder().thenComparing((o1, o2) -> o1.compareTo(o2))).skip(1).findFirst();
+//        studList.stream().
+    }
+
+
+
+
+
+
+
+
+    @Data
+    public static class Student implements Serializable {
+        private int sno;
+        private String sname;
+        private int marks;
+        public Student(int sno, String sname, int marks) {
+            this.sname = sname;
+            this.sno = sno;
+            this.marks = marks;
+        }
+
+
+
+
+        public int getSno() {
+            return sno;
+        }
+
+
+
+
+        public void setSno(int sno) {
+
+
+
+
+            this.sno = sno;
+
+
+
+
+        }
+
+
+
+
+        public String getSname() {
+
+
+
+
+            return sname;
+
+
+
+
+        }
+
+
+
+
+        public void setSname(String sname) {
+            this.sname = sname;
+        }
+
+
+
+
+        public int getMarks() {
+            return marks;
+        }
+
+
+
+
+        public void setMarks(int marks) {
+
+
+
+
+            this.marks = marks;
+
+
+
+
+        }
+
+        @Override
+        public String toString() {
+
+
+
+
+            return "Student [sno=" + sno + ", sname=" + sname + ", marks=" + marks + "]";
+
+
+
+
+        }
+    }
+}
+
+
+
+class Diagram{
+    public void area(){
+        System.out.print("FROM DIAGRAM");
+    }
+}
+
+class Square extends Diagram{
+    public void area(){
+        System.out.print("FROM SQUARE");
+    }
+}
+
+class Triangle  extends Diagram {
+    public void area(){
+        System.out.print("FROM TRIANGLE");
+    }
+}
+
+
+class Circle  extends Diagram {
+    public void area(){
+        System.out.print("FROM CIRCLE");
+    }
+}
+
+//cryptogram
+//tokenization
