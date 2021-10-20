@@ -5,6 +5,7 @@ import lombok.Data;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class VisaTest {
@@ -149,6 +150,29 @@ Design Youtube
         System.out.println("Data:" + studList);
 
 
+//serialize & deserialize  a class
+        /*
+        *       Person person = new Person();
+                person.setAge(20);
+                person.setName("Joe");
+
+                FileOutputStream fileOutputStream
+                  = new FileOutputStream("yourfile.txt");
+                ObjectOutputStream objectOutputStream
+                  = new ObjectOutputStream(fileOutputStream);
+                objectOutputStream.writeObject(person);
+                objectOutputStream.flush();
+                objectOutputStream.close();
+
+                FileInputStream fileInputStream
+                  = new FileInputStream("yourfile.txt");
+                ObjectInputStream objectInputStream
+                  = new ObjectInputStream(fileInputStream);
+                Person p2 = (Person) objectInputStream.readObject();
+                objectInputStream.close();
+
+                assertTrue(p2.getAge() == person.getAge());
+                assertTrue(p2.getName().equals(person.getName()));*/
 
 
 
@@ -157,9 +181,10 @@ Design Youtube
 //
 //        Files.write(file.getPath(),Student.);
 //
-        // Student //marks
-        //select st.name, mr.value  from   Student st Marks mr  where st.id = mr.studentId and mr.value  = (select  mr.value LIMIT 1 DESC)
+// Student //marks
+//  select st.name, mr.value  from   Student st Marks mr  where st.id = mr.studentId and mr.value  = (select  mr.value LIMIT 1 DESC)
 
+//        studList.stream().sorted(Comparator.reverseOrder()).limit(2).skip(1).findFirst();
 //        System.out.println(  studList.stream().sorted(Comparator.reverseOrder().thenComparing((o1, o2) -> o1.compareTo(o2))).skip(1).findFirst();
 //        studList.stream().
     }
