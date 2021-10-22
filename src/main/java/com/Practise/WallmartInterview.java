@@ -1,5 +1,7 @@
 package com.Practise;
 
+import java.util.WeakHashMap;
+
 public class WallmartInterview {
 
 /*
