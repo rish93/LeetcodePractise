@@ -1,19 +1,42 @@
+/*
 package com.Practise;
 
-import java.util.Arrays;
+public class MindTree {
 
-public class Mindtree {
+*/
+/*    int[] arr ={2,4,5,6,9}
 
-    public static void main(String[] args) {
+for(i=0;i<ar.legth
+    int min = Integer.Max;
+if(arr[i]+1!=arr[i+1])
+    {
+        min = Math.min(min,arr[i]+1)
+    }
+return min;
 
-        int arr1[] = new int []{1,2,3,4,5};
-        int arr2[] = new int []{5,6,7,8,9};
+Arrays.asList(arr).stream().map(()-> i.getValue());
+
+// apply a function in java 8 to find the minimunm missing number from a naturally incremental nums
 
 
-        Arrays.stream(arr1).forEach(value -> Arrays.stream(arr2).filter(value1 -> value1==value).distinct().forEach(System.out::println));
+    @RestController
+    class Controller{
+        @GetMaping(employee/)
+        public Object getObjectFromDB(@RequestParam("id") String id)
+        {
+            Object ob =//do operation call Repository Class.method(id);
+            return ob;
+        }
 
-        Arrays.stream(arr1).filter(i -> Arrays.stream(arr2).anyMatch(value -> value == i ))
-                .forEach(System.out::println);
 
     }
+
+    @Query(value="from Emplotee where employyeesal>=?1 and DOJ>=")
+    EmployeeW findbyEmpName(id);
+
+null,"krishna"
+        null, "pritam"
+        null, "pranay"*//*
+
 }
+*/
