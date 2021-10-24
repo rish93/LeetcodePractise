@@ -158,10 +158,10 @@ printArray(intArray);
 
 
 	//duplicate email
-	select e.name , e.mobile number Employee e where count(e.mobile)>1 And e.name =
+	select e.name , e.mobile number EmployeeW e where count(e.mobile)>1 And e.name =
 
 
-	select e.name , e.mobile number Employee e where e.email containe svalid email
+	select e.name , e.mobile number EmployeeW e where e.email containe svalid email
 SELECT * FROM people WHERE email NOT LIKE '%_@__%.__%'
 
 

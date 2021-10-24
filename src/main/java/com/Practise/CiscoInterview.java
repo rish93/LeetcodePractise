@@ -64,8 +64,8 @@ If you discover an SQL Injection vulnerability, for example using an Acunetix sc
 /*emp
 name, year,exp,Doj
 */
-//select count(*), emp.year from Employee emp groupby year
-//        select emp.name emp.year from Employee emp  where DOJ <  STR_TO_DATE("August 10 2017", "%M %d %Y");
+//select count(*), emp.year from EmployeeW emp groupby year
+//        select emp.name emp.year from EmployeeW emp  where DOJ <  STR_TO_DATE("August 10 2017", "%M %d %Y");
 
 //HOw you will optimize sql query
         ///how to trace logs

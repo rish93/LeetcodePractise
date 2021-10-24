@@ -32,3 +32,10 @@ Adding a general question as well , How these microservices
 communicate each other: Using Resttemplate
 or Feignclient actual rest API can be called
 or Message queues like Rabbit MQ etc can be used .
+
+@Bean and the methos we write in the bean is a PRODUCER it tells spring that this method is present for some one in need to consume
+@Autowired is a CONSUMER
+
+There are 2 types of service discovery
+1. client side service discovery ---> client calls discovery server and asks for the address of the MS(microservc)  servc Discovery send the adress of the MS to call then client calls it directly.
+2. server side service discovery ---> Sping Cloud uses this technique client send a msg to srvc discovery and asks it directly to send the msg to the MS it wants to reach.
