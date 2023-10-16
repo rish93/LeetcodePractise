@@ -1,3 +1,5 @@
+package SpringFramework.DependencyInjection;
+
 @Configuration
 public class FieldBasedDI {
 

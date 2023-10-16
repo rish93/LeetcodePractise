@@ -50,8 +50,8 @@ public class AdapterDesignPattern {
         chromeDriver.selectEement();
 
         IEDriver ieDriver = new IEDriver();
-        ieDriver.clickEement();
-        ieDriver.findElement();
+//        ieDriver.clickEement();
+//        ieDriver.findElement();
 
         WebDriver webDriver = new WebDriverAdapter(ieDriver);
         webDriver.getElement();

@@ -2,6 +2,9 @@ package com.Practise.inheritanceproblem;
 
 public class Solution {
     public static void main(String args[]) {
+        Animal mal= (Animal)new Bird(); //child can be casted to parent
+
+
 
         /*Bird bird = new Bird();
         bird.walk();
@@ -12,8 +15,11 @@ public class Solution {
         animal.walk();
 
         //child refernce cannot hold parent reference
-        /*Bird animalb = (Bird) new Animal();
-        animalb.fly();*/
+//        Bird animalb = (Bird) new Animal();  ////Parent cant be casted to child
+//        animalb.fly();
+        /*Exception in thread "main" java.lang.ClassCastException: class com.Practise.inheritanceproblem.Animal cannot be cast to class com.Practise.inheritanceproblem.Bird (com.Practise.inheritanceproblem.Animal and com.Practise.inheritanceproblem.Bird are in unnamed module of loader 'app')
+            at com.Practise.inheritanceproblem.Solution.main(Solution.java:15)
+        */
 
     }
 }

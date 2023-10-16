@@ -5,7 +5,8 @@ package com.corejava;
    A functional interface is an interface that contains only one abstract method.
   */
   /*
-    Java 8 onwards, lambda expressions can be used to represent the instance of a functional interface. A functional interface
+    Java 8 onwards, lambda expressions can be used to represent the instance
+     of a functional interface. A functional interface
     can have any number of default methods. Runnable, ActionListener
     , Comparable are some of the examples of functional interfaces.
   */

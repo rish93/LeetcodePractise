@@ -32,7 +32,7 @@ public class BestTimeToBuySellStock {
         System.out.println("starting..");
     }
     public static void main(String []args){
-       int[] priceList = new int[]{1,8,2,34,7};
+       int[] priceList = new int[]{4,8,2,34,7};
 
 
        int outputResult= maxProfit(priceList);

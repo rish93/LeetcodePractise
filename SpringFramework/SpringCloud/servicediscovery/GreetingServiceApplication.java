@@ -1,4 +1,4 @@
-package com.javatechie.spring.consul.api;
+package SpringFramework.SpringCloud.servicediscovery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

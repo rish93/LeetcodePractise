@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /*
- A comparable object is capable of comparing
+ A  object is capable of comparing
  itself with another object. The class itself must
  implements the java.lang.Comparable
  interface to compare its instances.
@@ -135,4 +135,30 @@ In case a different sorting order is required, then, implement comparator and de
 *
 *
 * https://java-journal.blogspot.com/2011/01/when-to-use-comparable-and-when-to-use.html
+* */
+
+
+/* Java 8 lambda way of comparing
+* @FunctionalInterface
+public interface Comparator<T> {
+    int compare(T o1, T o2);
+}
+*
+*Comparator<Integer> comparator = (i1, i2) -> Integer.compare(i1, i2);
+*
+*
+*
+*class Simpson implements Comparable<Simpson> {
+    String name;
+
+    Simpson(String name) {
+        this.name = name;
+    }
+
+    @Override
+    ( simpson) -> {
+        return this.name.compareTo(simpson.name);
+    }
+}
+* simpsons.sort((s1, s2) -> s1.compareToIgnoreCase(s2));
 * */

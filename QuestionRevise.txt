@@ -1147,7 +1147,7 @@ An object reference on the stack is only an address that refers to the place in 
     Reading/Writing Strings to and from the Files.
     JEP 328: Flight Recorder.
 
--> What are comparator and comparable
+-> What are comparator and
 write program.
 Use Comparable:
 
@@ -1155,8 +1155,8 @@ if the object is in your control.
 if the comparing behaviour is the main comparing behaviour.
 Use Comparator :
 
-if the object is outside your control and you cannot make them implement Comparable.
-when you want comparing behaviour different from the default (which is specified by Comparable) behaviour.
+if the object is outside your control and you cannot make them implement .
+when you want comparing behaviour different from the default (which is specified by ) behaviour.
 
 -> Atomic keyword vs volatile keyword
 Atomic -> In multithreadung Compare and swap else would have use synchrponized blocking other thread
@@ -1660,7 +1660,7 @@ What are the similarities between a HashSet and a HashMap in Java?
 
 What are the differences between a HashMap and a TreeMap?
 
-What are the differences between Comparable and Comparator?
+What are the differences between  and Comparator?
 
 In Java, what is the purpose of Properties file?
 
