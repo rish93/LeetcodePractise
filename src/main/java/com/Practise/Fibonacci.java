@@ -5,7 +5,7 @@ public class Fibonacci {
     public static void main(String[] args) {
         fibonacci(10);
     }
-
+    //0,1,1,2,3,5,8,13,21,34,55...
     private static void fibonacci(int n) {
         int a = 0;
         int b = 1;

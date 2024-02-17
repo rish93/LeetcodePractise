@@ -22,7 +22,7 @@ public class DeloitteInterview {
         }
 
     //different type of autowiring  {by name, by type}
-    //different type of dependency injection {setter,constructor, variable}
+    //different type of ncy injection {setter,constructor, variable}
 
     }
 

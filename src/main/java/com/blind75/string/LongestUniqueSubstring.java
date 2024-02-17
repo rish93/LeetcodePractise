@@ -2,6 +2,7 @@ package com.blind75.string;
 
 
 import java.util.*;
+//adobe
 //nick white problem solve
 //https://www.youtube.com/watch?v=3IETreEybaA
 /*
