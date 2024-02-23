@@ -59,6 +59,7 @@ Note that because m = 0, there are no elements in nums1. The 0 is only there to 
         int n = 3;
         mergeSortedArrayWithExtraSpace(arr1, arr2, m , n);
 
+        mergeSortedArrayWithoutExtraSpace(arr1, arr2, m , n);
         int []arr11= {0};
         int []arr22= {1};
         m= 0;
@@ -96,32 +97,79 @@ Note that because m = 0, there are no elements in nums1. The 0 is only there to 
     }
 
 
-    private static void mergeSortedArrayWithoutExtraSpace(int []arr1, int[] arr2, int m, int n){
+    private static void mergeSortedArrayWithoutExtraSpace(int []nums1, int[] nums2, int m, int n) {
 
+        //variables to work as pointers
+        int i=m-1; // will point at m-1 index of nums1 array
+        int j=n-1; // will point at n-1 index of nums2 array
+        int k=nums1.length-1; //will point at the last position of the nums1 array
 
-        //without using extra space
+        // Now traversing the nums2 array
+        while(j>=0){
+            // If element at i index of nums1 > element at j index of nums2
+            // then it is largest among two arrays and will be stored at k position of nums1
+            // using i>=0 to make sure we have elements to compare in nums1 array
+            if(i>=0 && nums1[i]>nums2[j]){
+                nums1[k]=nums1[i];
+                k--;
+                i--; //updating pointer for further comparisons
+            }else{
+                // element at j index of nums2 array is greater than the element at i index of nums1 array
+                // or there is no element left to compare with the nums1 array
+                // and we just have to push the elements of nums2 array in the nums1 array.
+                nums1[k] = nums2[j];
+                k--;
+                j--; //updating pointer for further comparisons
 
-        int x = m-1;
-        int y = n-1;
-        // {1,2,3,0,0,0}
-        // {2,5,6}
-        // {}
+                // int x = m-1;
+                // int y = n-1;
+                // // {1,2,3,0,0,0}
+                // // {2,5,6}
+                // // {}
 
-        //from back compare larges eement and populate
-        for(int i=arr1.length-1;i>0;i--) {
-            if (arr1[x] > arr2[y]){ //
-                arr1[i] = arr1[x];
-                x--;
-            } else if(arr1[x] < arr2[y]){ //
-                arr1[i] = arr2[y];
-                y--;
-            } else {
-                arr1[i] = arr1[x]; //
-                x--;
+                // //from back compare larges eement and populate
+                // for(int i=nums1.length-1;i>0;i--) {
+                //     if (nums1[x] > nums2[y]){ //
+                //         nums1[i] = nums1[x];
+                //         x--;
+                //     } else if(nums1[x] < nums2[y]){ //
+                //         nums1[i] = nums2[y];
+                //         y--;
+                //     } else {
+                //         nums1[i] = nums1[x]; //
+                //         x--;
+                //     }
             }
         }
-        System.out.println(Arrays.toString(arr1));
+
+        System.out.println(Arrays.toString(nums1));
 
 
-    }
+//        //variables to work as pointers
+//        int i=m-1; // will point at m-1 index of nums1 array
+//        int j=n-1; // will point at n-1 index of nums2 array
+//        int k=nums1.length-1; //will point at the last position of the nums1 array
+//
+//        // Now traversing the nums2 array
+//        while(j>=0){
+//            // If element at i index of nums1 > element at j index of nums2
+//            // then it is largest among two arrays and will be stored at k position of nums1
+//            // using i>=0 to make sure we have elements to compare in nums1 array
+//            if(i>=0 && nums1[i]>nums2[j]){
+//                nums1[k]=nums1[i];
+//                k--;
+//                i--; //updating pointer for further comparisons
+//            }else {
+//                // element at j index of nums2 array is greater than the element at i index of nums1 array
+//                // or there is no element left to compare with the nums1 array
+//                // and we just have to push the elements of nums2 array in the nums1 array.
+//                nums1[k] = nums2[j];
+//                k--;
+//                j--; //updating pointer for further comparisons
+//            }
+//        }
+//
+
+
+            }
 }
