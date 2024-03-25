@@ -1,0 +1,24 @@
+
+n	java:S117™"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘Øğİ8×ıÁÑå1
+m	java:S117š"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹²’\8×ıÁÑå1
+n	java:S117›"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸µæú8×ıÁÑå1
+i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(üÆá©8àıÁÑå1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(×ãØŒ8àıÁÑå1
+]
+java:S1854”":Remove this useless assignment to local variable "output".(â´‘’úÿÿÿÿ8ùşÁÑå1
+N
+java:S1481”"+Remove this unused "output" local variable.(â´‘’úÿÿÿÿ8ÿÁÑå1
+Z
+java:S1854›"<Remove this useless assignment to local variable "blue_max".(¸µæú8ÿÁÑå1
+Z
+java:S1854š"=Remove this useless assignment to local variable "green_max".(‹²’\8ÿÁÑå1
+Y
+java:S1854™";Remove this useless assignment to local variable "red_max".(‘Øğİ8ÿÁÑå1
+J
+java:S1481™",Remove this unused "red_max" local variable.(‘Øğİ8ÿÁÑå1
+K
+java:S1481š".Remove this unused "green_max" local variable.(‹²’\8ÿÁÑå1
+K
+java:S1481›"-Remove this unused "blue_max" local variable.(¸µæú8ÿÁÑå1
+Y	java:S125¢"<This block of commented-out lines of code should be removed.(£šŞß8ÿÁÑå1
+V	java:S106®"9Replace this use of System.out or System.err by a logger.(ŒÖíÈ8­ÿÁÑå1

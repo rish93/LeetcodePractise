@@ -1,0 +1,9 @@
+
+f
+java:S1192"KDefine a constant instead of duplicating this literal "OUTPUT->  " 4 times.(ÂÊú„ûÿÿÿÿ
+k
+java:S1149"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ÑÖÙƒýÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ÂÊú„ûÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(„‹Üïøÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(¬‘¦‹
+N	java:S106"9Replace this use of System.out or System.err by a logger.(±¨³º

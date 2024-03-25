@@ -1,0 +1,10 @@
+
+q
+java:S1488"[Immediately return this expression instead of assigning it to the temporary variable "ans".(ø†ó
+N	java:S106"9Replace this use of System.out or System.err by a logger.(²›Úé
+S	java:S106"9Replace this use of System.out or System.err by a logger.(†î¤Œÿÿÿÿÿ
+P	java:S125"<This block of commented-out lines of code should be removed.(ÑÖâ6
+E
+java:S1197"*Move the array designators [] to the type.(ƒ˜ÄÈşÿÿÿÿ
+@
+java:S1197"*Move the array designators [] to the type.(£€æä
