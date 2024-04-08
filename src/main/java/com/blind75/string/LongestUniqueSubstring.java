@@ -51,7 +51,7 @@ public class LongestUniqueSubstring {
         List<Character> convList=new ArrayList<>();
         int max=0;
         for(Character c: input.toCharArray()){
-            if(convList.contains(c)){
+            if(convList.contains(c)) {
 //                convList.remove(c);
                 convList = convList.subList( convList.indexOf(c), convList.size()-1);
             }
