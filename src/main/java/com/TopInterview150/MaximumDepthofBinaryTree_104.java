@@ -1,5 +1,8 @@
 package com.TopInterview150;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class MaximumDepthofBinaryTree_104 {
         /*
         *  Given the root of a binary tree, return its maximum depth.
@@ -67,7 +70,7 @@ public class MaximumDepthofBinaryTree_104 {
 
         // Create a queue for
         // level order traversal
-        Queue<Node> q = new LinkedList<>();
+        Queue<TreeNode> q = new LinkedList<>();
         int level = 0;
 
         // Push the root node into the queue
@@ -83,10 +86,10 @@ public class MaximumDepthofBinaryTree_104 {
             // at the current level
             for (int i = 0; i < size; i++) {
                 // Get the front node in the queue
-                Node front = q.poll();
+                TreeNode front = q.poll();
 
                 // Enqueue left child if exists
-                if (front.left != null) {
+                if (front!=null && front.left != null) {
                     q.add(front.left);
                 }
 
@@ -108,7 +111,7 @@ public class MaximumDepthofBinaryTree_104 {
 
   class TreeNode {
       int val;
-     TreeNode left;
+      TreeNode left;
       TreeNode right;
       TreeNode() {}
       TreeNode(int val) { this.val = val; }
