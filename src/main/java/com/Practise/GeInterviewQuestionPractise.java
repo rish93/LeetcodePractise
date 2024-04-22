@@ -10,6 +10,41 @@ public class GeInterviewQuestionPractise {
 
   public static void main(String[] args) throws InterruptedException {
 
+      /* JOin method overview.
+
+
+
+I started to do research to find out why the word "join" is used for the Thread.join() method. In fact,
+it waits for the thread to end on which it is called and
+pauses the main thread to wait for it so, there is nothing to join.
+ So, its name should be something like:
+
+    Thread.pauseCaller();
+    Thread.freezeCaller();
+    Thread.focusThread();
+    Thread.runBefore();
+
+      I found one simple sentence after too much research which says that:
+      Thread.join(); name comes from the concept of the calling thread waiting until
+      the specified thread joins it.
+
+     I am totally unable to get this above sentence into my mind and failed
+     to understand the background context of using the word join for this method.
+     What does the word "join" represent in this context? There is nothing to
+     join anything else; instead, it just pauses the calling thread to wait for the
+     thread followed by the join(). So, can anyone tell the context of using the join
+     word for this method?
+
+The word "join" comes from the Fork–Join model, where "fork" means to split the
+ thread into multiple threads for parallel processing, and "join" means
+to wait for the parallel threads to complete their part, before continuing in a single thread.
+
+      *
+      *
+      *
+      * */
+
+
       /* How to find the 3rd element from end in linked list in Java (Java Program to find the Nth Node from
         tail in linked list)*/
         findThirdElementFromEndLinkedList(3);

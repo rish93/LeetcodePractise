@@ -1,0 +1,158 @@
+**Intro:
+*Apache Kafka is a popular event streaming platform
+used for real time and batch processing.
+Kafka architecture allows for scalable streaming data. I
+Create multiple brokers and cluster of nodes to handle messages and store their replicas.
+Then, monitor the settings and logs for those brokers.
+Finally, see how topic partitions and replicas provide redundancy and maintain high availability.
+
+
+*Kafka is distirbuted platform,which operate together ina cluster
+ there are several nodes that work in cluster.
+
+*Replicas : data stored in multiple brokers, in case of broker failure message can still be recorverd
+
+
+**Streaming  type:
+
+Batch vs Stream
+-> Data is bounded(how mych data coming in)              ->  Data is not bounded(unknown data coming in)
+-> Lag between data ingestion and processing           ->  data processed in real time
+-> Order of data is not critical (eg loan issued in mothend report)       -> Correct ordering is critical
+-> All data to be wwoprked on is known up front   ->  Processsing app does not know future data
+-> runs until job is complete                    -> Always on, listening for new data
+
+---> middleground Micro batch proicessing
+> compromise between batch and stream processing
+> data processed frequently in small batches
+> outputs can be avaialble in near real time (customer experience is nearly met)
+any delay is in tolerable limits
+
+
+**Stream event with Kafka:
+
+Streaming use case (fraud detection)
+1) bank want to process al transactionin real time to check
+for fraud (either bank t bank trasnation of debit card to bank)
+2) If transaction is lgitimate, simply commit to relational database (later it can be accessd by account holder
+or maybe by analysis team by bank in monthly or quarterly report)
+3)  for any faraudulant transaction owner of account need to be notifi9ed
+by flagginf the fraud and norifying by phone or mail quickly, because transaction cannot
+be commited until user approves of it.
+
+
+Component kafka:
+-Topic> channel of communication is topic
+-Producse consumer are decouppled
+-Rate of production and consumption of message can vary significantly
+-as kafka reliably stoe and buffer the data in topic
+- topics can also be considered as means of
+managing messages in kafk, single kafka cluster can have multiple topics
+- each topic is seperate line of communication
+
+fact: With Kafka's new KRaft mode, which entirely removes ZooKeeper from Kafka's architecture, a Kafka cluster can handle millions of topics/partitions. See https://www.confluent.io/blog/kafka-without-zookeeper-a-sneak-peek/ for details
+fact: kafka doesnt have bounded buffr poblem
+https://www.cs.umb.edu/~eoneil/cs444_f06/class13.html
+
+
+- topics can b cosnidered as a link with multiple producer and consumers
+- events are durably stored in a topic, even after they have been processed by consumers
+i.e many to many form of coomunication
+
+fact: Can we channel different kind of message through same kafka topic?
+Kafka topics don't inheriently have "types of data". It's all bytes, so yes you can serialize completely separate objects into the same topic, but consumers must then add logic to know what are all possible types will get added into the topic.
+That being said, Structured Streaming is built on the idea of having structured data with a schema, so it likely will not work if you had completely different types in the same topic without at least performing a filter first based on some inner attribute that is always present among all types.
+
+*Topic can be  partitioned to improve scalability
+* Kafka topic can be replicated for fault toplerecne
+it can be replicate do ndifferent nodes of a cluster, if one node fail from cluster other node
+can be refered with sam etopic having replica to consume message
+
+What topics are not?
+they are not message queue, message published to topic remain after they are consumed. hgence it can be
+considered as unbounded buffer
+
+Unlike message queue where messages are removd after consumed,
+Multiple consumer may process the same data added to a topic
+
+
+Kafka works in distributed environment, as there are multiple noed that work
+as cluster.
+Each node is referred as a server or broker.
+
+Coordination between brokr is nmanaged by service named zookeeper
+
+
+**Kafka Topic:
+
+Kafka Broker: As kafka  is distirbuted platform,
+as nodes working together as cluster
+-Each host in system can be serve as kafkaa broker
+-Broker store partitions and their replicas
+-Broker process request to read from ad  write to partitions
+
+Kafka topics store message as durably as any production databases
+
+Consumer may choose to process message since topic was created.
+Message can b set to expire.
+
+fact: Why message not deleted if retention policy exceeded or storage capacity reaches threshold
+because of segment size and message in it click: https://dalelane.co.uk/blog/?p=3993
+
+--Partition:
+Topics maybe split into subsets called partitions
+partition may be distributed across different brokers in kafka cluster.
+Multiple consumers on same topic may process
+event on diffeent partition
+-Parttion allow topics to scale
+
+
+--Distributing events oin parttion
+>message published to a topic may include a key and value
+>the asssginment to a partitoon is absed on operastion on the key
+>developers may define their own partiioner
+
+---Replicas
+
+>Broker may occasionally fail, and parttion they manage can become unreachable
+> Topics can be replicated so that their partitons have copies
+distributed across the cluster
+
+in multinode env kafka ewill ensure Data and replicaas are not placed in same broker
+>Each partiton will have a lead replica and zero or more follower replicas
+> writes are performed to leader and follower must try to keep the sync
+> a follower which lags too far behind will no longer be considered "in sync"
+read request is not performed until it comes back to sync
+
+
+
+
+
+
+
+
+
+
+
+
+Q. Apache Kafka and Amazon SQS are both used for message streaming but are not the same.
+
+A. Apache Kafka follows the publish subscriber model, where the producer sends an event/message
+ to a topic, and one or more consumers are subscribed to that topic to get the event/message.
+  In the topic, you find partitions for parallel streaming. There is a consumer group concept once.
+   When a message is read from a partition of topics it will be committed to identify it already read by
+    that consumer group to avoid inconsistency in reading in concurrent programming. However, other consumer
+     groups can still read that message from the partition.
+
+Where Amazon SQS follows Queue and the queue can be created in any region of Amazon SQS.
+You can push messages to Queue and only one consumer can subscribe to each Queue and pull
+ messages from the Queue. That's why SQS is pull-based streaming. SQS Queues are of two types: FIFO and Standard.
+
+There is another concept in AWS which is Amazon SNS, which is published subscriber-based like Kafka,
+ but there is not any message retention policy in SNS. It's for instant messaging like email, SMS, etc.
+ It can only push messages to subscribers when the subscribers are available. Otherwise, the message will be lost.
+ However, SQS with SNS can overcome this drawback. Amazon SNS with SQS is called the fanout pattern.
+  In this pattern, a message published to an SNS topic is distributed to multiple SQS queues
+  in parallel and the SQS queue assures persistence, because SQS has a retention policy.
+  It can persist message for up to 14 days(default 4 days). Amazon SQS with SNS can achieve high
+  throughput parallel streaming and can replace Apache Kafka.
