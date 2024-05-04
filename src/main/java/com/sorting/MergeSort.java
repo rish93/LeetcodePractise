@@ -1,64 +1,82 @@
 package com.sorting;
 
+import java.util.Arrays;
+
 public class MergeSort {
-
-    //divide 1st then merge
-// 1) concetrate on left in recursive manner [Do not forget the base case as it is when you RETURN from recurision and concentrate on next task]
-//2) then on right  in recursive manner [Do not forget to start from next of mid other wise its an infinite loop no use of coding]
-//3) merge each of the sorted individual array and add it to a list till all elements are adeed [consider mergng 2 set of arrays and use pointer low mid and high to imagine them ]
-
-
-    //divide the array into 2 parts
+        //https://www.youtube.com/watch?v=3j0SWDX4AtU
     public static void main(String[] args) {
-        int[] arr = {5,4,3,2,1};
-         mergeSort(arr, 0, arr.length-1);
-         for(int i =0; i<arr.length;i++){
-             System.out.print(arr[i]+" ");
-         }
-    }
+        // merge sort = recursively divide array in 2, sort, re-combine
+        // run-time complexity = O(n Log n)
+        // space complexity    = O(n)
 
-    public static void mergeSort(int[] arr, int low, int high) {
-        if (low>=high) {  // base condition
-            return;
+        int[] array = {8, 2, 5, 3, 4, 7, 6, 1};
+
+        mergeSort(array);
+
+        for(int i = 0; i < array.length; i++){
+            System.out.print(array[i]+ " ");
         }
-        int mid = (low + high) / 2;
-
-        mergeSort(arr, low, mid); // left side divide
-        mergeSort(arr, mid + 1, high); // right side divide
-        mergeConquer(arr, low, mid, high);
-
 
 
     }
+    private static void mergeSort(int[] array) {
 
-    public static void mergeConquer(int[] arr, int low, int mid, int high) {
+        int length = array.length;
+        if (length <= 1) return; //base case
 
-        int left = low;
-        int right = mid + 1;
-        int [] merged = new int [high-low+1];
-        int x = 0;
-        while (left <= mid && right <= high) {
+        int middle = length / 2;
+        int[] leftArray = new int[middle];
+        int[] rightArray = new int[length - middle];
 
-            if (arr[left] <= arr[right]) {
-                merged[x++]=arr[left++];
+        int i = 0; //left array
+        int j = 0; //right array
 
-            } else {
-                merged[x++]=arr[right++];
+        for(; i < length; i++) {
+            if(i < middle) {
+                leftArray[i] = array[i];
             }
-
+            else {
+                rightArray[j] = array[i];
+                j++;
+            }
         }
-//remaining elements check and add as all are sorted we are taking left 1st
-
-        while (left <= mid) {
-            merged[x++]=arr[left++];
-        }
-        while (right <= high) {
-            merged[x++]=arr[right++];
-        }
-
-        for(int i =0,j =0; i<merged.length;i++,j++){
-            arr[j] = merged[i];
-        }
-
+        mergeSort(leftArray);
+        mergeSort(rightArray);
+        merge(leftArray, rightArray, array);
     }
+
+
+
+    private static void merge(int[] leftArray, int[] rightArray, int[] array) {
+
+        int leftSize = array.length / 2;
+        int rightSize = array.length - leftSize;
+        int i = 0, l = 0, r = 0; //indices
+
+        //check the conditions for merging
+        while(l < leftSize && r < rightSize) {
+            if(leftArray[l] < rightArray[r]) {
+                array[i] = leftArray[l];
+                i++;
+                l++;
+            }
+            else {
+                array[i] = rightArray[r];
+                i++;
+                r++;
+            }
+        }
+        while(l < leftSize) {
+            array[i] = leftArray[l];
+            i++;
+            l++;
+        }
+        while(r < rightSize) {
+            array[i] = rightArray[r];
+            i++;
+            r++;
+        }
+    }
+
+
 }

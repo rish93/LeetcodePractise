@@ -3,12 +3,31 @@ package com.sorting;
 import java.util.Arrays;
 
 public class SelectionSort {
+    //select min element  per iteration and swap with first element.
 
     public static void main(String[] args) {
         int[] input = new int[]{6, 3, 1, 9, 10, 5};
         int[] arr = selectionWorstCaseSort(input);
         System.out.println(Arrays.toString(arr));
         //selectionBestCaseSort(arr);
+
+        //select min and replace with initial indexes
+        for (int i = 0; i < input.length; i++) {
+            int min = input[i];
+            int minIndex = i;
+            for (int j = i + 1; j < input.length; j++) {
+                if (input[j] < min) {
+                    min = input[j];
+                    minIndex = j;
+                }
+            }
+
+            int temp = input[minIndex];
+            input[minIndex] = input[i];
+            input[i] = temp;
+
+        }
+
     }
 
 
@@ -19,7 +38,7 @@ public class SelectionSort {
      */
     private static int[] selectionWorstCaseSort(int[] input) { //On^2
 
-        for (int i = 0; i < input.length-1; i++)  //last element would be sorted by the tie we reach the end
+        for (int i = 0; i < input.length-1; i++)  //last element would be sorted by the time we reach the end
         {
             int minimumIndex = i;
             for (int j = i + 1; j < input.length; j++) {
