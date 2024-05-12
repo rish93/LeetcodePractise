@@ -26,6 +26,11 @@ import java.util.List;
 
 public class ObserverDesignPattern {
     /*
+
+
+    Observer interface and COncrete Observer class
+    Subject interface and concrete subject class
+
     * To implement have one Interface Observer (with one method update)
     *  All entities seller/user/warehouse will override this update
     *

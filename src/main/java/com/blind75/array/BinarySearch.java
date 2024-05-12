@@ -36,4 +36,20 @@ public class BinarySearch {
 
     }
 
+
+    /*
+    How to take out mid
+    low + high) / 2: The sum of the left and right indices is divided by 2 to get the mid point.
+    The problem with this is that the sum could overflow.
+     If the sum is an even number, we pick the lower one.
+      Example - With left and right as [2, 5] - We pick mid as 3
+
+    l + (r - l) / 2: The difference between the right and the left index
+    is found and is divided by 2. It is then added to the left index to
+     find the midpoint. It might be easier to visualize this with an example.
+    Example : [5, 11] -> (11 - 5) / 2 = 3 The middle in this interval is now
+     3 places or hops from the left index. So, add the left index to find the
+     index of the mid element which is 5 + 3 = 8
+
+    */
 }

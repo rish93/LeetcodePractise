@@ -1,8 +1,7 @@
 package com.Practise;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /*
  A  object is capable of comparing
@@ -10,8 +9,34 @@ import java.util.Comparator;
  implements the java.lang.Comparable
  interface to compare its instances.
  */
+
+class Actor{
+    String name;
+    int weight;
+    int movieCount;
+
+    Actor(String name, int weight, int movieCount){
+        this.name = name;
+        this.weight = weight;
+        this.movieCount = movieCount;
+    }
+}
+
+//comparator with lambda expression
+/* * *
+* Comparator<User> firstNameSorter = (o1, o2) -> o1.firstName().compareTo(o2.firstName());
+* * */
+
 public class TestComparableComparator {
   public static void main(String[] args) {
+      List<Actor> ac=new ArrayList<>();
+      ac.add(new Actor("A",1,1));
+      ac.add(new Actor("B",2,2));
+      ac.add(new Actor("C",3,3));
+      ac.add(new Actor("D",4,4));
+      //Collections.sort(ac);
+      // collection sort will show compilation error if comparable is not implemtned
+
 
     //test comparable
       System.out.println("********TEST COMPARABLE***********");
@@ -54,6 +79,7 @@ public class TestComparableComparator {
       System.out.println("\nSorted by name");
       NameCompare nameCompare = new NameCompare();
       Collections.sort(list1, nameCompare);
+      //or List.sort(nameCompare) //directly pass comparator
       for (Movie movie: list1)
           System.out.println(movie.getName() + " " +
                   movie.getRating() + " " +

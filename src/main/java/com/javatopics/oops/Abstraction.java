@@ -1,5 +1,7 @@
 package com.javatopics.oops;
 
+// provides security by hiding the internal implementation of a class
+// and only exposing the details necessary in the context.
 
 /*Defn: Abstraction captures only those details about a
  Java object that are relevant to the current perspective.
@@ -12,6 +14,40 @@ For example, a HashMap stores key-value pairs.
  you are not required to know it to use it. This is very
  much example of abstraction in Java
  */
+
+/* * *
+Type of extraction
+*
+*
+
+2.1.1. Data Abstraction
+
+>>>>>Data abstraction is the way to create complex data types from multiple smaller data types – which is more close to real-life entities. e.g., An Employee class can be a complex object that has various small associations.
+
+public class Employee
+{
+    private Department department;
+    private Address address;
+    private Education education;
+    //So on...
+}
+
+So, if you want to fetch information about an employee, you ask from Employee object – as you do in real life, ask the person himself.
+
+2.1.2. Control Abstraction
+
+>>>> Control abstraction is achieved by hiding the sequence of actions for a complex task – inside a simple method call- so the logic to perform the task can be hidden from the client and could be changed without impacting the client code.
+
+public class EmployeeManager
+{
+    public Address getPrefferedAddress(Employee e)
+    {
+        //Get all addresses from database
+        //Apply logic to determine which address is preferred
+        //Return address
+    }
+}
+* * * */
 public class Abstraction {
 
     public static void main(String[] args) {

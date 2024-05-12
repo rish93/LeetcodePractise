@@ -1,8 +1,6 @@
 package com.Practise;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -56,7 +54,27 @@ to wait for the parallel threads to complete their part, before continuing in a 
 
           /*find max occurring char from a char array?*/
        System.out.println(findMaxOccuranceOfCharacter("RISHABHH"));
+      System.out.println(findMaxOccuranceOfCharacterUsingMap("RISHABHH"));
+  }
 
+    private static Integer findMaxOccuranceOfCharacterUsingMap(String input) {
+        Map<String, Integer> map = new HashMap<>();
+        Integer max = null;
+        char[] charArr =  input.toCharArray();
+        for (char c : charArr) {
+
+            if (map.get(Character.toString(c)) != null) {
+                map.put(Character.toString(c), map.get(Character.toString(c))+ 1);
+            } else {
+                map.put(Character.toString(c), 1);
+            }
+
+           // System.out.println(map);
+
+             max=map.entrySet().stream().max((o1, o2) -> o1.getValue().compareTo(o2.getValue())).get().getValue();
+        }
+
+    return max;
   }
 
     private static String findMaxOccuranceOfCharacter(String input){
@@ -136,7 +154,6 @@ to wait for the parallel threads to complete their part, before continuing in a 
         //implicit
        //2  //in locks can be acquired in any order and released in any order (can have multiple lock as well)
             //but synchronized block are acquired with starting braces and released in closing braces
-
 
 
         BlockingQueue  blockingQueue = new ArrayBlockingQueue(20);

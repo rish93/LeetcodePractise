@@ -29,6 +29,7 @@ public class ProxyDesignPattern {
     public static void main(String[] args) throws Exception {
         Hashtable<String, String> hs= new Hashtable<>();
         hs.put("", "");
+        hs.put("", "E");
         System.out.println(hs);
         DatabaseExecutor adminExecute = new DatabaseExecutorProxy("admin","123");
         adminExecute.executeDatabase("DELETE");

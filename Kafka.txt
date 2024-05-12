@@ -45,49 +45,58 @@ Component kafka:
 -Topic> channel of communication is topic
 -Producse consumer are decouppled
 -Rate of production and consumption of message can vary significantly
--as kafka reliably stoe and buffer the data in topic
+-as kafka reliably store and buffer the data in topic
 - topics can also be considered as means of
-managing messages in kafk, single kafka cluster can have multiple topics
+managing messages in kafka, single kafka cluster can have multiple topics
 - each topic is seperate line of communication
 
-fact: With Kafka's new KRaft mode, which entirely removes ZooKeeper from Kafka's architecture, a Kafka cluster can handle millions of topics/partitions. See https://www.confluent.io/blog/kafka-without-zookeeper-a-sneak-peek/ for details
+fact: With Kafka's new KRaft mode, which entirely removes ZooKeeper from Kafka's architecture,
+ a Kafka cluster can handle millions of topics/partitions.
+ See https://www.confluent.io/blog/kafka-without-zookeeper-a-sneak-peek/ for details
 fact: kafka doesnt have bounded buffr poblem
 https://www.cs.umb.edu/~eoneil/cs444_f06/class13.html
 
 
-- topics can b cosnidered as a link with multiple producer and consumers
+- topics can b considered as a link with multiple producer and consumers
 - events are durably stored in a topic, even after they have been processed by consumers
 i.e many to many form of coomunication
 
 fact: Can we channel different kind of message through same kafka topic?
-Kafka topics don't inheriently have "types of data". It's all bytes, so yes you can serialize completely separate objects into the same topic, but consumers must then add logic to know what are all possible types will get added into the topic.
-That being said, Structured Streaming is built on the idea of having structured data with a schema, so it likely will not work if you had completely different types in the same topic without at least performing a filter first based on some inner attribute that is always present among all types.
+Kafka topics don't inheriently have "types of data". It's all bytes, so yes you can
+serialize completely separate objects into the same topic,
+but consumers must then add logic to know what are all
+possible types will get added into the topic.
+That being said, Structured Streaming is built on the idea of having
+structured data with a schema, so it likely will not work if you had completely
+different types in the same topic without at least performing
+ a filter first based on some inner attribute that is always present among all types.
 
 *Topic can be  partitioned to improve scalability
-* Kafka topic can be replicated for fault toplerecne
+* Kafka topic can be replicated for fault tolerance
 it can be replicate do ndifferent nodes of a cluster, if one node fail from cluster other node
 can be refered with sam etopic having replica to consume message
 
 What topics are not?
-they are not message queue, message published to topic remain after they are consumed. hgence it can be
+they are not message queue, message published to topic remain after they are consumed.
+hence it can be
 considered as unbounded buffer
 
-Unlike message queue where messages are removd after consumed,
+Unlike message queue where messages are removed after consumed,
 Multiple consumer may process the same data added to a topic
 
 
-Kafka works in distributed environment, as there are multiple noed that work
+Kafka works in distributed environment, as there are multiple node that work
 as cluster.
 Each node is referred as a server or broker.
 
-Coordination between brokr is nmanaged by service named zookeeper
+Coordination between broker is nmanaged by service named zookeeper
 
 
 **Kafka Topic:
 
-Kafka Broker: As kafka  is distirbuted platform,
+Kafka Broker: As kafka  is distributed platform,
 as nodes working together as cluster
--Each host in system can be serve as kafkaa broker
+-Each host in system can be served as kafka broker
 -Broker store partitions and their replicas
 -Broker process request to read from ad  write to partitions
 
@@ -156,3 +165,21 @@ There is another concept in AWS which is Amazon SNS, which is published subscrib
   in parallel and the SQS queue assures persistence, because SQS has a retention policy.
   It can persist message for up to 14 days(default 4 days). Amazon SQS with SNS can achieve high
   throughput parallel streaming and can replace Apache Kafka.
+
+
+Messages sent to an Amazon SQS queue wait until a consumer requests a message. When the message is retrieved,
+ it is made 'invisible' on the queue so no other consumer will receive it. When a consumer has finished
+ processing the message, it deletes the message from the queue.
+
+Therefore, if you want multiple consumers to receive the same message, then Amazon SQS is not the correct
+service to use.
+
+Since you want a publish/subscribe model, you should be using Amazon Simple Notification Service (Amazon SNS).
+ Messages are published to a 'Topic' and multiple subscribers can receive messages sent to that topic.
+ Subscribers can use Amazon SNS subscription filter policies - Amazon Simple Notification Service to
+ limit which messages they receive.
+
+Note that messages sent to an Amazon SNS topic are immediately sent to subscribers. If you do not
+wish to receive a message in real-time, it is possible to subscribe an Amazon SQS queue to an Amazon
+SNS topic. This way, the messages will be queued for later retrieval. The queue would work
+independently to other subscribers on the topic.

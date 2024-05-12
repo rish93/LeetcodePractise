@@ -16,8 +16,9 @@ public class LinkedListCycle {
             elem1 = elem1.next;
         }*/
         System.out.println(hasCycle(elem1));
+        //3, > 2 > 0 > -4
 
-    }
+}
 //TODO Intuition- let's say 2 people are running in a circular track, one person is running slowly and another person is running faster(2 times the speed of first person)
 //
 //After a certain period of time person 2 again meet or overtake person 1,
@@ -28,7 +29,7 @@ public class LinkedListCycle {
             return false;
         ListNode slow = head;
         ListNode fast = head;
-        while (fast.next != null && fast.next.next != null) {  //Since fast runs faster
+        while (slow.next != null && fast.next.next != null) {  //Since fast runs faster
             slow = slow.next;
             fast = fast.next.next;
             if (slow == fast)

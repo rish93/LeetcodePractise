@@ -27,8 +27,8 @@ public class PrototypeDesignPattern {
     list.add("DB India");
 
 //    System.out.println(list);
-    System.out.println(deutscheBahn.getSubsidiaryCompanies());
-    System.out.println(deutscheBahnCloned.getSubsidiaryCompanies());
+    System.out.println(deutscheBahn.getSubsidiaryCompanies()); //Infraview, DB Systel
+    System.out.println(deutscheBahnCloned.getSubsidiaryCompanies());// Infraview, DB systel, DB India
 
 
   }
