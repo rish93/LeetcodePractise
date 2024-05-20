@@ -3,7 +3,7 @@ package com.sorting;
 import java.util.Arrays;
 
 public class InsertionSort {
-
+    //https://youtu.be/8mJ-OhcfpYg?si=kbXIGGdkEZcHUpOS
     public static void main(String[] args) {
         int[] input = new int[]{8, 2, 4, 1, 3};
         int[] input1 = new int[]{6, 3, 1, 9, 10, 5};

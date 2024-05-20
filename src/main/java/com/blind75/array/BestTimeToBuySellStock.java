@@ -46,7 +46,9 @@ public class BestTimeToBuySellStock {
    */
 
     //for every iteration takes out minimum value cz minimum price is required to find MAX profit
-    //then check for present profit and assign it to max if you find it maximum.
+    //then check for present profit and assign it to max if you]\
+    // \
+    // find it maximum.
         static int maxProfit(int priceList[])
         {
             int minprice = Integer.MAX_VALUE;

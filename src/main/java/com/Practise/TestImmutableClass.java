@@ -23,7 +23,7 @@ public class TestImmutableClass{
     System.out.println(s.getDocumentSubmitted());
 
     // Uncommenting below line causes error
-    // s.regNo = 102;
+//     s.regNo = 102;
 
     map.put("3", "third");
     System.out.println(s.getDocumentSubmitted()); // Remains unchanged due to deep copy in constructor

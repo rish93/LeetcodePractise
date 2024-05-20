@@ -48,9 +48,18 @@ public class MinimumSizeSubArraySum_209 {
         int[] arr={1,4,2,1,3,2,1,1,5,4};
         int target = 7;
         System.out.println( minSubArraySum(arr, target));
+      //minSubArraySumKadaneAlgo(arr, target);
     }
 
-
+//    private static void minSubArraySumKadaneAlgo(int []arr, int target) {
+//        int min =Integer.MAX_VALUE;
+//        int sum =Integer.MIN_VALUE;;
+//        for (int i=0;i< arr.length;i++) {
+//            sum =  Math.min(arr[i]-min, sum);
+//            min =  Math.min(min,sum);
+//        }
+//    System.out.println(min);
+//    }
     private static int minSubArraySum(int []arr, int target){
         int pointer_a = 0;
         int pointer_b = 0;

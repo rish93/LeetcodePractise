@@ -1,0 +1,8 @@
+What is HLD?
+A High-Level Design (HLD) is a preliminary design that outlines the structure and layout of a system or application. It describes the system's main components, how they interact with each other, and how data flows between them. HLD provides an overview of the system's architecture and functionality and serves as a starting point (blueprint) for the detailed design phase.
+
+What is LLD?
+Low-Level Design is the second stage of the software design process that comes after the HLD. LLD provides a detailed blueprint of the software system's architecture, including its components, modules, interfaces, and data storage.
+
+This design phase is critical as it helps software developers to write efficient, scalable, and maintainable code. LLD typically involves creating flowcharts, data flow diagrams, pseudo-codes, and other technical documentation that helps to implement the software system's functionality.
+

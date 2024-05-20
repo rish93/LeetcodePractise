@@ -31,14 +31,14 @@ public class ReverseLinkedList {
     }
 // 1step is to make head.next empty  and then shift the previousnode to curent and current to next
 
-    static Node reverseLinkedList(Node head) {
+    static Node reverseLinkedList(Node current) {
         Node prev= null;
-        while (head.next!=null)
-        {
-            Node nextNode = head.next;
-            head.next=prev;
-            prev=head;       //1 step
-            head=nextNode;  //2nd step
+        while (current.next!=null)
+        {                                 // [head 1]  -> [ 2] -> [ 3] ->  [ 4] -> [ 5]-> null
+            Node nextNode = current.next;    //[next  node]->[2]
+            current.next=prev;                   //    [null]<-[2]
+            prev=current;       //1 step        //
+            current=nextNode;  //2nd step
         }
         return prev;
     }

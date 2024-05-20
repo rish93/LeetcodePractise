@@ -1,6 +1,9 @@
 package com.Practise;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DeltaAirlines {
 
@@ -9,13 +12,30 @@ public class DeltaAirlines {
         //find max group of magnets whose diff greater than k, Mettl test
 
         //ref. https://stackoverflow.com/questions/71267722/find-minimum-group-of-array-with-difference-less-than-k
+        //if k =3
         int arr[] = {3,6,12,4,5,1,7,17};
         //grp1 {3,6,12,17}
-        //grp2 {
-        // }
+        //grp2 {3,17,12, }
         int k =3;
         int n=8;
         System.out.println(findMaxGroupFromMagnets(n, k, arr));
+        System.out.println(findMaxAllGroupFromMagnets(n, k, arr));
+    }
+
+    private static int findMaxAllGroupFromMagnets(int totalN, int diffK, int[] arr) {
+        int count=0;
+        Arrays.sort(arr);
+        Map<Integer, List<Integer>> map= new HashMap<>();
+        for(int i=1;i<arr.length;i++ ){
+            if(Math.abs(arr[i-1]-arr[i])>diffK) {
+
+
+            }
+        }
+
+        System.out.println(Arrays.toString(arr));
+
+        return count;
     }
 
     public static int findMaxGroupFromMagnets(int totalN, int diffK, int []arr){

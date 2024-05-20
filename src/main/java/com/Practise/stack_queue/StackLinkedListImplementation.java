@@ -1,8 +1,6 @@
 package com.Practise.stack_queue;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class StackLinkedListImplementation {
     static Node top = null;

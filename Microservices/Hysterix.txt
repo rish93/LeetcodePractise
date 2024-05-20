@@ -1,0 +1,18 @@
+Why hysterix:
+
+_>Short answer: mainly to Stop cascading failures in a complex distributed system.
+
+  I don't have any meaningful alternative response to provide, why would I need a circuit breaker at all?
+  This question is relevant only if your server serves just a single REST end point (and a single HTTP verb). But almost always, that is not the case. Even the 'micro'services will have combination of multiple endpoints + multiple http verbs. You don't want one endpoint to hung up on a slow upstream service and pileup threads after threads keep waiting and eventually bringdown your entire application.
+
+  Take a look at the official documentation
+
+  What Is Hystrix For? --- Hystrix is designed to do the following:
+
+  Give protection from and control over latency and failure from dependencies accessed (typically over the network) via third-party
+  client libraries.
+  Stop cascading failures in a complex distributed system.
+  Fail fast and rapidly recover.
+  Fallback and gracefully degrade when possible.
+  Enable near real-time monitoring, alerting, and operational control.
+  "Fallback and gracefully degrade when possible" is just one among the features that hystrix offers.
