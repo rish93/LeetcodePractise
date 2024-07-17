@@ -1,0 +1,10 @@
+
+f	java:S117E"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«Ê—
+f	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëÚş¡
+V	java:S125&"<This block of commented-out lines of code should be removed.(àÌÁÌşÿÿÿÿ
+S	java:S106,"9Replace this use of System.out or System.err by a logger.(ššç¶øÿÿÿÿ
+V	java:S125+"<This block of commented-out lines of code should be removed.(İ¯”àıÿÿÿÿ
+]	java:S1257"<This block of commented-out lines of code should be removed.(ø¿¸Æùÿÿÿÿ8Óôîé1
+V	java:S125a"<This block of commented-out lines of code should be removed.(ñ•¿ıÿÿÿÿ
+V
+java:S11442";Remove this unused private "longestUniqueSubstring" method.(×ëÚùÿÿÿÿ
