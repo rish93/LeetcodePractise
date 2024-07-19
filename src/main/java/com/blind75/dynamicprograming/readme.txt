@@ -16,5 +16,5 @@ The Cormen Algorithms book has a great chapter about dynamic programming.
  https://books.google.co.in/books?id=NLngYyWFl_YC&dq=cormen+algorithms&printsec=frontcover&source=bn&hl=en&ei=K2xKSrCbGIbyMYqO_LMC&sa=X&oi=book_result&ct=result&redir_esc=y#v=onepage&q=cormen%20algorithms&f=false
 
 
-
+https://sites.radford.edu/~nokie/classes/360/
 
