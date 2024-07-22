@@ -18,14 +18,84 @@ public class DeltaAirlines {
         //grp2 {3,17,12, }
         int k =3;
         int n=8;
+        int arr1[] = {3,6,12,4,5,1,7,17,42,8,59,100,2};
         System.out.println(findMaxGroupFromMagnets(n, k, arr));
         System.out.println(findMaxAllGroupFromMagnets(n, k, arr));
+
+
+        System.out.println("Answer for max group of magnet subset: "+Arrays.toString(arr)+" => "+findMaxFromMagnetsDPApproach(n, k, arr));
+
+        //wrong answer expected 6, found 7
+        System.out.println("Answer for max group of magnet subset: "+Arrays.toString(arr1)+" => "+findMaxFromMagnetsDPApproach(arr1.length, k, arr1));
 
             //find max probability of winning match for player /*see line 103*/
             int scoreArr[][] =  new int[][]{{1,0,1,1},{2,0,2,1},{0,0,0,2}, {0,0,0,0}};
             int result []= findMaxProbability(scoreArr);
             System.out.println(Arrays.toString(result));
         }
+
+         private static int findMaxFromMagnetsDPApproach(int arrSize, int magnetDiff, int[] magnetArr) {
+                  // int arr[] = {3,6,12,4,5,1,7,17};
+                  // magnetDiff 3
+                  // createDiff array
+
+
+                  int dp[][] = new int[arrSize+1][magnetDiff+1];
+                  //since for 0 diff, for all intensity diff value will be 0
+                  // and for 0 intensity for all diff  , diff will be 0
+                  //marking all 0 row and alll 0 columns as 0
+                  for(int row=0;row<dp.length;row++) {
+                    for(int column=0;column<dp[0].length;column++) {
+                        if(row==0 || column==0){
+                            dp[row][column] = 0;
+                        }
+                    }
+                 }
+              //  print2Dmatrix(dp);
+
+             int [] diffArray= new int [magnetDiff+1];
+             int count=0;
+             for(int i=0;i<diffArray.length;i++){
+                 diffArray[i] = count++;
+             }
+             System.out.println("diff array for  "+magnetDiff+" "+Arrays.toString(diffArray));
+             for(int row=1;row<dp.length;row++) {
+                 for(int column=1;column<dp[row].length;column++) {
+                     if(magnetArr[row-1] - diffArray[column]>column) {
+                         dp[row][column] = magnetArr[row-1];
+                     } else {
+                         dp[row][column] = -1;
+                     }
+                 }
+             }
+             print2Dmatrix(dp);
+
+                int result= 0;
+                for(int row=1;row<dp.length;row++) {
+                 //for(int column=diffArray.length-1;column<=dp[row].length;column++) {
+
+                     if(dp[row][diffArray.length-1]>0 ){
+                         result++;
+                     }
+
+                // }
+             }
+
+
+                 return result;
+         }
+
+
+         private static void print2Dmatrix(int[][]dp){
+             for(int row=0;row<dp.length;row++){
+                 for(int column=0;column<dp[row].length;column++) {
+                      System.out.print(dp[row][column]+", ");
+                 }
+
+                 System.out.println();
+             }
+         }
+
 
     private static int[] findMaxProbability(int[][] scoreArr) {
         int result[]= new int[scoreArr.length];
@@ -47,11 +117,16 @@ public class DeltaAirlines {
     }
 
     private static int findMaxAllGroupFromMagnets(int totalN, int diffK, int[] arr) {
+        //not all test case  will be passed
         int count=0;
+        int start=0;
         Arrays.sort(arr);
         Map<Integer, List<Integer>> map= new HashMap<>();
         for(int i=1;i<arr.length;i++ ){
-            if(Math.abs(arr[i-1]-arr[i])>diffK) {
+            if(Math.abs(arr[i]-arr[start])>diffK) {
+
+                    count++;
+                    start = i;
 
 
             }
@@ -63,8 +138,8 @@ public class DeltaAirlines {
     }
 
     public static int findMaxGroupFromMagnets(int totalN, int diffK, int []arr){
-
-       // Arrays.sort( arr);  // this line is updated.
+            //not all test case  will be passed
+//        Arrays.sort( arr);  // this line is updated.
         int start = 0;
         if(arr.length == 0) return 0;
         // If arr has some value then at least can form 1 group
