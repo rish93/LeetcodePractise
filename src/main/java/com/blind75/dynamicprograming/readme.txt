@@ -1,5 +1,3 @@
-
-
 Dynamic programming is when you use past knowledge to make solving a future problem easier.
 
 A good example is solving the Fibonacci sequence for n=1,000,002.
@@ -17,4 +15,33 @@ The Cormen Algorithms book has a great chapter about dynamic programming.
 
 
 https://sites.radford.edu/~nokie/classes/360/
+
+=======
+https://www.youtube.com/watch?v=nqowUJzG-iM&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go
+
+DP go through playlist youtube.
+
+Anuj video for DB top down approcach DP.
+https://youtu.be/y6kpGJBI7t0?si=GNjJKUc61ByAwgMw
+
+explaination
+---https://leetcode.com/discuss/study-guide/1152328/01-Knapsack-Problem-and-Dynamic-Programming
+
+
+- The DP video from Coderbyte on YouTube.
+ This was the most helpful one for me, personally.
+
+ Alvin did an amazing job on explaining the common DP problems
+ through live coding and tons of animated illustrations. This was also suggested by a few ppl in the comments.
+
+- Grinding leetcode using this list
+https://leetcode.com/discuss/study-guide/662866/DP-for-Beginners-Problems-or-Patterns-or-Sample-Solutions,
+thanks to Lost_Extrovert for sharing this. It was really helpful for me
+ to build up my confidence by solving the problems on the list one after another
+ (I didn't finish them all before I got my offer, but I learned a lot from the practice).
+ There are some other lists which I think quite useful too:
+
+* https://designgurus.org/course/grokking-dynamic-programming by branden947
+
+* https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns by Revolutionary_Soup15
 
