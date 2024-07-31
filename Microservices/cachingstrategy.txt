@@ -1,1 +1,93 @@
 https://www.youtube.com/watch?v=2zIFUqTx_TU
+
+
+Cache aside:
+
+Application talks to both cache and DB.
+* Application get from cache
+* If not found it is cache miss
+* the Application get from DB and update in cache
+{1.Read strategy, 2. Lazy loading 3. Widely used in Memcached and redis}
+
+{benefit: Resilient to cache failure and fallback to DB
+Works best for read heavy workloads
+Cahce and DB schema can differ }
+{drawbacks: cahce can become inconsistent to dbif directly writte to db
+Appilcation can serve stale data}
+
+
+Read Through:
+
+Application read from cache which read from DB on miss.
+
+*Application get daata from cache
+*on cahce miss, get data from DB
+*update data to cache
+*Return response
+{1.Read strategy, 2. Lazy loading 3. Cache is in line with DB}
+
+{benefit:
+Works best for read heavy workload.when same data is requested many times
+DB can be abstracted
+}
+{drawbacks: First attempt is always cache miss
+Cache and DB schema has to be same
+Cache can become inconsistent with DB when application
+writes Directly to DB.
+Application can serve stale data.
+}
+
+
+Write through:
+
+Application writes to cache, which writes to DB every time.
+*Write strategy
+*Cache  updates the main DB
+
+{Benefits:
+cache is always consistent with DB after write completes
+Works best when write is less
+Helps  in data recovery
+}
+
+{Drawback: can add additinnal latency in write }
+
+
+Write back:
+
+Data always written to cache, but DB is updated occasionally
+
+*write strategy
+*widely used i most RDB
+
+{Benefits:
+Resilient to DB failures
+Works best for write heavy workloads
+Write latency is reduced.
+}
+
+{Drawback: in cache failure, there can eb ermanent data loss }
+
+
+Write around:
+
+data is written only to DB, and read only from cache
+
+Application write to DB
+DB get data from cache
+And cahce get frim DB
+
+Write startgy
+
+write stratgy
+
+
+
+{Benefits:
+Good for usecases when data is not read immediately after write
+
+}
+
+{Drawback:Application can possibly serve stale data
+ Read latency might be higher}
+

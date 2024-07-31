@@ -3,7 +3,8 @@ package com.javatopics.oops;
 
 /* *
 * *  Talking about Multiple inheritance is when a child class is inherits the
-* *  properties from more than one parents and the methods for the parents are same (Method name and parameters are exactly the same) then child gets
+* *  properties from more than one parents and the methods for the parents are same
+* *  (Method name and parameters are exactly the same) then child gets
 * *  confused about which method will be called. This problem in Java is called the Diamond problem.
 * * */
 
@@ -23,12 +24,12 @@ class Parent2 {
 
 // Inherting the Properties from
 // Both the classes
-class DiamondProblem /*extends Parent1, Parent2 this is not allowed in java*/{
+class DiamondProblem extends Parent1/*extends Parent1, Parent2 this is not allowed in java*/{
     // main function
     public static void main(String[] args)
     {
         DiamondProblem t = new DiamondProblem();
-        //t.fun();
+        t.fun();
     }
 }
 

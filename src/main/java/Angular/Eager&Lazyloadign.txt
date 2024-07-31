@@ -1,0 +1,57 @@
+Two Types of Loading in Angular
+Authors
+Name
+Twitter
+In Angular, there are primarily two types of loading: eager loading and lazy loading. These loading strategies determine how and when modules are loaded in your application. Let’s explore both types with examples:
+
+1. Eager Loading:
+
+Eager loading is the default loading strategy in Angular. In this approach, all modules are loaded when the application starts, regardless of whether they are immediately needed or not. This can lead to larger initial bundle sizes, which may impact the application’s loading time.
+
+Example:
+
+Suppose you have an Angular application with two feature modules: DashboardModule and ProfileModule Modules. All these modules are eagerly loaded by default.
+
+const routes: Routes = [
+  {
+    path: "",
+    component: DashboardModule,
+  },
+  {
+    path: "favourite/:id",
+    component: ProfileModule,
+  },
+];
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
+In this example, all modules (DashboardModuleand ProfileModule) are loaded eagerly when the application starts.
+
+2. Lazy Loading:
+
+Lazy loading is a technique where modules are loaded on-demand, as and when they are needed. This can significantly reduce the initial bundle size and improve the application’s loading speed, especially for large applications.
+
+Example:
+
+Suppose you have an Angular application where the AdminModule is loaded lazily when the user navigates to the /admin route.
+
+// app-routing.module.ts
+const routes: Routes = [
+  { path: "dashboard", component: DashboardModule },
+  { path: "profile", component: ProfileModule },
+  {
+    path: "admin",
+    loadChildren: () =>
+      import("./admin/admin.module").then((m) => m.AdminModule),
+  },
+  // Other routes...
+];
+In this case, the AdminModule is only loaded when the user navigates to the /admin route. This is an example of lazy loading.
+
+Lazy loading is accomplished by using the loadChildren property in the route configuration. The import statement inside loadChildren tells Angular to load the module on-demand when the associated route is accessed.
+
+Using lazy loading is a best practice for large applications because it reduces the initial load time and allows you to split your application into smaller, more manageable pieces.
+
+In summary, Angular offers two main loading strategies: eager loading and lazy loading. Eager loading loads all modules at startup, while lazy loading loads modules on-demand when their associated routes are accessed. Lazy loading is often preferred for larger applications to improve performance, while eager loading is suitable for smaller applications where loading all modules at once doesn’t significantly impact performance.

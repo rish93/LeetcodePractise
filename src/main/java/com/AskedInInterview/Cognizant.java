@@ -11,17 +11,48 @@ import java.util.stream.Collectors;
 public class Cognizant {
 
     public static void main(String[] args) {
-        //how jwt token is signed
+        //how jwt token is signed::
+       // https://dev.to/kimmaida/signing-and-validating-json-web-tokens-jwt-for-everyone-25fb
+       // https://dev.to/kimmaida/signing-and-validating-json-web-tokens-jwt-for-everyone-25fb
+
         //how authentication is done in jwt
 
-        //@componentn in place of @repository@service
+        //@componentn in place of @repository
+        // @service
+        //*Readable
+        //*Upgrade specific to component will be within each annotation
+        //* Log intenral are segregated and easily maintained else difficult to find
+
+
         //@lazy/eacger loafding in angular
+        /*
+        Module loaded with application, or loadind lazily related to specific page like with children
+        * */
+
             //what is cyclomatic :  https://www.geeksforgeeks.org/cyclomatic-complexity/
 
         //fucntional interface vs normal interface
         //how to create
+/*
+ Functional interface which has only one abstract method can be referenced in
+        lambda funcitons
+        eg2.
+        public interface MyFunctionalInterface {
+            public void execute();
+        }
+
+
+        MyFunctionalInterface interfaceTest = () -> {
+            System.out.println("Executing...");
+        }
+ */
+
 
         //@componentscan, @enableautoconfiguraton @configuration usage
+//The @EnableAutoConfiguration annotation enables Spring Boot to
+// auto-configure the application context. Therefore, it automatically
+// creates and registers beans based on both the included jar files
+// in the classpath and the beans defined by us
 
         /*
         * class employee{

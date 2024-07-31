@@ -37,4 +37,5 @@ interface ITR
 {
 //    int getItr(int yearlyDebit, int yearlyCredit); (Multiple non-overriding abstract methods found in interface com.corejava.ITR)
     int submitItr(int yearlyDebit, int yearlyCredit);
+
 }

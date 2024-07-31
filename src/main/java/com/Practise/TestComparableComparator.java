@@ -3,6 +3,19 @@ package com.Practise;
 import java.lang.reflect.Array;
 import java.util.*;
 
+/*64
+
+Use Comparable:
+
+if the object is in your control.
+if the comparing behaviour is the main comparing behaviour.
+Use Comparator :
+
+if the object is outside your control and you cannot make them implement Comparable.
+when you want comparing behaviour different from the default (which is specified by Comparable) behaviour.
+*/
+
+
 /*
  A  object is capable of comparing
  itself with another object. The class itself must

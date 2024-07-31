@@ -22,7 +22,8 @@ what is @Qualifier
       the framework will throw NoUniqueBeanDefinitionException
 
     If we try to load FooService into our context, the Spring framework will throw a NoUniqueBeanDefinitionException
-    The @Qualifier is used to resolve ambiguous dependencies i.e, it helps @Autowired annotations to choose one of the dependency.
+    The @Qualifier is used to resolve ambiguous dependencies i.e,
+    it helps @Autowired annotations to choose one of the dependency.
     If there are multiple implementations for single interface then we can use @Qualifier to choose required implementation at runtime.
         @Component("fooFormatter")
         public class FooFormatter implements Formatter {
@@ -193,7 +194,25 @@ FROM Catalog AS c2             -- from catalog
 WHERE c2.pid = c1.pid
 HAVING COUNT(c2.sid) >= 2)
 
+HAVING: is used to check conditions after the aggregation takes place.
+WHERE: is used to check conditions before the aggregation takes place.
 
+This code:
+
+select City, CNT=Count(1)
+From Address
+Where State = 'MA'
+Group By City
+Gives you a table of all cities in MA and the number of addresses in each city.
+
+This code:
+
+select City, CNT=Count(1)
+From Address
+Where State = 'MA'
+Group By City
+Having Count(1)>5
+Gives you a table of cities in MA with more than 5 addresses and the number of addresses in each city.
 ------------------------------------------------------------------
 Nth highest salary
 
@@ -481,6 +500,77 @@ A: Using hashCode to locate the corresponding bucket [inside buckets container m
 
 
 Write the code for a problem and write as many unit test cases as possible.
+        /*
+        // Java Program to Illustrate TodoServiceImplMockTest File
+
+        import static org.junit.Assert.assertEquals;
+        import static org.mockito.Mockito.when;
+
+        // Importing required classes
+        import java.util.Arrays;
+        import java.util.List;
+        import org.junit.Before;
+        import org.junit.Test;
+        import org.junit.runner.RunWith;
+        import org.mockito.Mock;
+        import org.mockito.runners.MockitoJUnitRunner;
+
+        // MockitoJUnitRunner gives automatic validation
+        // of framework usage, as well as an automatic initMocks()
+        @RunWith(MockitoJUnitRunner.class)
+
+        // Main class
+        public class TodoServiceImplMockTest {
+
+        	TodoServiceImpl todoBusiness;
+
+        	// The Mockito.mock() method allows us to
+        	// create a mock object of a class or an interface
+        	@Mock TodoService todoServiceMock;
+
+        	// Methods annotated with the @Before
+        	// annotation are run before each test
+        	@Before public void setUp()
+        	{
+        		todoBusiness = new TodoServiceImpl(todoServiceMock);
+        	}
+
+        	// @Test
+        	// Tells the JUnit that the public void method
+        	// in which it is used can run as a test case
+        	@Test
+        	public void testRetrieveTodosRelatedToSpring_usingMock()
+        	{
+        		List<String> todos
+        			= Arrays.asList("Learn Spring", "Learn Java",
+        							"Learn Spring Boot");
+        		when(todoServiceMock.retrieveTodos("User"))
+        			.thenReturn(todos);
+
+        		List<String> filteredTodos
+        			= todoBusiness.retrieveTodosRelatedToJava(
+        				"User");
+        		assertEquals(1, filteredTodos.size());
+        	}
+
+        	@Test
+        	public void
+        	testRetrieveTodosRelatedToSpring_withEmptyList_usingMock()
+        	{
+        		List<String> todos = Arrays.asList();
+        		when(todoServiceMock.retrieveTodos("Dummy"))
+        			.thenReturn(todos);
+
+        		List<String> filteredTodos
+        			= todoBusiness.retrieveTodosRelatedToJava(
+        				"Dummy");
+        		assertEquals(0, filteredTodos.size());
+        	}
+        }
+
+
+        */
+
 
 Programming question - Given an array of number from 1...N (No duplicates)out of which one number is missing. Find the missing number in O(N).
 
@@ -835,6 +925,11 @@ Parallel Stream
   parallelized, but at least some parts should be parallelized which handles the stream. The order of execution is not under our control
   and can give us unpredictably unordered results and like any other parallel programming, they are complex and error-prone.
 
+
+https://darwingoyal.medium.com/stream-vs-parallelstream-in-java-8-36619737f7b3
+Reason for this is that behind the scenes in parallelStream 6 threads are working on the data in parallel and hence reducing the time of operation by around 6 times.
+
+
  public static void main(String[] args)
     {
         // create a list
@@ -1044,6 +1139,9 @@ What happens if you remove static modifier from the main method?
     Program throws "NoSuchMethodError" error at runtime .
 
 What is the scope of variables in Java in following cases?
+https://medium.com/@miguelangelperezdiaz444/understanding-bean-scopes-in-spring-which-one-is-best-for-your-application-3ff404e44b76
+
+
 What is “this” keyword in java?
     https://www.geeksforgeeks.org/this-reference-in-java/
 What is an abstract class? How abstract classes are similar or different in Java from C++?
@@ -1332,7 +1430,7 @@ An overloaded method may or may not have different return types. But return type
 
 *************************************************************
 Is REST secure? What can you do to secure it?
-
+https://www.descope.com/learn/post/jwt#
 
 can you have REST api in protocols other then Http?
 
@@ -2477,9 +2575,16 @@ No Modifier is package private. check doc
 I can ensure these points only if you have properly implemented the hashCode-Contract and evaluated the hashCode using the fields used to determine the equality:
 
 1. When you try to put <key,object> pair in a hashmap, a hashCode is generated corresponding to the key.
-2. If that hashCode has not been already generated for some previous key of any <key,object> pair, a new <Key,object> pair is added to the hashmap.
-3. If the hashCode code has been already generated, then hashCode() method internally calls the equals() method to check whether this new object is identical with the old object that is already in the map(with same key).
---> If equals() returns true: then the new object overwrites the previous object in the hashmap.(i.e. no change in hashMap size)
+2. If that hashCode has not been already generated for some previous key of any <key,object> pair,
+ a new <Key,object> pair is added to the hashmap.
+3. If the hashCode code has been already generated, then hashCode()
+ method internally calls the equals() method to check whether this
+ new object is identical with the old object that is already in the map(with same key).
+--> If equals() returns true: then the new object overwrites the previous object
+ in the hashmap.(i.e. no change in hashMap size)
 --> If equals() returns false: then a new object will be added to hashmap with the same key(i.e. size of hashmap will increase by one)
 
 I think this is how <key,object> pairs are put into a hashMap.
+
+
+https://dev.to/kcdchennai/how-jwt-json-web-token-authentication-works-21e7

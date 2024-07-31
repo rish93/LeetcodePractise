@@ -136,13 +136,22 @@ read request is not performed until it comes back to sync
 
 
 
+When a subscriber is running - Does it specify its group id so that it can be part of a cluster of consumers of the same topic or several topics that this group of consumers is interested in?
+
+Yes, consumers join (or create if they're alone) a consumer group to share load.
+No two consumers in the same group will ever receive the same message.
 
 
 
+ Are the partitions created by the broker, therefore not a concern for the consumers?
 
+They're not, but you can see from 3 that it's totally useless to have more consumers than existing partitions,
+so it's your maximum parallelism level for consuming.
 
+Since this is a queue with an offset for each partition,
+is it responsibility of the consumer to specify which messages it wants to read? Does it need to save its state?
 
-
+Yes, consumers save an offset per topic per partition. This is totally handled by Kafka, no worries about it.
 
 Q. Apache Kafka and Amazon SQS are both used for message streaming but are not the same.
 
@@ -183,3 +192,33 @@ Note that messages sent to an Amazon SNS topic are immediately sent to subscribe
 wish to receive a message in real-time, it is possible to subscribe an Amazon SQS queue to an Amazon
 SNS topic. This way, the messages will be queued for later retrieval. The queue would work
 independently to other subscribers on the topic.
+
+The group ID is very important to how different consumers "load balance" partitions. For example, if you have a topic with 10 partitions then two consumers with the same groupId will read from 5 partitions each.
+
+If you have two consumers with different group ids, both consumers will read from 10 partitions.
+
+In this sense, the groupId is how you define a "consumer group" or group of consumers reading from a given topic/partitions.
+
+If a topic has 3 partitions and you have 2 consumers operating within the same consumer group, one of the consumers will read from 2 partitions and the other will read from 1.
+
+If a topic has 4 partitions and you have 2 consumers operating within the same group then both consumers will read from 2 partitions.
+
+If a topic has 1 partition and you have 2 consumers then 1 consumer reads from 1 partition and the other just sits there...
+
+
+
+What happens when a message is deleted from the queue? - For example: The retention was for 3 hours, then the time passes, how is the offset being handled on both sides?
+
+If a consumer ever request an offset not available for a partition on the brokers (for example, due to deletion), it enters an error mode, and ultimately reset itself for this partition to either the most recent or the oldest message available (depending on the auto.offset.reset configuration value), and continue working.
+
+
+
+Kafka is pull baed model:
+
+Scalability was the major driving factor when we design such systems (pull vs push). Kafka is very scalable. One of the key benefits of Kafka is that it is very easy to add large number of consumers without affecting performance and without down time.
+
+Kafka can handle events at 100k+ per second rate coming from producers. Because Kafka consumers pull data from the topic, different consumers can consume the messages at different pace. Kafka also supports different consumption models. You can have one consumer processing the messages at real-time and another consumer processing the messages in batch mode.
+
+The other reason could be that Kafka was designed not only for single consumers like Hadoop. Different consumers can have diverse needs and capabilities.
+
+Pull-based systems have some deficiencies like resources wasting due to polling regularly. Kafka supports a 'long polling' waiting mode until real data comes through to alleviate this drawback.

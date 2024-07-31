@@ -17,11 +17,13 @@ public class MapInterviewExperiment {
         map.put(e2, "CANADA");
         map.put(e3, "AUS");
         map.put(e4, "USA");
-        if(map.containsKey("shiv"))
+        System.out.println( e2.hashCode());
+
+//        if(map.containsKey("shiv"))
 
         e2 = new Employee("rahim", 25, "pune");
         map.put(e2, "BNG");
-        System.out.println(e.hashCode() + "" + e1.hashCode() + "" + e2.hashCode());
+        System.out.println(e.hashCode() + "  " + e1.hashCode() + "  " + e2.hashCode());
         System.out.println(map.get(e2));
         System.out.println(String.valueOf(map.size()));
 
