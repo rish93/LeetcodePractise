@@ -15,10 +15,10 @@ public class DeltaAirlines {
 
         List ls= List.of(1,2,3,45,5);
 
-        System.out.println(ls.stream().sorted(Comparator.comparing(value -> value>0)).collect(Collectors.toList()));
+       // System.out.println(ls.stream().sorted(Comparator.comparing(value -> value>0)).collect(Collectors.toList()));
 
 
-
+        //System.out.println(ls.stream().sorted(Comparator.comparing(value -> value>0)).collect(Collectors.toList()));
 
 
 
@@ -406,6 +406,7 @@ Implementing an interface puts compulsion on the class that it must override its
     *   30July Delta
     *
     * How to handle our service is only down while payment
+    *https://stackoverflow.com/questions/51320236/handle-payment-response-if-server-crashes
     *
     * Does MOngo handle transaction,
     * if while updating documents, interralted document one by one one of the
@@ -422,7 +423,10 @@ Implementing an interface puts compulsion on the class that it must override its
         } catch(Exception e){
           System.out.println("exception "+ e);
         }
-
+https://nikhilsukhani.medium.com/transactional-annotation-in-spring-boot-ae76307fcd26
+* If you catch it @Transactional will not work. Because @Transactional generates a proxy which catches exceptions from the annotated method and the performs a rollback. If no exception is thrown by the annotated method no rollback will happen.
+*https://www.reddit.com/r/SpringBoot/comments/16gubkp/if_transactional_throws_an_exception_can_this_try/
+*
     *
     * public class MyClass {
   public static void main(String args[]) {

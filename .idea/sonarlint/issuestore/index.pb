@@ -11,3 +11,7 @@ k
 ;src/main/java/com/Practise/GeInterviewQuestionPractise.java,4\d\4d5bc95d72ff01d4c11ac98ba5d129fe2e98f099
 Q
 !src/main/SQL/NthHighestSalary.sql,c\c\cc0a305dca6b38e8c1a6d80066389f073ea98eb2
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+f
+6src/main/java/com/blind75/dynamicprograming/readme.txt,c\e\cebfd5d142b2cda23f97ef3fca8102ec90bd6ae9
