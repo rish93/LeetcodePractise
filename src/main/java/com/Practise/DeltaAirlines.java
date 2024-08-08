@@ -5,10 +5,42 @@ import org.apache.logging.log4j.util.PropertySource;
 import java.util.*;
 import java.util.stream.Collectors;
 
+class LinkedListNode {
+    int val;
+    LinkedListNode next;
+    LinkedListNode(int val) {
+        this.val = val;
+    }
+
+    LinkedListNode(int val, LinkedListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+}
+
+
 public class DeltaAirlines {
 
     public static void main(String[] args) {
+       LinkedListNode elem4 = new LinkedListNode(-4);
+        LinkedListNode elem3 = new LinkedListNode(0, elem4);
+        LinkedListNode elem2 = new LinkedListNode(2, elem3);
+        LinkedListNode elem1 = new LinkedListNode(3, elem2);
+        elem4.next = null;
 
+      /*  while (elem1.next!=null)
+        {
+            System.out.println(elem1.val);
+            elem1 = elem1.next;
+        }*/
+       LinkedListNode head=removeFromLastNNode(elem1, 3);
+
+       while(head!=null){
+           System.out.print(head.val+" ,");
+           head= head.next;
+       }
+
+        //3, > 2 > 0 > -4
 
 
 
@@ -430,31 +462,6 @@ https://nikhilsukhani.medium.com/transactional-annotation-in-spring-boot-ae76307
     *
     * public class MyClass {
   public static void main(String args[]) {
-        Input: head = [1,2,3,4,5],
-        n = 2
-        Output: [1,2,3,5]
-
-       // 5 fast pointer
-       // 5-2
-
-        // Node fast=head.next.next;
-
-         Node slow=head.next;
-        int i=0;
-        while( i<n ){
-
-            fast = fast.next;
-
-        }
-
-         while( fast.next!=null ){
-
-            slow = slow.next;
-
-           fast= fast.next
-        }
-
-        slow.prev = fast;
 
 
         //List ls= List.of(1,2,3,45,5);
@@ -474,4 +481,52 @@ https://nikhilsukhani.medium.com/transactional-annotation-in-spring-boot-ae76307
   * https://www.programiz.com/sql/online-compiler/
 
      */
+
+
+    private static LinkedListNode removeFromLastNNode(LinkedListNode head, int n){
+
+        LinkedListNode fast=head;
+        LinkedListNode slow=head;
+        int i=0;
+        while(i<n){
+            fast = fast.next;
+            i++;
+        }
+        //3,2,0,-4
+        while(fast.next!=null) {
+            slow = slow.next;
+
+            fast=fast.next;
+        }
+        slow.next=slow.next.next;
+        return head;
+
+
+           /* Input: head = [1,2,3,4,5],
+        n = 2
+        Output: [1,2,3,5]
+
+        // 5 fast pointer
+        // 5-2
+
+        // Node fast=head.next.next;
+
+        Node slow=head.next;
+        int i=0;
+        while( i<n ){
+
+            fast = fast.next;
+
+        }
+
+        while( fast.next!=null ){
+
+            slow = slow.next;
+
+            fast= fast.next
+        }
+
+        slow.prev = fast;
+        */
+    }
 }
