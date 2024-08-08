@@ -3,7 +3,7 @@ package com.corejava;
 public class StaticNonStaticBehavior {
     static int i;
     int j;
-
+    //https://stackoverflow.com/questions/10594052/overriding-vs-hiding-java-confused
     public static void main(String[] args) {
         StaticNonStaticBehavior p = new StaticNonStaticBehavior();
         StaticNonStaticBehavior p1 = new StaticNonStaticBehavior();
