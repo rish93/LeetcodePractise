@@ -8,12 +8,16 @@ import java.util.stream.Collectors;
 public class DeltaAirlines {
 
     public static void main(String[] args) {
+        Stack s= new Stack();  //class
+        Queue q= new LinkedList(); //interface queue
+        /*
 
+          Well, one reason is that there are variants of Queues that it is convenient to be able to swap in, like PriorityQueues. They fulfill the same interface but behave differently. I don't think there is anything like that for Stacks, or at least it isn't used nearly as often.
+          You would not be able to simulate a Priority Queue using just an ArrayList.
+          Additionally, regarding your second question, you should probably use a stack or queue when that is what you're using semantically. That is, if you are doing something like graph traversal, it helps to be very explicit about the sort of data structure you're using.
+*/
 
-
-
-
-        List ls= List.of(1,2,3,45,5);
+        List<Integer> ls= List.of(1,2,3,45,5);
 
        // System.out.println(ls.stream().sorted(Comparator.comparing(value -> value>0)).collect(Collectors.toList()));
 
