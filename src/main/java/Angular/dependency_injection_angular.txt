@@ -1,0 +1,12 @@
+Using inject method/Constructor
+
+@Component({
+   //...
+})
+export class AppComponent {
+  service = inject(RootService);
+// constructor(private service: RootService) {}
+}
+
+
+https://medium.com/ngconf/how-angular-dependency-injection-works-under-the-hood-cc210f7040bd

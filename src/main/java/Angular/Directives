@@ -1,0 +1,40 @@
+Basically there are three types of directives in Angular2 according to documentation.
+
+Component
+Structural directives
+Attribute directives
+Component
+
+It is also a type of directive with template,styles and logic part which is most famous type of directive among all in Angular2. In this type of directive you can use other directives whether it is custom or builtin in the @Component annotation like following:
+
+@Component({
+    selector: "my-app"
+    directives: [custom_directive_here]
+})
+Use this directive in your view as:
+
+<my-app></my-app>
+For the component directive i have found best tutorial here.
+
+Structural directives
+
+Like *ngFor and *ngIf, used to change the DOM layout by adding and removing DOM elements. explained here
+
+Attribute directives
+
+They are used to give custom behavior or style to the existing elements by applying some functions/logic. Like ngStyle is an attribute directive to give style dynamically to the elements. We can create our own directive and use this as attribute of some predefined or custom elements, here is the example of a simple directive:
+
+Firstly we have to import directive from @angular/core
+
+import {Directive, ElementRef, Renderer, Input} from '@angular/core';
+
+@Directive({
+  selector: '[Icheck]',
+})
+export class RadioCheckbox {
+   // custom logic here...
+}
+We can use this in the view as shown below:
+
+<span Icheck>HEllo Directive</span>
+For more info you can read the official tutorial here and here
