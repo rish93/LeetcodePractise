@@ -1,6 +1,10 @@
 package com.Practise;
 
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 /*
  Q1. A company 'Vivacious System' is attacked by virus, the system has N running application,
  each having a unique Id 0 to N-1 . John a Software Engineer . is given responsibilty to tackle this situation.
@@ -36,6 +40,16 @@ package com.Practise;
 public class OpenText {
 
     public static void main(String[] args) {
+
+        //find second highest element
+        List<Integer> numberList = new ArrayList<>();
+        numberList.add(3);
+        numberList.add(11);
+        numberList.add(2);
+        numberList.add(18);
+        numberList.add(5);
+
+        System.out.println(numberList.stream().sorted(Comparator.reverseOrder()).findFirst().get());
 
     }
 }

@@ -21,3 +21,14 @@ Impure pipes can be useful in some cases, such as when you need to perform a hea
 However, it’s generally recommended to use pure pipes whenever possible to improve performance and prevent unnecessary change detection cycles.
 
 
+
+
+
+1) Pipes in Angular: A pipe takes in data as input and transforms it to the desired output
+https://angular.io/guide/pipes
+
+2) pipe() function in RxJS: You can use pipes to link operators together.
+Pipes let you combine multiple functions into a single function.
+
+The pipe() function takes as its arguments the functions you want to combine, and returns a new function that, when executed, runs the composed functions in sequence.
+https://angular.io/guide/rx-library (search for pipes in this URL, you can find the same)

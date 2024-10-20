@@ -1,11 +1,17 @@
+Directives are classes that add additional behavior to elements in your Angular applications
+
+
 Basically there are three types of directives in Angular2 according to documentation.
 
 Component
-Structural directives
-Attribute directives
-Component
 
-It is also a type of directive with template,styles and logic part which is most famous type of directive among all in Angular2. In this type of directive you can use other directives whether it is custom or builtin in the @Component annotation like following:
+Component directives
+Attribute directives
+Structural directives
+
+It is also a type of directive with template,styles and logic part which is most famous type of directive among
+all in Angular2. In this type of directive you can use other directives whether it is custom or builtin in the
+ @Component annotation like following:
 
 @Component({
     selector: "my-app"
@@ -17,12 +23,15 @@ Use this directive in your view as:
 For the component directive i have found best tutorial here.
 
 Structural directives
-
+*ngSwitch
 Like *ngFor and *ngIf, used to change the DOM layout by adding and removing DOM elements. explained here
 
 Attribute directives
 
-They are used to give custom behavior or style to the existing elements by applying some functions/logic. Like ngStyle is an attribute directive to give style dynamically to the elements. We can create our own directive and use this as attribute of some predefined or custom elements, here is the example of a simple directive:
+They are used to give custom behavior or style to the existing elements by applying some functions/logic.
+Like ngStyle is an attribute directive to give style dynamically to the elements.
+ We can create our own directive and use this as attribute of some predefined or custom elements,
+ here is the example of a simple directive:
 
 Firstly we have to import directive from @angular/core
 

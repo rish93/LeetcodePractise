@@ -164,7 +164,7 @@ A. Apache Kafka follows the publish subscriber model, where the producer sends a
 
 Where Amazon SQS follows Queue and the queue can be created in any region of Amazon SQS.
 You can push messages to Queue and only one consumer can subscribe to each Queue and pull
- messages from the Queue. That's why SQS is pull-based streaming. SQS Queues are of two types: FIFO and Standard.
+ messages from the Queue. **That's why SQS is pull-based streaming**. SQS Queues are of two types: FIFO and Standard.
 
 There is another concept in AWS which is Amazon SNS, which is published subscriber-based like Kafka,
  but there is not any message retention policy in SNS. It's for instant messaging like email, SMS, etc.
@@ -193,7 +193,8 @@ wish to receive a message in real-time, it is possible to subscribe an Amazon SQ
 SNS topic. This way, the messages will be queued for later retrieval. The queue would work
 independently to other subscribers on the topic.
 
-The group ID is very important to how different consumers "load balance" partitions. For example, if you have a topic with 10 partitions then two consumers with the same groupId will read from 5 partitions each.
+The group ID is very important to how different consumers "load balance" partitions.
+ For example, if you have a topic with 10 partitions then two consumers with the same groupId will read from 5 partitions each.
 
 If you have two consumers with different group ids, both consumers will read from 10 partitions.
 

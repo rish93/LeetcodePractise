@@ -64,4 +64,51 @@ https://stackoverflow.com/questions/41588068/object-assign-override-nested-prope
 
 
 
+//Write Angular code to call web api and show the data in the ui
 
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ApiService {
+
+  const apiUrl = "https://api.coingecko.com/api/v3/simple/price?
+                        ids=bitcoin&vs_currencies=usd"
+
+  constructor(private http: HttpClient) { }
+
+  getApiRespons(): Observable()<any> {
+    return this.http.get(this.apiUrl);
+  }
+
+}
+app.component.ts
+
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from './app.srvice';
+
+@Component({
+  selector: 'my-app',
+  templateUrl: './app.component.html',
+  styleUrls: [ './app.component.css' ]
+})
+export class AppComponent implements OnInit {
+  public obj:any = {};
+  constructor(private apiService: ApiService) { }
+
+  ngOnInit() {
+   this.apiService.getApiRespons().pipe(take(1)).subscribe(
+     res => {
+       this.obj = res;
+     }
+   );
+  }
+}
+
+app.component.html
+
+<div class="container">
+  <p>{{ obj.bitcoin.usd }}</p>
+</div>
