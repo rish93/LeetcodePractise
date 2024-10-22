@@ -4,6 +4,38 @@ package com.Practise;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+/*
+* - Fail fast fail safe
+* - If put in map while iterating what will happen
+* - Design computer as a class, show is a relation, hash a relation
+* aggregation and association
+* - Multi htread one thread even, other odd
+* - Factory pattern , builder design, facade pattern
+* -Kill command for pod
+* - Synchronized keyword, advanc esingleton
+* -Design APi for employee scenario(Get ost put delte)
+* -interceptor usage in spring
+*  -THrottling
+* -Annotation
+* Thrad pool, future
+* How many request can wait if all thread occcupied
+* -hahs map internal
+* Array list, increase size on wjaht condition
+* Stream api all method
+* Get highest  number from list using string
+* Subject and student, get all subject with highest markss
+* in java
+* -Employee, doj, SQL write query to get oldest employee
+* per department
+*  -Kafka get duplicate msg with same group id , is it possible
+* Angular component design, what is observable, and promise
+* If application is down how to handle event.
+*
+*  If server down, what will happen to kafka msg
+*  */
+
+
+
 
 /*
  Q1. A company 'Vivacious System' is attacked by virus, the system has N running application,
