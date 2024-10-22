@@ -45,18 +45,43 @@ public class CoinChange {
         CoinChange coinChange = new CoinChange();
         int length = coins.length;
 
-        System.out.println(coinChange.coinChange(coins,amount,length));
+      //  System.out.println(coinChange.coinChange(coins,amount,length));
+
+        System.out.println(coinChange.coinChangeDp(coins,amount,length));
+
     }
+    public int coinChangeDp(int[] coins, int amount, int length) {
+        // DP array to store the minimum coins for each amount
+        int[] dp = new int[amount + 1];
+        // Initialize the DP array with a large value (amount + 1) as a placeholder for infinity
+        Arrays.fill(dp, amount + 1);
+        // Base case: to make amount 0, we need 0 coins
+        dp[0] = 0;
 
-
-    public int coinChange(int[] coins, int amount, int length) {
-        Arrays.sort(coins);
-        while((length-1)>=0){
-            if (amount -coins[length-1]> 0) {
-                coinChange(coins, amount , length);
-                result++;
+        // Iterate over each amount from 1 to the target amount
+        for (int i = 1; i <= amount; i++) {
+            // Try every coin denomination
+            for (int coin : coins) {
+                if (i - coin >= 0) {  // If it's possible to use this coin
+                    dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+                }
             }
         }
-        return result;
+
+        // If dp[amount] is still amount + 1, it means we couldn't make the amount
+        return dp[amount] > amount ? -1 : dp[amount];
+
     }
+
+
+//    public int coinChange(int[] coins, int amount, int length) {
+//        Arrays.sort(coins);
+//        while((length-1)>=0){
+//            if (amount -coins[length-1]> 0) {
+//                coinChange(coins, amount , length);
+//                result++;
+//            }
+//        }
+//        return result;
+//    }
 }

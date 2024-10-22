@@ -23,13 +23,30 @@ public class FunctionalInterfaceExample {
 
       // lambda expression to define the calculate method
       ITR s = (int x, int y)->x*x;
-
+      ITR s1 = (int x, int y)->x*x;
       // parameter passed and return type must be
       // same as defined in the prototype
       int ans = s.submitItr(a,3);
       System.out.println(ans);
   }
 }
+
+/*
+
+@FunctionalInterface
+interface Calculator {
+    int calculate(int a, int b);
+}
+
+* public class Main {
+    public static void main(String[] args) {
+        // Using Lambda Expression
+        Calculator additionCalculator = (a, b) -> a + b;
+        int result = additionCalculator.calculate(5, 3);
+        System.out.println("Modern Approach with Lambda: " + result);
+    }
+}
+*/
 
 
 @FunctionalInterface

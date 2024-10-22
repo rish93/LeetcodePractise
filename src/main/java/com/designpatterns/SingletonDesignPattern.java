@@ -37,7 +37,7 @@ public class SingletonDesignPattern {
     System.out.println(si);
 
    //advance sychronized
-    //why to make complete ethod synchronized
+    //why to make complete method synchronized
     //instead just block
     //block of write operation is made synchronized
     AdvanceSingletonSynchronized advanceSingletonSynchronized= AdvanceSingletonSynchronized.getInstance();
@@ -58,6 +58,7 @@ class SingletonEager{
   private static SingletonEager instance=new SingletonEager();
   private SingletonEager(){}
   public static SingletonEager getInstance(){
+
     return instance;
   }
 }

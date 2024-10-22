@@ -19,7 +19,10 @@ class Rishabh{
     Rishabh (){
         i++;
     }
-
+    /*
+    int i;
+    As instance variables are declared in a class, these
+    variables are created when an object of the class is created and destroyed when the object is destroyed.*/
     @Override
     public String toString(){
         return String.valueOf(i);

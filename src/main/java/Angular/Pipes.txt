@@ -1,0 +1,34 @@
+https://medium.com/@aqeelabbas3972/pipes-in-angular-6a871589299d
+
+
+Pipes in Angular are a feature that allow you to transform data in your application before displaying it to the user.
+Pipes are used to format, filter, and sort data and they can be used with both template-driven and reactive forms, as well as with other Angular components and services.
+
+
+
+2. Pure and Impure Pipes
+In Angular, pipes can be either pure or impure.
+Pure pipes are designed to be stateless, meaning that they don’t have any internal state that could affect their output.
+Instead, they take input data and return transformed output data. Pure pipes are also memoized, which means that if the input data hasn’t changed since the last time the pipe was called, the pipe won’t be executed again.
+The benefit of using pure pipes is that they can help improve the performance of your Angular application, since they only execute when necessary. Additionally, pure pipes can help prevent unnecessary change detection cycles, which can improve overall application performance.
+To create a pure pipe in Angular, you need to add the pure: true option to the @Pipe decorator, like this:
+@Pipe({
+  name: 'myPurePipe',
+  pure: true
+})
+
+Impure pipes can be useful in some cases, such as when you need to perform a heavy calculation or retrieve data from an external API.
+However, it’s generally recommended to use pure pipes whenever possible to improve performance and prevent unnecessary change detection cycles.
+
+
+
+
+
+1) Pipes in Angular: A pipe takes in data as input and transforms it to the desired output
+https://angular.io/guide/pipes
+
+2) pipe() function in RxJS: You can use pipes to link operators together.
+Pipes let you combine multiple functions into a single function.
+
+The pipe() function takes as its arguments the functions you want to combine, and returns a new function that, when executed, runs the composed functions in sequence.
+https://angular.io/guide/rx-library (search for pipes in this URL, you can find the same)

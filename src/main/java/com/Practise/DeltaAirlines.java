@@ -22,6 +22,9 @@ class LinkedListNode {
 public class DeltaAirlines {
 
     public static void main(String[] args) {
+        Stack s= new Stack();  //class
+        Queue q= new LinkedList(); //interface queue
+        /*
        LinkedListNode elem4 = new LinkedListNode(-4);
         LinkedListNode elem3 = new LinkedListNode(0, elem4);
         LinkedListNode elem2 = new LinkedListNode(2, elem3);
@@ -42,10 +45,12 @@ public class DeltaAirlines {
 
         //3, > 2 > 0 > -4
 
+          Well, one reason is that there are variants of Queues that it is convenient to be able to swap in, like PriorityQueues. They fulfill the same interface but behave differently. I don't think there is anything like that for Stacks, or at least it isn't used nearly as often.
+          You would not be able to simulate a Priority Queue using just an ArrayList.
+          Additionally, regarding your second question, you should probably use a stack or queue when that is what you're using semantically. That is, if you are doing something like graph traversal, it helps to be very explicit about the sort of data structure you're using.
+*/
 
-
-
-        List ls= List.of(1,2,3,45,5);
+        List<Integer> ls= List.of(1,2,3,45,5);
 
        // System.out.println(ls.stream().sorted(Comparator.comparing(value -> value>0)).collect(Collectors.toList()));
 
@@ -462,6 +467,31 @@ https://nikhilsukhani.medium.com/transactional-annotation-in-spring-boot-ae76307
     *
     * public class MyClass {
   public static void main(String args[]) {
+        Input: head = [1,2,3,4,5],
+        n = 2
+        Output: [1,2,3,5]
+
+       // 5 fast pointer
+       // 5-2
+
+        // Node fast=head.next.next;
+
+         Node slow=head.next;
+        int i=0;
+        while( i<n ){
+
+            fast = fast.next;
+
+        }
+
+         while( fast.next!=null ){
+
+            slow = slow.next;
+
+           fast= fast.next
+        }
+
+        slow.prev = fast;
 
 
         //List ls= List.of(1,2,3,45,5);
@@ -481,52 +511,4 @@ https://nikhilsukhani.medium.com/transactional-annotation-in-spring-boot-ae76307
   * https://www.programiz.com/sql/online-compiler/
 
      */
-
-
-    private static LinkedListNode removeFromLastNNode(LinkedListNode head, int n){
-
-        LinkedListNode fast=head;
-        LinkedListNode slow=head;
-        int i=0;
-        while(i<n){
-            fast = fast.next;
-            i++;
-        }
-        //3,2,0,-4
-        while(fast.next!=null) {
-            slow = slow.next;
-
-            fast=fast.next;
-        }
-        slow.next=slow.next.next;
-        return head;
-
-
-           /* Input: head = [1,2,3,4,5],
-        n = 2
-        Output: [1,2,3,5]
-
-        // 5 fast pointer
-        // 5-2
-
-        // Node fast=head.next.next;
-
-        Node slow=head.next;
-        int i=0;
-        while( i<n ){
-
-            fast = fast.next;
-
-        }
-
-        while( fast.next!=null ){
-
-            slow = slow.next;
-
-            fast= fast.next
-        }
-
-        slow.prev = fast;
-        */
-    }
 }

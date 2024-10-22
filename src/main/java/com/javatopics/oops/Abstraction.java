@@ -1,4 +1,25 @@
 package com.javatopics.oops;
+//*
+// An IS-A relationship is inheritance. The classes which inherit are known as sub classes or child classes. On the other hand, HAS-A relationship is composition.
+//
+//In OOP, IS-A relationship is completely inheritance. This means, that the child class is a type of parent class. For example, an apple is a fruit. So you will extend fruit to get apple.
+//
+//class Apple extends Fruit {
+//
+//}
+//On the other hand, composition means creating instances which have references to other objects. For example, a room has a table. So you will create a class room and then in that class create an instance of type table.
+//
+//class Room {
+//
+//    Table table = new Table();
+//
+//}
+//A HAS-A relationship is dynamic (run time) binding while inheritance is a static (compile time) binding.
+// If you just want to reuse the code and you know that the two are not of same kind use composition. For example, you cannot inherit an oven from a kitchen.
+// A kitchen HAS-A oven. When you feel there is a natural relationship like Apple is a Fruit use inheritance.
+// *//
+
+
 
 // provides security by hiding the internal implementation of a class
 // and only exposing the details necessary in the context.
@@ -22,7 +43,9 @@ Type of extraction
 
 2.1.1. Data Abstraction
 
->>>>>Data abstraction is the way to create complex data types from multiple smaller data types – which is more close to real-life entities. e.g., An Employee class can be a complex object that has various small associations.
+>>>>>Data abstraction is the way to create complex data types from multiple smaller
+ data types – which is more close to real-life entities. e.g.,
+ An Employee class can be a complex object that has various small associations.
 
 public class Employee
 {
@@ -36,7 +59,9 @@ So, if you want to fetch information about an employee, you ask from Employee ob
 
 2.1.2. Control Abstraction
 
->>>> Control abstraction is achieved by hiding the sequence of actions for a complex task – inside a simple method call- so the logic to perform the task can be hidden from the client and could be changed without impacting the client code.
+>>>> Control abstraction is achieved by hiding the sequence of actions for a complex task – inside a simple method call-
+so the logic to perform the task can be hidden from the client and could
+ be changed without impacting the client code.
 
 public class EmployeeManager
 {
