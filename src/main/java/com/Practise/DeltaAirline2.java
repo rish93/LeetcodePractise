@@ -2,7 +2,7 @@ package com.Practise;
 
 import java.util.*;
 
-public class TestMe {
+public class DeltaAirline2 {
     /* Given an array of strings strs, group the anagrams together.
       You can return the answer in any order.
 

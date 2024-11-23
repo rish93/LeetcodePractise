@@ -11,8 +11,18 @@ import java.util.stream.Collectors;
 public class Cognizant {
 
     public static void main(String[] args) {
+        //default and static method use in interface
+        ///fucntioanl interface ad inner class
+        ///get brean of same class, wiill get same or different bean
+        //ngonchange vs ngDoCheck
+        //*ngDoCheck() Detect and act upon changes that Angular can't or won't detect on its own. */
+        //construcor in componentn in angular
+        //pure impure pipes
+        //
+
+
         //how jwt token is signed::
-       // https://dev.to/kimmaida/signing-and-validating-json-web-tokens-jwt-for-everyone-25fb
+        // https://dev.to/kimmaida/signing-and-validating-json-web-tokens-jwt-for-everyone-25fb
        // https://dev.to/kimmaida/signing-and-validating-json-web-tokens-jwt-for-everyone-25fb
 
         //how authentication is done in jwt
