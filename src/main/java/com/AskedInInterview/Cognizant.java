@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public class Cognizant {
 
     public static void main(String[] args) {
+        //what is auth Gaurd
         //default and static method use in interface
         ///fucntioanl interface ad inner class
         ///get brean of same class, wiill get same or different bean
