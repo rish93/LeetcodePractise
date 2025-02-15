@@ -30,7 +30,7 @@ public class MaximumSumOfSubArray {
         System.out.println(containsMaximumSubArray(new int[]{-1})); //-1
         System.out.println(containsMaximumSubArray(new int[]{-2, -1})); //-1
         System.out.println(containsMaximumSubArray(new int[]{-2, 1})); //1
-
+        System.out.println("--------------------------------");
 
         System.out.println(kadaneAlgorithm(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4}));  //6
         System.out.println(kadaneAlgorithm(new int[]{1})); //1

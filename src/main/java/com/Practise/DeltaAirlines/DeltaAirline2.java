@@ -1,6 +1,7 @@
-package com.Practise;
+package com.Practise.DeltaAirlines;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class DeltaAirline2 {
     /* Given an array of strings strs, group the anagrams together.
@@ -44,9 +45,29 @@ public class DeltaAirline2 {
 
     System.out.println( processAnagramAscii());
 
-
+            System.out.println(groupAnagram(strArr));
 
     }
+
+    private static List<List<String>> groupAnagram(String[] strArr){
+        List<List<String>> result= new ArrayList<>();
+        List<String> tempResult=new ArrayList<>();
+        Map<Integer,List<String>> map=new HashMap<>();
+        // Group strings by their ASCII sum
+
+        List<String> input= Arrays.asList(strArr);
+        Map<Integer, List<String>> asciiSumMap = input.stream()
+                .collect(Collectors.groupingBy(
+                        DeltaAirline2::calculateAsciiSum
+                ));
+        result= asciiSumMap.entrySet().stream().map(Map.Entry::getValue).collect(Collectors.toList());
+        return result;
+    }
+
+    private static int calculateAsciiSum(String str) {
+        return str.chars().sum();
+    }
+
     private static String processAnagramAscii(){
         String[] strArr= new String[]{"eat","tea","tan","ate","nat","bat"}; //eatt, teab
 

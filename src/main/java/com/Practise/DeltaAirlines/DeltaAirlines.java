@@ -1,9 +1,6 @@
-package com.Practise;
-
-import org.apache.logging.log4j.util.PropertySource;
+package com.Practise.DeltaAirlines;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 class LinkedListNode {
     int val;
@@ -554,9 +551,8 @@ https://nikhilsukhani.medium.com/transactional-annotation-in-spring-boot-ae76307
         while( fast.next!=null ){
 
             slow = slow.next;
-
            fast= fast.next
-            fast= fast.next
+
         }
 
         slow.prev = fast;

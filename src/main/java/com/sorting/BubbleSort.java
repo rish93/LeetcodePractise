@@ -2,7 +2,7 @@ package com.sorting;
 
 import java.util.Arrays;
 
-public class BubbleSort {
+public class      BubbleSort {
     public static void main(String[] args) {
 
             //compare adjacent elemnt and shift large to last
