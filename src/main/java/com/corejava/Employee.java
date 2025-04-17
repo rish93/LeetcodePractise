@@ -6,6 +6,8 @@ public class Employee {
     private String name;
     private int age;
     private String city;
+    private Integer salary;
+    private String department;
 
     @Override
     public String toString() {
@@ -53,6 +55,22 @@ public class Employee {
 
     public String getName() {
         return name;
+    }
+
+    public Integer getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Integer salary) {
+        this.salary = salary;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public void setName(String name) {

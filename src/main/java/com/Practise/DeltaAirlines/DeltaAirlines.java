@@ -91,6 +91,23 @@ public class DeltaAirlines {
 //            System.out.println(Arrays.toString(result));
 
 //        calculateEvenAndOddFromArray();
+
+
+
+        /*Mettl  apr 17 /25*/
+
+            //output syncronuzied print and wait
+          //  new DeltaAirlines().outputSynchronisedPrint(); uncomment and run
+
+            //output method witih int value and clalling double, long
+            new DeltaAirlines().outputCallingOverloaded();
+
+            //string array list sor aaAA, aAAa, AAAa, AaAA
+            new DeltaAirlines().outputSortWithMultialphabet();
+
+            //set wit null
+        new DeltaAirlines().outputSetWithNull();
+
         }
 
          private static int findMaxFromMagnetsDPApproach(int arrSize, int magnetDiff, int[] magnetArr) {
@@ -576,6 +593,90 @@ https://nikhilsukhani.medium.com/transactional-annotation-in-spring-boot-ae76307
 
      */
 
+
+
+
+
+    }
+
+    public void outputSortWithMultialphabet(){
+       List<String> listA= new ArrayList<>();//List.of("AAaa","aaAA", "aAaA","aAaa","AAAA");
+        listA.add("AAaa");
+        listA.add("aaAA");
+        listA.add("aAaA");
+        listA.add("aAaa");
+        listA.add("AAAA");
+       Collections.sort(listA);
+       System.out.println(listA);
+
+       /*
+       * Because:
+            1.	Strings starting with uppercase letters (A) come before lowercase (a)
+            2.	Then sorted based on next characters in order
+            🔍 What does Collections.sort(listA) do?
+
+        It sorts the list based on natural ordering, which for String means lexicographical order using Unicode values.
+
+        📘 How are characters sorted in Java?
+
+        Java uses Unicode values for sorting:
+            •	'A' = 65
+            •	'a' = 97
+
+        So uppercase letters come before lowercase.
+       * * */
+    }
+
+
+    void outputSetWithNull(){
+        Set<String> set=new HashSet<>();
+        set.add(null);
+        set.add("3");
+
+        Iterator itr = set.iterator();
+        while(itr.hasNext()){
+            System.out.print(itr.next()+"\t");
+        }
+        System.out.println("\n"+set.remove(null));
+        System.out.println(set);
+    }
+    public void outputCallingOverloaded(){
+       // callMe(2);
+        /*Cannot resolve method 'callMe(int)'*/
+    }
+    void callMe(Long l){}
+    void callMe(Double d){}
+
+    public void outputSynchronisedPrint(){
+        System.out.println();
+         System.out.println(1);
+
+
+         synchronized(DeltaAirlines.class){
+            System.out.println(2);
+            try {
+                wait();
+            }catch (InterruptedException e){
+            /*
+            * thread "main" java.lang.IllegalMonitorStateException: current thread is not owner
+                at java.base/java.lang.Object.wait(Native Method)
+                at java.base/java.lang.Object.wait(Object.java:321)
+            */
+            }
+            System.out.println(3);
+         }
+
+            /*
+            * 🧠 Java’s Thread Synchronization Model
+            Every object in Java has an intrinsic lock (also called a monitor). Only one thread can hold this lock at a time.
+            •	When you use a synchronized block or method, the thread acquires the lock on the object.
+            •	When you call wait(), notify(), or notifyAll() on an object, Java requires the current thread to own that object’s lock — otherwise it doesn’t make sense to wait or notify.
+            * Because the thread is trying to wait on an object it doesn’t hold the lock for — which would be dangerous. Imagine if any thread could pause any object’s state arbitrarily — chaos!
+            🛡️ Why does Java enforce this?
+            1.	To prevent deadlocks: Requiring a lock ensures the thread is coordinating properly with others.
+            2.	To ensure consistency: The lock ensures only one thread is modifying or observing shared state when using wait/notify.
+            *
+            * */
     }
 
 }
