@@ -47,7 +47,8 @@ public class JPMorgan {
 ⸻
 
 💡 With millions of records:
-	•	Most of the time, ArrayList is better due to better cache performance, less memory overhead, and fast random access.
+	•	Most of the time, ArrayList is better due to better cache performance,
+	* *  less memory overhead, and fast random access.
 	•	LinkedList can become memory-heavy and slower for iteration.
 
 ⸻
@@ -76,10 +77,7 @@ If you’re hitting memory or performance issues with millions of records, consi
 
 
         //how to optimize query whioch is slow  ///remove unwanted column.... use indexing.........table can eb more normalized
-
         //ddynamic lenghtg of list
-
-
-//concurrent hashmaop with parallel stream  ///will it work
+        //concurrent hashmaop with parallel stream  ///will it work
     }
 }
