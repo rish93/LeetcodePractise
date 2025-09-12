@@ -1,5 +1,6 @@
 package com.Practise;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Siemens {
@@ -82,3 +83,4 @@ class CustomListCollection<T> extends CustomSortCollection{
 //how to make sgared resource, synchronised
 //how to create artifacts in gitllab yml
 
+//how to mo9nitor spring application  (prometheous/actuator/metrics??)

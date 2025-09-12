@@ -16,6 +16,8 @@ public class LongestPalindromicSubstring {
         System.out.println(longestPalindrome("a")); //a
         System.out.println(longestPalindrome("a")); //a
         System.out.println(longestPalindrome("ac")); //ac
+
+        System.out.println(longestPalindromeForEachCharLedtRightIteration("babad"));
     }
     public static String longestPalindrome(String s) {
         //take one character ata a time
@@ -54,6 +56,43 @@ public class LongestPalindromicSubstring {
                 map.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey()
                 :"";
     }
+
+
+    public static String longestPalindromeForEachCharLedtRightIteration(String s) {
+        char []charArr= s.toCharArray();
+        int start_pointer=0;
+        int end_pointer=0;
+        String longestPalendrome="";
+        String result="";
+
+        if(s.length()==1)
+            return s;
+        for(int i=0;i<charArr.length;i++){
+            start_pointer=i;
+            end_pointer=i;
+            result="";
+            while(start_pointer>=0 && end_pointer<charArr.length ) {
+                System.out.println(charArr[start_pointer]+" -- "+charArr[end_pointer]);
+
+                if(start_pointer<0 || end_pointer>charArr.length-1)
+                    break;
+                if(charArr[start_pointer] == charArr[end_pointer])  {
+                    result=s.substring(start_pointer,end_pointer+1);
+                    System.out.println("result "+result);
+                }
+                start_pointer--;
+                end_pointer++;
+            }
+
+            if(result.length()>longestPalendrome.length()){
+                System.out.println("longestPalendrome. "+longestPalendrome);
+                longestPalendrome=result;
+                result="";
+            }
+        }
+        return longestPalendrome;
+    }
+
 
     //wrong
     public static String longestPalindromeSubstring(String s) {
