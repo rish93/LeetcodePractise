@@ -1,5 +1,7 @@
 package com.javatopics.streams;
 
+import com.corejava.Employee;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +40,16 @@ public class EverythingStreams {
         //filter(), map(), skip(), count(), collect() and sum().
         //reduce(), max(), min(), peek(), sorted(), count(), dropWhile(),
         // distinct(), dropWhile(), limit(),
+
+        List<Employee> listEmployeeeWithSalary = List.of(new Employee("Rishabh",32,
+                "Bangalore", 310000, "ITDA"),
+
+                new Employee("Prateek",36,
+                        "Lucknow", 410000, "Workforce")
+
+                ,new Employee("Sebastian",12,
+                        "Seattle", 910000, "BCA"));
+
 
         //filter()
        List<Integer> listOfIntegers= List.of(34,2,3,4,5,6,23,324,5456);
@@ -119,8 +131,16 @@ public class EverythingStreams {
                         .count());//or
                                   //.collect(Collectors.counting())
 
+        //max salary group by department
+        System.out.println(listEmployeeeWithSalary.stream()
+                .max(Comparator.comparingInt(Employee::getSalary)).map(employee ->
+                        employee.getDepartment()).get());
 
-
+        System.out.println(listEmployeeeWithSalary.stream()
+                        .max(Comparator.comparing(Employee::getSalary)).stream()
+                        .collect(Collectors.groupingBy(employee -> employee.getDepartment())));
     }
+
+
 
 }

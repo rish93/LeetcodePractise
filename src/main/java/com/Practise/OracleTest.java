@@ -106,3 +106,93 @@ public class OracleTest {
 
     }
 }
+
+
+/*
+*
+⸻
+
+🔹 The Problem
+	•	Two users try to book the same seat at the same time.
+	•	We want only one user to succeed and the other to fail gracefully.
+
+This is about ensuring correctness under concurrent transactions.
+
+⸻
+
+🔹 DB Concepts That Apply
+	1.	Transactions (ACID)
+	•	A transaction ensures Atomicity, Consistency, Isolation, Durability.
+	•	Here, Isolation is the key property: concurrent transactions must not interfere incorrectly.
+	2.	Isolation Levels
+	•	Databases provide different isolation levels:
+	•	Read Uncommitted → dirty reads allowed (not safe).
+	•	Read Committed → prevents dirty reads.
+	•	Repeatable Read → prevents non-repeatable reads.
+	•	Serializable → highest level, transactions behave as if executed one after another.
+👉 For seat booking, you typically need Serializable (or a strong locking mechanism).
+	3.	Pessimistic Locking (aka Row-level locks)
+	•	First user locks the seat row (SELECT ... FOR UPDATE).
+	•	Second user trying to book waits or fails until the lock is released.
+	•	Ensures only one transaction modifies the row.
+	4.	Optimistic Concurrency Control
+	•	Instead of locking, you use a version field or check condition.
+	•	Example: UPDATE seats SET status='booked' WHERE seat_id=123 AND status='available'.
+	•	If row count = 0, means another transaction already booked it.
+	•	This is lightweight and avoids lock contention.
+	5.	Unique Constraints
+	•	Another trick is to enforce unique constraints at DB level.
+	•	Example: table bookings has (seat_id, show_id) as a unique key.
+	•	Two inserts for the same seat will cause one to fail with a constraint violation.
+
+⸻
+
+🔹 What This Is Called in DB Terms?
+	•	Concurrency Control ✅
+	•	Ensuring correctness with multiple users is handled by Transaction Isolation and Concurrency Control mechanisms.
+	•	In relational DBs, this usually falls under “Isolation in ACID” and is implemented with locking or optimistic control.
+
+⸻
+
+🔹 Example in SQL (Optimistic Approach)
+* BEGIN;
+
+UPDATE seats
+SET status = 'BOOKED', booked_by = 101
+WHERE seat_id = 123 AND status = 'AVAILABLE';
+
+-- check how many rows were updated
+-- if 0 → booking failed (someone else booked)
+-- if 1 → success
+
+COMMIT;
+*
+*
+*
+*
+* 🔹 Example in SQL (Pessimistic Locking)
+*
+* BEGIN;
+
+SELECT * FROM seats
+WHERE seat_id = 123
+FOR UPDATE;
+
+-- if status = AVAILABLE → mark as BOOKED
+UPDATE seats SET status = 'BOOKED', booked_by = 101
+WHERE seat_id = 123;
+
+COMMIT;
+*
+*
+*
+* ✅ Summary:
+The concept is called Concurrency Control in databases, specifically using Transaction Isolation (ACID).
+You can solve it via:
+	•	Pessimistic Locking (SELECT FOR UPDATE)
+	•	Optimistic Concurrency Control (update with condition/version check)
+	•	Unique Constraints (force DB to reject duplicates)
+
+⸻
+
+*  */

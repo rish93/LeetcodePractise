@@ -18,11 +18,20 @@ public class Employee {
                 '}';
     }
 
+    public Employee(String name, int age, String city,Integer salary, String department) {
+        this.name = name;
+        this.age = age;
+        this.city = city;
+        this.salary =salary;
+        this.department = department;
+    }
+
     public Employee(String name, int age, String city) {
         this.name = name;
         this.age = age;
         this.city = city;
     }
+
 
     @Override
     public boolean equals(Object o) {

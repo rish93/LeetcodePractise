@@ -26,6 +26,57 @@ public class MorganStanleyTest extends Thread {
     }
 
     public static void main(String[] args) throws Exception {
+
+       /*
+       * Group list of employees by department and print highest paid employees in each department*/
+
+//sort().reverseOrder().findFirst()
+//      List<Departmnent> lsdepartmenr= lsEmployee.stream().map(empl=> employee.getDepartment()).max(emp=>emp.salary())
+//        .findFirst().collect(Coollectors.toList());
+
+
+        /*Through Xoriant  oct6/2025
+        * Pass same value across service
+        * RestController vs Controller
+        * @Value vs @ConfigurationProperties
+        * Group List of employees by department & print highest paid employee in each department
+        *
+        *  System.out.println(listEmployeeeWithSalary.stream()
+                        .max(Comparator.comparing(Employee::getSalary)).stream()
+                        .collect(Collectors.groupingBy(employee -> employee.getDepartment())));
+        *
+        * */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
          new MorganStanleyTest().start();
 
 
