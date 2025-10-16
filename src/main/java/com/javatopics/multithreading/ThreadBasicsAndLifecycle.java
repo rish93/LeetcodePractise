@@ -75,12 +75,107 @@ wait() Method
 // */
 
 
+class Display{
+    int turn=1;
+    int times=5;
+    /*
+    * Question: “What happens if we remove synchronized in a wait/notify program?”
 
+Answer:
+wait() and notify() require the calling thread to own the monitor lock.
+Without synchronization, the JVM throws IllegalMonitorStateException.
+Also, shared data (like turn) can be modified concurrently, leading to race conditions and unpredictable output.
+ */
+    synchronized void print(String name, int thread) throws InterruptedException {
+        for(int i=0;i< times;i++){
+            while(turn!=thread) {
+                wait();
+            }
+            System.out.println(name);
+            turn =turn %3+1;
+            notifyAll();
+        }
+    }
+}
+/*
+*Instead of sycnronized, wait notify use lock
+*
+*
+* class Display {
+    private final Lock lock = new ReentrantLock();
+    private final Condition condition = lock.newCondition();
+    private int turn = 1;
+    private final int times = 5;
 
+    public void print(String name, int thread) throws InterruptedException {
+        for (int i = 0; i < times; i++) {
+            lock.lock();
+            try {
+                while (turn != thread) {
+                    condition.await();
+                }
+
+                System.out.println(name);
+
+                // Move turn to next thread
+                turn = turn % 3 + 1;
+
+                // Signal all waiting threads to re-check condition
+                condition.signalAll();
+
+            } finally {
+                lock.unlock();
+            }
+        }
+    }
+}
+* * *
+*
+* */
 public class ThreadBasicsAndLifecycle {
 
     Data data = new Data();
     public static void main(String[] args) throws InterruptedException {
+        //------------------------------------------------------
+            //print in order 5 time for eg Mr   Rishabh Mankatala * 5 times from each thread
+            Display display = new Display();
+            Thread firstThread= new Thread(){
+                @Override
+                public void run() {
+                    try {
+                        display.print("Mr", 1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            Thread secondThread= new Thread(){
+                @Override
+                public void run() {
+                    try {
+                        display.print("Rishabh", 2);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            Thread thirdThread= new Thread(){
+                @Override
+                public void run() {
+                    try {
+                        display.print("Mankatala", 3);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            firstThread.start();
+            secondThread.start();
+            thirdThread.start();
+
+
+
+        //------------------------------------------------------
 
         Thread t1= new Thread(); //NEW
         System.out.println("1 "+ t1.getState().name());

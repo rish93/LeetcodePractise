@@ -2,11 +2,9 @@ package com.javatopics.streams;
 
 import com.corejava.Employee;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class EverythingStreams {
 
@@ -94,9 +92,9 @@ public class EverythingStreams {
         System.out.println(total1);
 
         Map<Integer,List<Integer>> total2
-                =  List.of(1,2,3).stream()
+                =  List.of(1,2,3,3).stream()
                 .collect(Collectors.groupingBy(o -> o));
-        System.out.println(total2);
+        System.out.println(total2+" total2");
 
 
         // Partition integer based on odd and even
@@ -139,6 +137,28 @@ public class EverythingStreams {
         System.out.println(listEmployeeeWithSalary.stream()
                         .max(Comparator.comparing(Employee::getSalary)).stream()
                         .collect(Collectors.groupingBy(employee -> employee.getDepartment())));
+
+
+
+        Map<Integer, String> map1 = new HashMap<>();
+        map1.put(1, new String( "Alice"));
+        map1.put(2, new String("Bob"));
+
+        Map<Integer, String> map2 = new HashMap<>();
+        map2.put(3, new String( "Charlie"));
+        map2.put(4, new String( "David"));
+
+
+        // Merge maps
+        Map<Integer, String> mergedMap = Stream.of(map1, map2)
+                .flatMap(map -> map.entrySet().stream())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (v1, v2) -> v1));
+        System.out.println(mergedMap);
+
+
     }
 
 

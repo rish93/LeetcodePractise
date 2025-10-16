@@ -1,10 +1,10 @@
-Structural Design pattern
+ Structural Design pattern
     -> Adapter design pattern
     -> Proxy design pattern
 
 Creational Design pattern
     -> Builder desing pattern
-    -> Prototype design pattern
+    -> Prototype design pat
     -> Singleton Design pattern
     -> Factory Design pattern
 

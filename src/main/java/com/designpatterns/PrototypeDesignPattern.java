@@ -62,14 +62,31 @@ class DB implements Cloneable{
     }
 
     @Override
-    public Object clone() {
-        List<String> tempList = new ArrayList<>();
-        //deep copying
-        for(String company:this.getSubsidiaryCompanies()){
-            tempList.add(company);
-        }
+    public Object clone() throws CloneNotSupportedException {
 
-        return new DB(tempList);
+//        List<String> tempList = this.getSubsidiaryCompanies();
+//        this will get same list and addd to asme list
+
+
+//        List<String> tempList = new ArrayList<>();
+        //deep copying
+//        for(String company:this.getSubsidiaryCompanies()){
+//            tempList.add(company);
+//        }
+//or
+//        List<String> tempList = new ArrayList<>(this.getSubsidiaryCompanies());
+//        return new DB(tempList);
+
+        //above snipper still return deep clone dobject, even if cloneabla interfae
+        //ius removed, reasojn, it is manual deep clioning
+
+        //correct way
+
+        DB copy = (DB) super.clone();  // performs shallow copy
+        copy.subsidiaryCompanies = new ArrayList<>(this.subsidiaryCompanies); // deep copy
+        return copy;
+
+
     }
 }
 

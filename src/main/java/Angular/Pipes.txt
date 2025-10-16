@@ -21,7 +21,24 @@ Impure pipes can be useful in some cases, such as when you need to perform a hea
 However, it’s generally recommended to use pure pipes whenever possible to improve performance and prevent unnecessary change detection cycles.
 
 
+    import { Pipe, PipeTransform } from '@angular/core';
 
+    @Pipe({
+      name: 'capitalize' // The name used in templates
+    })
+    export class CapitalizePipe implements PipeTransform {
+      transform(value: string, ...args: unknown[]): string {
+        if (!value) return ''; // Handle null or undefined input
+
+        // Example transformation: Capitalize the first letter of each word
+        return value.split(' ').map(word => {
+          if (word.length > 0) {
+            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+          }
+          return '';
+        }).join(' ');
+      }
+    }
 
 
 1) Pipes in Angular: A pipe takes in data as input and transforms it to the desired output

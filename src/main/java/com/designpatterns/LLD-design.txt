@@ -1,0 +1,131 @@
+Creational                                                      Structural                                                                       Behavioral
+
+Singleton               Decorator                    State
+Factory                                                             Facade                       Observer
+Abstract              Adaptor                      Command
+Prototype                                                        Proxy                        State
+Builder                                                             Composite
+
+
+
+
+
+
+
+Singleton:
+
+
+class SingletonLogger{
+
+               //eager
+               private SingletonLogger loggerEager=new SingletonLogger();
+
+               public static SingletonLogger getLogger(){
+                              return loggerEager;
+               }
+
+               //lazy
+               private SingletonLogger loggerLazy=null;
+               public static SingletonLogger getLogger(){
+                              if(loggerLazy==null){
+                              loggerLazy = new SingletonLogger();
+                              return loggerLazy;
+                              }
+
+               }
+
+               //advance thread safe
+               private synchronised SingletonLogger loggerLazy=null;
+               public static SingletonLogger getLogger(){
+                              if(loggerLazy==null){
+                                             loggerLazy = new SingletonLogger();
+                                             return loggerLazy;
+                              }
+
+               }
+
+
+               //advance thread safe
+               private  SingletonLogger loggerLazy=null;
+               public static SingletonLogger getLogger(){
+                              if(loggerLazy==null){
+                              synchronised(SingletonLogger.class){
+                                             loggerLazy = new SingletonLogger();
+                                                            return loggerLazy;
+                                             }
+                              }
+               }
+}
+
+
+Factory:
+
+interface iVehicle{
+               run(String type);
+}
+
+interface i4wheeler extends iVehicle{
+               suv(String type);
+}
+
+class 4wheeler implements i4wheeler{
+suv(String type){}
+run(String type){}
+}
+
+interface i2wheeler extends iVehicle{
+               cc(String type);
+}
+
+
+class 2wheeler implements i2wheeler{
+cc(String type){}
+run(String type){}
+}
+
+class FactoryDP{
+
+               public static vehicle getFatcory(String type){
+                              Vehicle veh=null;
+                              if(type.equals("car"))
+                                                            veh=new 4wheeler();
+                              else if(type.equals("bike")
+                                                            veh=new 2wheeler();
+               }
+
+interface iVehicle{
+               run(String type);
+}
+
+interface i4wheeler extends iVehicle{
+               suv(String type);
+}
+
+class 4wheeler implements i4wheeler{
+suv(String type){}
+run(String type){}
+}
+
+interface i2wheeler extends iVehicle{
+               cc(String type);
+}
+
+
+class 2wheeler implements i2wheeler{
+cc(String type){}
+run(String type){}
+}
+
+class FactoryDP{
+
+               public static vehicle getFatcory(String type){
+                              Vehicle veh=null;
+                              if(type.equals("car"))
+                                                            veh=new 4wheeler();
+                              else if(type.equals("bike")
+                                                            veh=new 2wheeler();
+               }
+
+
+}
+}
