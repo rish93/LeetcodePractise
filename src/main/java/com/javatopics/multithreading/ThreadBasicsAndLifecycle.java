@@ -334,6 +334,11 @@ class TestJoinMethod1 extends Thread{
         }catch(Exception e){System.out.println(e);}
 
         t2.start();
+        try {
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         t3.start();
     }
 

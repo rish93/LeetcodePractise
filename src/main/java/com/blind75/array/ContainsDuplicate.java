@@ -1,7 +1,10 @@
 package com.blind75.array;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /*Given an integer array nums, return true if any value appears
  at least twice in the array, and return false if every element is distinct.
@@ -26,9 +29,21 @@ public class ContainsDuplicate {
 
         System.out.println(containsDuplicate(new int[]{1,  3, 3, 4, 3, 2, 4, 2}));
         System.out.println(containsDuplicate(new int[]{1,2,3,4,5}));
+
+        System.out.println(containsDuplicateByStreams(new Integer[]{1,2,3,4,5,5}));
+
     }
 
+    public static Integer containsDuplicateByStreams(Integer []arr){
+       return Arrays.stream(arr).collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+               .entrySet()
+               .stream()
+               .filter(integerLongEntry -> integerLongEntry.getValue()>1L)
+               .map(Map.Entry::getKey)
+               .findFirst()
+               .get();
 
+    }
     public static boolean containsDuplicate(int[] nums) {
 
         Map<Integer, Integer> mapNums = new HashMap<>();

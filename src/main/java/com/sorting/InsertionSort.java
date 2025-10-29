@@ -12,7 +12,7 @@ public class InsertionSort {
 
         System.out.println(Arrays.toString(insertionSort(input1)));
 
-
+        insertionSortChatGpt(input1);
     }
 
 
@@ -38,5 +38,23 @@ public class InsertionSort {
 
         return input;
 
+    }
+
+
+    static void insertionSortChatGpt(int[] input){
+
+            for(int i=1;i< input.length;i++){
+
+                int j=i-1;
+                int key=input[i];
+
+                while(j>=0 && input[j]>key){
+
+                    input[j+1] = input[j];
+                    j--;
+                }
+                input[j+1] = key;
+            }
+        System.out.println("insertionSortChatGpt "+Arrays.toString(input));
     }
 }

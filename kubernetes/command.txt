@@ -1,9 +1,36 @@
+Must know kubernetes cxommand
 
+kubectl get pods: Lists all pods in the current namespace.
+kubectl get deployments: Lists all deployments.
+kubectl get services: Lists all services.
+kubectl get nodes: Displays information about cluster nodes.
+kubectl get all: Shows all resources in the current namespace.
+Use -n <namespace> to specify a namespace or -A for all namespaces.
+Use -o wide, -o yaml, or -o json for different output formats.
+
+kubectl describe <resource_type> <resource_name>: Provides detailed information about a specific resource, including events, conditions, and associated resources.
+kubectl describe pod my-pod-name
+kubectl apply -f <file.yaml>: Applies a configuration defined in a YAML file to create or update resources.
+kubectl delete <resource_type> <resource_name>: Removes a specific resource.
+kubectl delete pod my-pod-name
+kubectl logs <pod_name>: Displays the logs of a container within a pod.
+Use -f to follow logs in real-time.
+Use -c <container_name> to specify a container in a multi-container pod.
+kubectl exec -it <pod_name> -- <command>: Executes a command inside a running container within a pod.
+kubectl exec -it my-pod-name -- /bin/bash (to get a shell inside the container)
 
 
 kubectl run --generator=run-pod/v1 webapp --image=k8s4devs.azurecr.io/k8s4devs/webapp:v0.2
 
 
+kubectl port-forward <pod_name> <local_port>:<pod_port>: Forwards a port from a pod to your local machine, allowing local access to services running in the pod.
+Cluster and Configuration Commands:
+kubectl cluster-info: Displays information about the cluster's control plane.
+kubectl config get-contexts: Lists available contexts in your kubeconfig file.
+kubectl config use-context <context_name>: Switches to a different Kubernetes context.
+Debugging and Monitoring:
+kubectl top pod <pod_name> / kubectl top node <node_name>: Shows resource usage (CPU/memory) for pods or nodes.
+kubectl rollout status deployment/<deployment_name>: Checks the status of a deployment rollout.
 
 
 

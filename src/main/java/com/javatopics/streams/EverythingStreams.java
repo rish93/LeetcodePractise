@@ -3,6 +3,7 @@ package com.javatopics.streams;
 import com.corejava.Employee;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -158,9 +159,267 @@ public class EverythingStreams {
                         (v1, v2) -> v1));
         System.out.println(mergedMap);
 
+        /*Frequently Asked Stream Programs */
 
+        //find even number from List
+        System.out.println("find even number from List > "+List.of(2,3,5,7,8,9,0)
+                .stream()
+                .filter(n-> n%2==0)
+                .collect(Collectors.toList()));
+
+
+        //Find numbers starting with 1
+        System.out.println("find number starting with 1 > "+List.of(12,31,15,70,8,19,20)
+                .stream()
+                .map(String::valueOf)
+                .filter(n-> n.startsWith("1"))
+                .collect(Collectors.toList()));
+
+
+        //Find duplicates in a list
+        System.out.println("Find duplicates in a list > "+List.of(12,31,15,70,8,19,19,20,20)
+                .stream()
+                .collect(Collectors.groupingBy(Integer::intValue, Collectors.counting()))
+                        .entrySet()
+                        .stream()
+                        .filter(n-> n.getValue()>1)
+                        .map(entry-> entry.getKey())
+                        .collect(Collectors.toList()));
+
+
+        //Find first element of list
+        System.out.println("Find first element of list > "+ List.of(12, 31, 15, 70, 8, 19, 20)
+                .stream()
+                .findFirst().orElse(null));
+
+
+        //	Count elements greater than X
+        System.out.println("Count elements greater than 10 > "+ List.of(12, 31, 15, 70, 8, 19, 20)
+                .stream()
+                .filter(s-> s>10)
+                    .count());
+
+
+        //Sort list in descending order
+        System.out.println("Sort list in descending order > "+ List.of(12, 31, 15, 70, 8, 19, 20)
+                .stream()
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList())
+        );
+
+
+        //Find frequency of each character
+        String name="Rishabh Mankatala";
+        System.out.println(name.chars()
+            .mapToObj(c -> (char) c)
+            .collect(
+            Collectors.groupingBy(Function.identity(),Collectors.counting())
+                 )
+        );
+
+
+
+        //Find first non repeated characters
+        String name1="Rishabh Mankatala";
+        System.out.println("Find first non repeated characters > "+name.chars()
+                .mapToObj(c -> (char) c)
+                .collect(
+                        Collectors.groupingBy(Function.identity()
+                                ,LinkedHashMap::new //to preserve order, without i hashmap not store order and rtesult in blank o/p
+                                ,Collectors.counting())
+                ).entrySet().stream()
+                .filter(characterLongEntry -> characterLongEntry.getValue()==1)
+                .map(Map.Entry::getKey)
+                .findFirst().orElse(null));
+
+          //	Reverse each word in a sentence
+          System.out.println("\tReverse each word in a sentence > "+
+                Arrays.stream(name.split(" "))
+                .map(word -> new StringBuilder(word).reverse().toString())
+                        .collect(Collectors.joining(" "))
+                );
+
+
+
+            //find maximum and minimum
+            System.out.println("Find  minimum > "+ List.of(12, 31, 15, 70, 8, 19, 20)
+                            .stream()
+                            .min(Comparator.naturalOrder())
+                            .stream().findFirst()
+                     );
+            System.out.println("Find  maximum > "+ List.of(12, 31, 15, 70, 8, 19, 20)
+                    .stream()
+                    .max(Comparator.comparingInt(value -> value.intValue()))
+            );
+
+
+            //sum all elements
+        System.out.println("sum all elements > "+ List.of(12, 31, 15, 70, 8, 19, 20)
+                .stream()
+                .mapToInt(value -> value).sum());
+
+
+        //average all ewlements
+        System.out.println("average all elements > "+ List.of(12, 31, 15, 70, 8, 19, 20)
+                .stream()
+                .mapToInt(value -> value).average());
+
+        //square and filter>100
+        System.out.println("square and filter>100 > "+ List.of(12, 31, 15, 70, 8, 19, 20)
+                .stream()
+                .map(value -> value*value).filter(ele->ele>100).collect(Collectors.toList()));
+
+
+        //Highest paid employee
+        class Employee {
+            String name;
+            String dept;
+            double salary;
+
+            Employee(String name,String dept, Integer salary){
+                this.name=name;
+                this.dept=dept;
+                this.salary=salary;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public String getDept() {
+                return dept;
+            }
+
+            public void setDept(String dept) {
+                this.dept = dept;
+            }
+
+            public double getSalary() {
+                return salary;
+            }
+
+            public void setSalary(double salary) {
+                this.salary = salary;
+            }
+
+            @Override
+            public String toString() {
+                return "Employee{" +
+                        "name='" + name + '\'' +
+                        ", dept='" + dept + '\'' +
+                        ", salary=" + salary +
+                        '}';
+            }
+        }
+
+        List<Employee> employees =List.of(
+                new Employee("Rishabh","ITDA",40),
+                new Employee("Chris", "ITDA", 29),
+                new Employee("Maria", "BCA", 20));
+
+        System.out.println("Highest paid employee > "+ employees
+                .stream()
+                .max(Comparator.comparing((e1)-> e1.salary))
+                .map(value -> value.name)
+                .stream().findFirst());
+
+
+        //group employee by department
+        System.out.println("group employee by department > "+ employees
+                .stream()
+                .collect(
+                        Collectors.groupingBy(Employee::getDept))
+                        .keySet()
+
+                );
+
+
+
+        //Average salary per department
+        System.out.println("Average salary per department > "+ employees
+                .stream()
+                .collect(
+                        Collectors.groupingBy(Employee::getDept,
+                        Collectors.averagingDouble(Employee::getSalary))
+                ));
+
+
+
+        //Find department with max employees
+        System.out.println("Find department with max employees > "+ employees
+                .stream()
+                .collect(
+                        Collectors.groupingBy(Employee::getDept,
+                       Collectors.counting()))
+                .entrySet()
+                .stream()
+                .max(Comparator.comparing(Map.Entry::getValue))
+                .get()
+            );
+
+
+
+
+            //	List employee names as comma-separated string
+            System.out.println("List employee names as comma-separated string > "+ employees
+                    .stream()
+                    .map(employee -> employee.name)
+                    .collect(Collectors.joining(","))
+
+            );
+
+
+        //Sort employees by salary then name
+         System.out.println("Sort employees by salary then name > "+ employees
+                .stream()
+                .sorted(Comparator.comparing(Employee::getSalary)
+                        .thenComparing(Employee::getName))
+                .collect(Collectors.toList())
+         );
+
+         List<List<Employee>> listoflist= new ArrayList<>();
+         listoflist.add(employees);
+         listoflist.add(employees);
+         listoflist.add(employees);
+        //Flatten a list of lists
+        System.out.println("Flatten a list of lists > "+ listoflist
+                .stream()
+                .flatMap(employees1 -> employees1.stream())
+                .collect(Collectors.toList())
+        );
+
+
+
+        //Find 2nd highest number
+        System.out.println("Find 2nd highest number > "+ List.of(12, 31, 15, 70, 8, 19, 20)
+                .stream()
+                .sorted(Comparator.reverseOrder())
+                .skip(1)
+                .findFirst()
+
+        );
+
+
+        //Find duplicate words in a sentence
+        System.out.println("Find duplicate words in a sentence > "+
+                Arrays.stream("Rishabh Rishabh Rishabh Mankatala".split(" "))
+                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+                .entrySet()
+                .stream().filter(stringLongEntry -> stringLongEntry.getValue()>1L)
+                .collect(Collectors.toList())
+        );
+
+
+
+        //Partition numbers into even and odd
+        System.out.println("Partition numbers into even and odd > "+
+                List.of(12, 31, 15, 70, 8, 19, 20).stream()
+                        .collect(Collectors.partitioningBy(inte-> inte%2==0))
+        );
+
+      }
     }
-
-
-
-}

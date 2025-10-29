@@ -1,0 +1,77 @@
+Circular dependencies in Spring Boot occur when two or more beans depend on each other,
+forming a cycle. Spring cannot determine which bean to initialize first, leading to a
+ BeanCurrentlyInCreationException (especially with constructor injection).
+
+
+
+ 1. Refactor Code (Recommended Approach)
+ The most robust solution is to redesign the components to eliminate
+ the circular dependency. This might involve:
+ Introducing an intermediary service: Create a new service that both
+ dependent beans can interact with, breaking the direct circular reference.
+ Separating concerns: Reorganize the classes to ensure that responsibilities
+ are clearly defined and dependencies flow in one direction.
+ Using interfaces: Program to interfaces rather than concrete implementations,
+ promoting loose coupling.
+ 2. Use @Lazy Annotation
+ The @Lazy annotation can be applied to a dependency in one of
+  the circularly dependent beans. This tells Spring to initialize
+  that specific bean lazily, creating a proxy and deferring the
+  actual bean creation until it's first used.
+ Java
+
+ @Component
+ public class BeanA {
+     private final BeanB beanB;
+
+     @Autowired
+     public BeanA(@Lazy BeanB beanB) { // Mark BeanB as lazy
+         this.beanB = beanB;
+     }
+ }
+
+ @Component
+ public class BeanB {
+     private final BeanA beanA;
+
+     @Autowired
+     public BeanB(BeanA beanA) {
+         this.beanA = beanA;
+     }
+ }
+ 3. Use Setter Injection Instead of Constructor Injection
+ While constructor injection is generally preferred for mandatory
+ dependencies, setter injection can resolve circular dependencies
+ because Spring can create the bean instances first and then set the
+  dependencies later via the setter methods.
+ Java
+
+ @Component
+ public class BeanA {
+     private BeanB beanB;
+
+     @Autowired
+     public void setBeanB(BeanB beanB) {
+         this.beanB = beanB;
+     }
+ }
+
+ @Component
+ public class BeanB {
+     private BeanA beanA;
+
+     @Autowired
+     public void setBeanA(BeanA beanA) {
+         this.beanA = beanA;
+     }
+ }
+ 4. Enable Circular References (Not Recommended for Production)
+ Spring Boot allows you to explicitly enable circular references by
+ setting spring.main.allow-circular-references=true in your application.properties
+ or application.yml. However, this is generally discouraged as it can mask underlying
+ design issues and lead to unexpected behavior or initialization problems.
+ 5. @PostConstruct and ApplicationContextAware (Advanced)
+ For more complex scenarios, you can use @PostConstruct to perform
+ actions after all dependencies are injected, or implement ApplicationContextAware
+  to manually access beans from the Spring context. These methods provide
+  fine-grained control but are typically more involved.

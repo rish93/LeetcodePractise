@@ -1,6 +1,6 @@
 package com.Practise;
 
-public class TripJack {
+public class TripJack2025 {
 
     public static void main(String[] args) {
 ///spring bot benefit

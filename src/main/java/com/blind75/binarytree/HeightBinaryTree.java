@@ -13,6 +13,8 @@ public class HeightBinaryTree {
           6  6*/
         //Print the Tree in order
         System.out.println("Max Depth -->"+maxDepth(t2));
+
+        System.out.println(""+  maxDepthRecursion(t2));
     }
 
     public static int maxDepth(TreeNode root) {
@@ -29,5 +31,15 @@ public class HeightBinaryTree {
 
     }
 
+       static int maxDepthRecursion(TreeNode node){
 
+            if(node ==  null)
+                return 1;
+
+            int left=maxDepthRecursion(node.left);
+            int right=maxDepthRecursion(node.right);
+
+
+            return Math.max(left,right);
+        }
 }

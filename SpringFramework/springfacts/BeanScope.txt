@@ -1,0 +1,23 @@
+Here are the main bean scopes in Spring:
+Singleton (Default Scope):
+One instance of the bean is created per Spring IoC container.
+This single instance is shared across all requests for that bean throughout the application's lifetime.
+This is the default scope if no other scope is explicitly specified.
+Prototype:
+A new instance of the bean is created every time it is requested from the Spring IoC container.
+Each request for a prototype-scoped bean results in a distinct object.
+Request (Web-aware only):
+A new instance of the bean is created for each HTTP request.
+The bean is available only within the scope of that particular HTTP request and is destroyed when the request completes.
+This scope is applicable only in a web-aware Spring ApplicationContext.
+Session (Web-aware only):
+A new instance of the bean is created for each HTTP session.
+The bean is available throughout the lifetime of the HTTP session and is destroyed when the session expires or is invalidated.
+This scope is applicable only in a web-aware Spring ApplicationContext.
+Application (Web-aware only):
+A single instance of the bean is created per ServletContext (web application).
+The bean is available throughout the entire web application and is shared by all sessions and requests within that application.
+This scope is applicable only in a web-aware Spring ApplicationContext.
+WebSocket (Web-aware only):
+A new instance of the bean is created for each WebSocket session.
+This scope is specific to applications using Spring's WebSocket support.

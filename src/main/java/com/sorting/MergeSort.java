@@ -28,7 +28,7 @@ public class MergeSort {
         int[] leftArray = new int[middle];
         int[] rightArray = new int[length - middle];
 
-        int i = 0; //left array
+        int i = 0; //left array n
         int j = 0; //right array
 
         for(; i < length; i++) {
